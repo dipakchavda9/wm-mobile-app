@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="org.wadhwanmandir.dailydarshan" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>Wadhwan Mandir</name>
+    <description>
+        This is official application of Wadhwan Sanstha.
+    </description>
+    <author email="support@phonegap.com" href="http://phonegap.com">
+        Radhakrishnadev Yuvak Mandal - Wadhwan
+    </author>
+    <content src="index.html" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="8" />
+    <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
+    <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
+    <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
+    <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
+    <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
+    <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+    <plugin name="com.sharinglabs.cordova.plugin.datepicker" spec="1.1.3" source="pgb" />
+    <gap:icon src="res/Android/res/drawable/icon.png" gap:role="default" />
+    <gap:splash src="res/Android/res/drawable/screen.png" gap:role="default" />
+    <gap:platform name="android">
+        <gap:icon density="ldpi" src="res/Android/res/drawable-ldpi/icon.png" />
+        <gap:icon density="mdpi" src="res/Android/res/drawable-mdpi/icon.png" />
+        <gap:icon density="hdpi" src="res/Android/res/drawable-hdpi/icon.png" />
+        <gap:splash density="land-ldpi" src="res/Android/res/drawable-land-ldpi/screen.png" />
+        <gap:splash density="land-mdpi" src="res/Android/res/drawable-land-mdpi/screen.png" />
+        <gap:splash density="land-hdpi" src="res/Android/res/drawable-land-hdpi/screen.png" />
+        <gap:splash density="port-ldpi" src="res/Android/res/drawable-ldpi/screen.png" />
+        <gap:splash density="port-mdpi" src="res/Android/res/drawable-mdpi/screen.png" />
+        <gap:splash density="port-hdpi" src="res/Android/res/drawable-hdpi/screen.png" />
+    </gap:platform>
+    <access origin="*" />
+    <access origin="mailto:*" launch-external="yes" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" launch-external="yes" />
+    <allow-intent href="geo:*" />
+    <gap:platform name="android">
+        <allow-intent href="market:*" />
+    </gap:platform>
+</widget>

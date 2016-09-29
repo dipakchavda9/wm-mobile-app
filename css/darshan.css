@@ -1,0 +1,20 @@
+.gallery {
+    
+}
+
+.gallery div {
+    margin-bottom: 4px;
+}
+
+.gallery div img {
+    display: block;
+    margin: 0 auto;
+}
+
+.message {
+    color: darkred;
+    margin: 0 auto;
+    display: none;
+    text-align: center;
+    margin-top: 225px;
+}
