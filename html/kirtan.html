@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+Index
+</title>
+<script src="../js/jquary.min.1.12.2.js" type="text/javascript" language="javascript"></script>
+    <link href="../css/bootstrap.min.css" rel="Stylesheet" type="text/css" />
+    <script src="../js/bootstrap.min.3.3.6.js" type="text/javascript" language="javascript"></script>
+    
+    <script src="../js/Kirtan.js" type="text/javascript" language="javascript"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#" data-toggle="modal" data-target="#fontModal"><span class="glyphicon glyphicon-font"></span></a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+        <div style="height: 60px;">
+        </div>
+        <div class="panel panel-primary">
+    <div class="panel-heading" id="header"></div>
+    <div class="panel-body" id="kirtan">
+    </div>
+    <div class="panel-footer" id="footer"></div>
+</div>
+<div class="modal fade" id="fontModal" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            &times;</button>
+                        <h4 class="modal-title">
+                            Font Size</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button" id="btnMinus">
+                                    -</button>
+                            </span>
+                            <input type="text" class="form-control" id="txtFontSize" disabled="disabled" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-info" type="button" id="btnPlus">
+                                    +</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-info" data-dismiss="modal" onclick="SetFontSize()">Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>
