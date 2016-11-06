@@ -1,10 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Home Page</title>
     <link rel="Stylesheet" href="css/bootstrap.min.css" type="text/css" />
     <style>
-      
         .gujaratiFont
         {
             font-family:centurySchoolbook;
@@ -15,6 +14,9 @@
         {
             font-family:Tahoma;
             font-size:x-small;
+        }
+        html, body {
+            height: 100%;
         }
     </style>
 </head>
@@ -161,29 +163,24 @@
         </div>
        
     </div>
-        <div class="container" style="height:35px;">
-            <div class="row"></div>
-        </div>
-        <script type="text/javascript" src="Cordova.js"></script>
-   <script type="text/javascript">
-       window.onload = function () {
-           if (!localStorage.getItem("language")) {
+    <div class="container" style="height:35px;">
+        <div class="row"></div>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/jquery-v1_11_1.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    <script type="text/javascript">
+        window.onload = function () {
+            if (!localStorage.getItem("language")) {
                localStorage.setItem("language", "Gujarati");
-           }
-           ChangeLanguage(localStorage.getItem("language"));
-           this.width = window.width * 0.95;
-           document.addEventListener('deviceready', this.onDeviceReady, false);
-           document.addEventListener('backbutton', this.exitAppFunction, false);
+            }
+            ChangeLanguage(localStorage.getItem("language"));
             localStorage.setItem("StartShlok", 0);
             localStorage.setItem("EndShlok", 212);
-       }
-
-       function onDeviceReady() {
-       }
-
-       function exitAppFunction() {
-           navigator.app.exitApp();
-       }
+        }
 
        function ChangeLanguage(strLanguage) {
            if (strLanguage == "Gujarati") {
