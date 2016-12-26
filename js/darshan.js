@@ -18,14 +18,39 @@ function displayTodaysDarshan() {
     var screenHeight = $(window).height();
     var screenWidth = $(window).width();
 
-    var darshanHtml = '';
+    var darshanHtml = '<div id="lightgallery">';
     var i;
     for(i=1;i<=imageCount;i++) {
-        darshanHtml += '<div id="dev' + i + '"><img src="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev' + i + '_' + date + '.jpg" max-height="' + screenHeight/2 + 'px" max-width="' + screenWidth/2 + 'px" height="50%" width="50%" onerror="hideImage(' + i + ')""/></div>';
+        darshanHtml += '<a href="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev' + i + '_' + date + '.jpg" data-download-url="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev' + i + '_' + date + '.jpg"><img src="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev' + i + '_' + date + '.jpg" max-height="' + screenHeight/2 + 'px" max-width="' + screenWidth/2 + 'px" height="50%" width="50%" onerror="removeImage(this)" onload="addStyletoImage(this)"/></a>';
     }
+    darshanHtml += '</div>';
     $("#darshan").html(darshanHtml);
+
+    lightGallery(document.getElementById('lightgallery'), {
+        mode: 'lg-fade',
+        download: false
+    });
+
 }
 
+function removeImage(img) {
+    $(img).parent().remove();
+    errorCount++;
+    if(errorCount >= imageCount) {
+        showMessageBlock();
+    }
+}
+
+function addStyletoImage(img) {
+    $(img).css('border', '2px solid white');
+}
+
+function showMessageBlock() {
+    $('#message').show();
+    $('#darshan').hide();
+}
+
+/*
 function displayDarshan(dateStr) {
 
     if(!dateStr) {
@@ -52,18 +77,5 @@ function displayDarshan(dateStr) {
     for(i=1;i<=imageCount;i++) {
         darshanHtml += '<div id="dev' + i + '"><img src="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev' + i + '_' + date + '.jpg" max-height="' + screenHeight/2 + 'px" max-width="' + screenWidth/2 + 'px" height="50%" width="50%" onerror="hideImage(' + i + ')""/></div>';
     }
-    $("#darshan").html(darshanHtml);
 }
-
-function hideImage(index) {
-    $('#dev' + index).hide();
-    errorCount++;
-    if(errorCount >= imageCount) {
-        showMessageBlock();
-    }
-}
-
-function showMessageBlock() {
-    $('#message').show();
-    $('#darshan').hide();
-}
+*/

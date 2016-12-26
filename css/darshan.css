@@ -1,12 +1,9 @@
-.gallery {
-    
-}
-
-.gallery div {
+#lightgallery a {
     margin-bottom: 4px;
+    display: block;
 }
 
-.gallery div img {
+#lightgallery img {
     display: block;
     margin: 0 auto;
 }

@@ -39,17 +39,13 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/darshan.css" />
     <link rel="stylesheet" href="../css/lightgallery.css">
     <title>Daily Darshan</title>
 </head>
 
 <body>
-    <div id="message" class="message"><h2>Jay Swaminarayan!<br/><br/>Today's Darshan will be displayed soon!</h2></div>
-    <div id="darshan" class="gallery"></div>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
-    <script type="text/javascript" src="../js/darshan.js"></script>
 
     <!--lightgallery-->
     <script src="../js/lightgallery.min.js"></script>
@@ -76,21 +72,28 @@
             // The scope of 'this' is the event. In order to call the 'receivedEvent'
             // function, we must explicitly call 'app.receivedEvent(...);'
             onDeviceReady: function() {
-                var networkState = navigator.connection.type;
-                if(networkState == Connection.NONE) {
-                    alert('No network connection.');
-                    window.location='../index.html';
-                    return;
-                }
                 $('body').height($(window).height());
-
-                displayTodaysDarshan();
-
-                return;
+                
+                lightGallery(document.getElementById('lightgallery'));
             },
             // Update DOM on a Received Event
         };
         app.initialize();
     </script>
+    
+    <h1>Jay Swaminarayan!</h1>
+    
+    <div id="lightgallery">
+      <a href="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev1_26-12-2016.jpg">
+        <img src="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev1_26-12-2016.jpg" />
+      </a>
+      <a href="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev2_26-12-2016.jpg">
+        <img src="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev2_26-12-2016.jpg" />
+      </a>
+      <a href="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev3_26-12-2016.jpg">
+        <img src="http://wadhwanmandir.org/wp-content/uploads/dailydarshan/dev3_26-12-2016.jpg" />
+      </a>
+    </div>
+    
 </body>
 </html>
