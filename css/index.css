@@ -145,3 +145,8 @@ h1 {
 .text li {
     font-size: 18px;
 }
+
+html, body {
+    color: darkred;
+}
+

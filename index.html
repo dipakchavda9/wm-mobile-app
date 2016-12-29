@@ -3,22 +3,29 @@
 <head>
     <title>Home Page</title>
     <link rel="Stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <style>
-        .gujaratiFont
-        {
-            font-family:centurySchoolbook;
-            font-size:15px;
+    <link rel="Stylesheet" href="css/common.css" type="text/css" />
+    <style type="text/css">
+        #btnGujarati {
+            background-color:#d93735;
+            font-size:large;
             font-weight:bold;
+            font-family:centurySchoolbook;
         }
-        .englishFont
-        {
-            font-family:Tahoma;
-            font-size:x-small;
+
+        #btnGujarati span {
+            text-align: left;
+            display: inline-block;
         }
-        html, body {
-            height: 100%;
-            overflow-x: hidden;
-            overflow-y: hidden;
+
+        #btnEnglish {
+            background-color:#d93735;
+            font-size:large;
+            font-weight:normal;
+        }
+
+        #btnEnglish span {
+            text-align: right;
+            display: inline-block;
         }
     </style>
 </head>
@@ -43,13 +50,13 @@
         
         <div class="row">
             <div class="col-xs-6" onclick="ChangeLanguage('Gujarati')">
-                <div class="header" id="btnGujarati"  style="background-color:#d93735;font-size:large;font-weight:bolder;font-family:centurySchoolbook">
-                    U]HZFTL
+                <div class="header" id="btnGujarati" >
+                    <span>&larr; U]HZFTL</span>
                 </div>
             </div>
             <div class="col-xs-6" onclick="ChangeLanguage('English')">
-                <div class="header" id="btnEnglish" style="background-color:#d93735;">
-                    English
+                <div class="header" id="btnEnglish">
+                    <span>English &rarr;</span>
                 </div>
             </div>
         </div>
@@ -57,13 +64,13 @@
 
     <div class="container">
     <div class="row">
-        <div class="col-xs-4" style="text-align:center">
+        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/mantraJaapCounter.html'">
             <img src="images/Counter.png" width="60px" height="60px" alt="MantraJaap" />
             <div id="mantrajap">
                 <b>Mantra Jaap</b>
             </div>
         </div>
-        <div class="col-xs-4" style="text-align:center">
+        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/mantraLekhan.html'">
             <img src="images/Mantralekhan.png" width="60px" height="60px" alt="Mantralekhan" />
             <div id="mantralekhan">
                 <b>Mantralekhan</b>
