@@ -39,16 +39,15 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/darshan.css" />
+    <link rel="stylesheet" type="text/css" href="../css/list.css" />
     <title>Daily Darshan</title>
 </head>
 
 <body>
-    <div id="message" class="message"><h2>Jay Swaminarayan!<br/><br/>Today's Darshan will be displayed soon!</h2></div>
-    <div id="darshan" class="gallery"></div>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
-    <script type="text/javascript" src="../js/darshan.js"></script>
+    <script type="text/javascript" src="../js/RestAPICallFunctions.js"></script>
+    <script type="text/javascript" src="../js/photoset.js"></script>
     <script type="text/javascript">
         
         var app = {
@@ -74,12 +73,18 @@
                     window.location='../index.html';
                     return;
                 }
-                displayTodaysDarshan();
+                $('body').height($(window).height());
+
+                getAllPhotosets(ListAlbums, ErrorListingAlbums);
+
                 return;
             },
             // Update DOM on a Received Event
         };
         app.initialize();
     </script>
+
+    <div id="AlbumList" class="list"></div>
+
 </body>
 </html>

@@ -1,4 +1,4 @@
-var baseURL = 'http://wadhwanmandir.org/api-beta/public/';
+var baseURL = 'http://wadhwanmandir.org/api/public/';
 var authorizationType = 'Basic';
 var authorizationHash = 'd2FkaHdhbm1hbmRpcmFwaTpXNGRodyRuYXBpITEwMDg=';
 
@@ -61,11 +61,14 @@ function getBookInfo(bookId, successCallback, errorCallback) {
 function getAllPhotosets(successCallback, errorCallback) {
     $(document).ready(function() {
         $.ajax({
+            method: 'GET',
+            type: 'GET',
             url: baseURL + 'photoset',
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Accept', 'application/json');
                 xhr.setRequestHeader('Authorization', authorizationType + ' ' + authorizationHash);
             },
+            crossDomain: true,
         })
         .done(successCallback)
         .fail(errorCallback);
@@ -75,11 +78,14 @@ function getAllPhotosets(successCallback, errorCallback) {
 function getPhotoset(photosetId, successCallback, errorCallback) {
     $(document).ready(function() {
         $.ajax({
+            method: 'GET',
+            type: 'GET',
             url: baseURL + 'photoset/' + parseInt(photosetId),
             beforeSend: function (xhr) {
                 xhr.setRequestHeader('Accept', 'application/json');
                 xhr.setRequestHeader('Authorization', authorizationType + ' ' + authorizationHash);
             },
+            crossDomain: true,
         })
         .done(successCallback)
         .fail(errorCallback);

@@ -1,0 +1,32 @@
+.list ul {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.list ul li {
+    display: block;
+    width: 90%;
+    margin-left: 5%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    vertical-align: middle;
+    color: #fff;
+    background-color: rgb(255, 49, 49);
+    font-size: 20px;
+    border: 2px rgba(255, 255, 255, 1) solid;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.list ul li span {
+    display: inline-block;
+    margin: 9px auto;
+}
+
+.list ul li:hover{
+    background: rgb(216, 0, 0);
+    -webkit-box-shadow: 2px 2px 3px 0px rgba(204, 204, 204, 0.75);
+    -moz-box-shadow: 2px 2px 3px 0px rgba(204, 204, 204, 0.75);
+    box-shadow: 2px 2px 3px 0px rgba(204, 204, 204, 0.75);
+}
