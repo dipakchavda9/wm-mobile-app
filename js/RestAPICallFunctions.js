@@ -91,3 +91,37 @@ function getPhotoset(photosetId, successCallback, errorCallback) {
         .fail(errorCallback);
     });
 }
+
+function getAllAudiosets(successCallback, errorCallback) {
+    $(document).ready(function() {
+        $.ajax({
+            method: 'GET',
+            type: 'GET',
+            url: baseURL + 'audioset',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.setRequestHeader('Authorization', authorizationType + ' ' + authorizationHash);
+            },
+            crossDomain: true,
+        })
+        .done(successCallback)
+        .fail(errorCallback);
+    });
+}
+
+function getAudioset(audiosetId, successCallback, errorCallback) {
+    $(document).ready(function() {
+        $.ajax({
+            method: 'GET',
+            type: 'GET',
+            url: baseURL + 'audioset/' + parseInt(audiosetId),
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Accept', 'application/json');
+                xhr.setRequestHeader('Authorization', authorizationType + ' ' + authorizationHash);
+            },
+            crossDomain: true,
+        })
+        .done(successCallback)
+        .fail(errorCallback);
+    });
+}

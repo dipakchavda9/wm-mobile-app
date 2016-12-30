@@ -39,15 +39,28 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/list.css" />
-    <title>Photoset List</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" />
+    <link rel="stylesheet" href="../css/reset.css" />
+    <link rel="stylesheet" href="../css/audioplayer.css" />
+    <link rel="stylesheet" href="../css/PlayAudioSet.css" />
+    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
+    <title>Play AudioSet</title>
 </head>
 
 <body>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
     <script type="text/javascript" src="../js/RestAPICallFunctions.js"></script>
-    <script type="text/javascript" src="../js/photoset.js"></script>
+    <script type="text/javascript" src="../js/audioset.js"></script>
+    <script>
+        /*
+            VIEWPORT BUG FIX
+            iOS viewport scaling bug fix, by @mathias, @cheeaun and @jdalton
+        */
+        (function(doc){var addEvent='addEventListener',type='gesturestart',qsa='querySelectorAll',scales=[1,1],meta=qsa in doc?doc[qsa]('meta[name=viewport]'):[];function fix(){meta.content='width=device-width,minimum-scale='+scales[0]+',maximum-scale='+scales[1];doc.removeEventListener(type,fix,true);}if((meta=meta[meta.length-1])&&addEvent in doc){fix();scales=[.25,1.6];doc[addEvent](type,fix,true);}}(document));
+    </script>
+    <script src="../js/audioplayer.min.js"></script>
+
     <script type="text/javascript">
         
         var app = {
@@ -74,8 +87,10 @@
                     return;
                 }
                 $('body').height($(window).height());
-
-                getAllPhotosets(ListAlbums, ErrorListingAlbums);
+                
+                var storage = window.localStorage;
+                var audiosetIdToPlay = storage.getItem('AudiosetIdToPlay');
+                getAudioset(audiosetIdToPlay, PlayAudioset, ErrorPlayingAudioset);
 
                 return;
             },
@@ -84,7 +99,6 @@
         app.initialize();
     </script>
 
-    <div id="AlbumList" class="list"></div>
-
+    <div id="wrapper"></div>
 </body>
 </html>

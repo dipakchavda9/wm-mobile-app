@@ -39,15 +39,14 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: 'unsafe-inline' https://ssl.gstatic.com; style-src 'self' 'unsafe-inline'; media-src *" /> -->
 
     <link rel="stylesheet" type="text/css" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/list.css" />
-    <title>Photoset List</title>
+    <link rel="stylesheet" type="text/css" href="../css/LiveEvent.css" />
+    <title>Live Event</title>
 </head>
 
 <body>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
-    <script type="text/javascript" src="../js/RestAPICallFunctions.js"></script>
-    <script type="text/javascript" src="../js/photoset.js"></script>
+
     <script type="text/javascript">
         
         var app = {
@@ -75,16 +74,14 @@
                 }
                 $('body').height($(window).height());
 
-                getAllPhotosets(ListAlbums, ErrorListingAlbums);
-
                 return;
             },
             // Update DOM on a Received Event
         };
         app.initialize();
     </script>
-
-    <div id="AlbumList" class="list"></div>
-
+    
+    <iframe src="http://wadhwanmandir.org/live-event/" frameborder="0"></iframe>
+    
 </body>
 </html>

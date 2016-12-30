@@ -40,14 +40,14 @@
 
     <link rel="stylesheet" type="text/css" href="../css/index.css" />
     <link rel="stylesheet" type="text/css" href="../css/list.css" />
-    <title>Photoset List</title>
+    <title>Audioset List</title>
 </head>
 
 <body>
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
     <script type="text/javascript" src="../js/RestAPICallFunctions.js"></script>
-    <script type="text/javascript" src="../js/photoset.js"></script>
+    <script type="text/javascript" src="../js/audioset.js"></script>
     <script type="text/javascript">
         
         var app = {
@@ -75,7 +75,7 @@
                 }
                 $('body').height($(window).height());
 
-                getAllPhotosets(ListAlbums, ErrorListingAlbums);
+                getAllAudiosets(ListAudiosets, ErrorListingAudiosets);
 
                 return;
             },
@@ -84,7 +84,7 @@
         app.initialize();
     </script>
 
-    <div id="AlbumList" class="list"></div>
+    <div id="AudiosetList" class="list"></div>
 
 </body>
 </html>

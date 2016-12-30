@@ -1,0 +1,36 @@
+#wrapper {
+    margin: 5%;
+}
+
+#wrapper h3 {
+    display: block;
+    text-align: left;
+    color: #6f006f;
+    font-weight: bolder;
+    margin-bottom: 7px;
+    width: 80%;
+    margin-left: 5%;
+}
+
+#wrapper a {
+    display: block;
+    margin-bottom: 20px;
+}
+
+.audioplayer {
+    width: 80%;
+    margin-left: 5%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 5px;
+}
+
+.download-icon a {
+    display: inline-block;
+    float: left;
+    color: #6f006f;
+    font-size: 225%;
+    margin-left: 4%;
+    margin-top: 4px;
+}
+

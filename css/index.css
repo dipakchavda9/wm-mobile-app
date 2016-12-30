@@ -150,3 +150,11 @@ html, body {
     color: darkred;
 }
 
+.line-break {
+    display: block;
+    height: 1px;
+    color: transparent;
+    width: 100%;
+    clear: both;
+    margin: 5px 0;
+}
