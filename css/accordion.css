@@ -1,0 +1,41 @@
+#accordion h3.ui-state-active {
+	color: white;
+    background: #333;
+	background: -webkit-gradient( linear, left top, left bottom, from( #6f006f ), to( #e600e6 ) );
+	background: -webkit-linear-gradient( top, #6f006f, #e600e6 );
+	background: -moz-linear-gradient( top, #6f006f, #e600e6 );
+	background: -ms-radial-gradient( top, #6f006f, #e600e6 );
+	background: -o-linear-gradient( top, #6f006f, #e600e6 );
+	background: linear-gradient( top, #6f006f, #e600e6 );
+}
+
+#accordion h3 {
+	color: #6f006f;
+    text-align: left;
+    background: #ffffff;
+	background: -webkit-gradient( linear, left top, left bottom, from( #cccccc ), to( #ffffff ) );
+	background: -webkit-linear-gradient( top, #cccccc, #ffffff );
+	background: -moz-linear-gradient( top, #cccccc, #ffffff );
+	background: -ms-radial-gradient( top, #cccccc, #ffffff );
+	background: -o-linear-gradient( top, #cccccc, #ffffff );
+	background: linear-gradient( top, #cccccc, #ffffff );
+}
+
+#accordion div dl {
+	color: #6f006f;
+    text-align: left;
+}
+
+#accordion div dl dt {
+    font-weight: bolder;
+}
+
+#accordion div img, #accordion div dl {
+    display: block;
+    margin: 0 auto;
+}
+
+#accordion div img {
+    margin-bottom: 10px;
+}
+
