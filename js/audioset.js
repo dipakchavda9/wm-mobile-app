@@ -24,7 +24,7 @@ function ErrorListingAudiosets(error) {
 
 function RedirectToPlayAudioSet(audiosetId) {
     storage.setItem('AudiosetIdToPlay', audiosetId);
-    location.href='/html/PlayAudioSet.html';
+    location.href='PlayAudioSet.html';
 }
 
 function PlayAudioset(audioset) {
