@@ -1,0 +1,15 @@
+.container {
+    margin-top: 10%;
+    margin-bottom: 7%;
+    color: #6f006f;
+    text-align: center;
+}
+
+.row {
+    margin-bottom: 10px;
+}
+
+.row div img {
+    height: 70%;
+    width: 70%;
+}

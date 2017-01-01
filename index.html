@@ -1,277 +1,179 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>Home Page</title>
-    <link rel="Stylesheet" href="css/bootstrap.min.css" type="text/css" />
-    <link rel="Stylesheet" href="css/common.css" type="text/css" />
-    <style type="text/css">
-        #btnGujarati {
-            background-color:#d93735;
-            font-size:large;
-            font-weight:bold;
-            font-family:centurySchoolbook;
-        }
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-        #btnGujarati span {
-            text-align: left;
-            display: inline-block;
-        }
-
-        #btnEnglish {
-            background-color:#d93735;
-            font-size:large;
-            font-weight:normal;
-        }
-
-        #btnEnglish span {
-            text-align: right;
-            display: inline-block;
-        }
-
-        #contactDiv a {
-            text-decoration: none;
-            color: #333;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/Navigation.css" />
+    <link rel="stylesheet" type="text/css" href="css/Container.css" />
+    <title>Main Menu</title>
 </head>
+
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top" >
-    <div class="container" >
-        <ul class="nav navbar-nav" style="vertical-align:middle">
-            <li class="active" style="text-align:center;padding-top:0px;padding-bottom:0px;"><span id="mantra"><b>||JAI SWAMINARAYAN ||</b></span></li>
-        </ul>
-    </div>
-    
-</nav>
-<nav class="navbar navbar-inverse navbar-fixed-bottom" >
-    <div class="container" style="font-size:10px;" >
-        <ul class="nav navbar-nav" style="vertical-align:middle">
-            <li class="active" style="text-align:center;padding-top:0px;padding-bottom:0px;"><span><b>copyright @ wadhwanmandir</b></span></li>
-        </ul>
-    </div>
-    
-</nav>
-<div class="container-top" style="margin:50px 0px 20px 0px;">
-        
-        <div class="row">
-            <div class="col-xs-6" onclick="ChangeLanguage('Gujarati')">
-                <div class="header" id="btnGujarati" >
-                    <span>&larr; U]HZFTL</span>
-                </div>
-            </div>
-            <div class="col-xs-6" onclick="ChangeLanguage('English')">
-                <div class="header" id="btnEnglish">
-                    <span>English &rarr;</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-    <div class="row">
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/mantraJaapCounter.html'">
-            <img src="images/Counter.png" width="60px" height="60px" alt="MantraJaap" />
-            <div id="mantrajap">
-                <b>Mantra Jaap</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/mantraLekhan.html'">
-            <img src="images/Mantralekhan.png" width="60px" height="60px" alt="Mantralekhan" />
-            <div id="mantralekhan">
-                <b>Mantralekhan</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/dailyDarshan.html'">
-            <img src="images/Nityadarshan.png" width="60px" height="60px" alt="NityaDarshan" />
-            <div id="nityadarshan">
-                <b>Nity Darshan</b>
-            </div>
-        </div>
-        </div>
-        <div style="height:20px;"></div>
-        <div class="row">
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/AlbumList.html'">
-            <img src="images/Gallery.png" width="60px" height="60px" alt="Gallery" />
-            <div id="gallary">
-                <b>Photo Gallery</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/LiveEvent.html'">
-            <img src="images/Live.png" width="60px" height="60px" alt="Live"/>
-            <div id="liveevent">
-                <b>Live Event</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/ListAudioSets.html'">
-            <img src="images/Audio.png" width="60px" height="60px" alt="Audio" />
-            <div id="audio">
-                <b>Audio Gallery</b>
-            </div>
-        </div>
-        </div>
-        <div style="height:20px;"></div>
-        <div class="row">
-        
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/Aacharya.html'">
-            <img src="images/Aachary.png" width="60px" height="60px" alt="Aachary"/>
-            <div id="aachary">
-                <b>Aacharya</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/Shastro.html'">
-            <img src="images/Shastro.png" width="60px" height="60px" alt="Shastro" />
-            <div id="shastro">
-                <b>Scripture</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center" onclick="location.href='html/Kirtanavali.html'">
-            <img src="images/Kirtanavali.png" width="60px" height="60px" alt="Kirtanavali" />
-            <div id="kirtanavali">
-                <b>Kirtanavali</b>
-            </div>
-        </div>
-        </div>
-        <div style="height:20px;"></div>
-        <div class="row">
-        <div class="col-xs-4" style="text-align:center" >
-            <img src="images/Magazine.png" width="60px" height="60px" alt="Magazine" />
-            <div id="magazine">
-                <b>Magazine</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center">
-            <img src="images/Nirnay.png" width="60px" height="60px" alt="Nirnay" />
-            <div id="nirnay">
-                <b>Nirnay</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center">
-            <img src="images/Coming.png" width="60px" height="60px" alt="Coming" />
-            <div id="coming">
-                <b>Future Events</b>
-            </div>
-        </div>
-        </div>
-        <div style="height:20px;"></div>
-        <div class="row">
-        
-        <div class="col-xs-4" style="text-align:center">
-            <img src="images/Mandal.png" width="60px" height="60px" alt="Mandal" onclick="location.href='html/aboutRKDYM.html'" />
-            <div id="rkdym">
-                <b>RKDYM</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center">
-            <img src="images/Social.png" width="60px" height="60px" alt="Social" />
-            <div id="social">
-                <b>Social Media</b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center" id="contactDiv">
-            <a href="mailto:wadhwanmandir@gmail.com?subject=Regarding%20Mobile%20Application">
-                <img src="images/Contact.png" width="60px" height="60px" alt="Contact" />
-                <div id="contact">
-                    <b>Contact Us</b>
-                </div>
-            </a>
-        </div>
-
-        </div>
-       
-    </div>
-    <div class="container" style="height:35px;">
-        <div class="row"></div>
-    </div>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/jquery-v1_11_1.min.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.3.3.6.js"></script>
     <script type="text/javascript">
+        
+        var app = {
+            // Application Constructor
+            initialize: function() {
+                this.bindEvents();
+            },
+            // Bind Event Listeners
+            //
+            // Bind any events that are required on startup. Common events are:
+            // 'load', 'deviceready', 'offline', and 'online'.
+            bindEvents: function() {
+                document.addEventListener('deviceready', this.onDeviceReady, false);
+            },
+            // deviceready Event Handler
+            //
+            // The scope of 'this' is the event. In order to call the 'receivedEvent'
+            // function, we must explicitly call 'app.receivedEvent(...);'
+            onDeviceReady: function() {
+                var networkState = navigator.connection.type;
+                if(networkState == Connection.NONE) {
+                    alert('No network connection.');
+                    window.location='../index.html';
+                    return;
+                }
+                $('body').height(($(window).height() * 0.9));
+
+                return;
+            },
+            // Update DOM on a Received Event
+        };
         app.initialize();
     </script>
-    <script type="text/javascript">
-        window.onload = function () {
-            if (!localStorage.getItem("language")) {
-               localStorage.setItem("language", "Gujarati");
-            }
-            ChangeLanguage(localStorage.getItem("language"));
-            localStorage.setItem("StartShlok", 0);
-            localStorage.setItem("EndShlok", 212);
-        }
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            || Shree Swaminarayano Vijaytetaram ||
+        </div>
+      </div>
+    </nav>
 
-       function ChangeLanguage(strLanguage) {
-           if (strLanguage == "Gujarati") {
-               document.getElementById("mantrajap").innerHTML = "<b>D\\+HF5</b>";
-               document.getElementById("mantrajap").className = "gujaratiFont";
-               document.getElementById("mantralekhan").innerHTML = "<b>D\\+ ,[BG</b>";
-               document.getElementById("mantralekhan").className = "gujaratiFont";
-               document.getElementById("nityadarshan").innerHTML = "<b>lGtI NX\"G</b>";
-               document.getElementById("nityadarshan").className = "gujaratiFont";
-               document.getElementById("gallary").innerHTML = "<b>OM8M U[,[ZL</b>";
-               document.getElementById("gallary").className = "gujaratiFont";
-               document.getElementById("liveevent").innerHTML = "<b>,F.J SFI\"S|D</b>";
-               document.getElementById("liveevent").className = "gujaratiFont";
-               document.getElementById("audio").innerHTML = "<b>VMl0IM U[,[ZL</b>";
-               document.getElementById("audio").className = "gujaratiFont";
-               document.getElementById("aachary").innerHTML = "<b>VFRFI\" 5Z\\5ZF</b>";
-               document.getElementById("aachary").className = "gujaratiFont";
-               document.getElementById("shastro").innerHTML = "<b>;tXF:+</b>";
-               document.getElementById("shastro").className = "gujaratiFont";
-               document.getElementById("kirtanavali").innerHTML = "<b>lST\"GFJ,L</b>";
-               document.getElementById("kirtanavali").className = "gujaratiFont";
-               document.getElementById("magazine").innerHTML = "<b>D[U[hLG</b>";
-               document.getElementById("magazine").className = "gujaratiFont";
-               document.getElementById("nirnay").innerHTML = "<b>lG6\"I</b>";
-               document.getElementById("nirnay").className = "gujaratiFont";
-               document.getElementById("coming").innerHTML = "<b>VFUFDL SFI\"S|D</b>";
-               document.getElementById("coming").className = "gujaratiFont";
-               document.getElementById("rkdym").innerHTML = "<b>I]JS D\\0/</b>";
-               document.getElementById("rkdym").className = "gujaratiFont";
-               document.getElementById("social").innerHTML = "<b>;FDFlHS DLl0IF</b>";
-               document.getElementById("social").className = "gujaratiFont";
-               document.getElementById("contact").innerHTML = "<b>;\\5S\" DF8[</b>";
-               document.getElementById("contact").className = "gujaratiFont";
-               document.getElementById("btnEnglish").style.backgroundColor = "#d93735";
-               document.getElementById("btnGujarati").style.backgroundColor = "white";
-               document.getElementById("mantra").innerHTML = "<b>×× zL :JFlDGFZFI6FI lJHIT[TZFD= ××<b>";
-               document.getElementById("mantra").className = "gujaratiFont";
-           } else {
-               document.getElementById("mantrajap").innerHTML = "<b>Mantra Jaap</b>";
-               document.getElementById("mantralekhan").innerHTML = "<b>Mantra Lekhan</b>";
-               document.getElementById("nityadarshan").innerHTML = "<b>Daily Darshan</b>";
-               document.getElementById("gallary").innerHTML = "<b>Photo Gallery</b>";
-               document.getElementById("liveevent").innerHTML = "<b>Live Event</b>";
-               document.getElementById("audio").innerHTML = "<b>Audio Gallery</b>";
-               document.getElementById("aachary").innerHTML = "<b>Aacharya</b>";
-               document.getElementById("shastro").innerHTML = "<b>Scripture</b>";
-               document.getElementById("kirtanavali").innerHTML = "<b>Kirtanavali</b>";
-               document.getElementById("magazine").innerHTML = "<b>Magazine</b>";
-               document.getElementById("nirnay").innerHTML = "<b>Nirnay</b>";
-               document.getElementById("coming").innerHTML = "<b>Future Events</b>";
-               document.getElementById("rkdym").innerHTML = "<b>RKDYM</b>";
-               document.getElementById("social").innerHTML = "<b>Social Media</b>";
-               document.getElementById("contact").innerHTML = "<b>Contact Us</b>";
-               document.getElementById("mantrajap").className = "englishFont";
-               document.getElementById("mantralekhan").className = "englishFont";
-               document.getElementById("nityadarshan").className = "englishFont";
-               document.getElementById("gallary").className = "englishFont";
-               document.getElementById("liveevent").className = "englishFont";
-               document.getElementById("audio").className = "englishFont";
-               document.getElementById("aachary").className = "englishFont";
-               document.getElementById("shastro").className = "englishFont";
-               document.getElementById("kirtanavali").className = "englishFont";
-               document.getElementById("magazine").className = "englishFont";
-               document.getElementById("nirnay").className = "englishFont";
-               document.getElementById("coming").className = "englishFont";
-               document.getElementById("rkdym").className = "englishFont";
-               document.getElementById("social").className = "englishFont";
-               document.getElementById("contact").className = "englishFont";
-               document.getElementById("btnEnglish").style.backgroundColor = "white";
-               document.getElementById("btnGujarati").style.backgroundColor = "#d93735";
-               document.getElementById("mantra").innerHTML = "<b>|| Shree Swaminarayano Vijaytetram ||<b>";
-               document.getElementById("mantra").className = "englishFont";
-           }
-           localStorage.setItem("language", strLanguage);
-       }
-    </script> 
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            Copyright @ Wadhwan Mandir
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/mantraJaapCounter.html'">
+                <img src="img/Counter.png" alt="Mantra Jaap" />
+                <div>
+                    <b>Mantra Jaap</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/mantraLekhan.html'">
+                <img src="img/Mantralekhan.png" alt="Mantra Lekhan" />
+                <div>
+                    <b>Mantra Lekhan</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/dailyDarshan.html'">
+                <img src="img/Nityadarshan.png" alt="Today's Darshan" />
+                <div>
+                    <b>Today's Darshan</b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/AlbumList.html'">
+                <img src="img/Gallery.png" alt="Photo Gallery" />
+                <div>
+                    <b>Photo Gallery</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/LiveEvent.html'">
+                <img src="img/Live.png" alt="Live Event" />
+                <div>
+                    <b>Live Event</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/ListAudioSets.html'">
+                <img src="img/Audio.png" alt="Audio Gallery" />
+                <div>
+                    <b>Audio Gallery</b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/Aacharya.html'">
+                <img src="img/Aachary.png" alt="Aacharya" />
+                <div>
+                    <b>Aacharya</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/Shastro.html'">
+                <img src="img/Shastro.png" alt="Scripture" />
+                <div>
+                    <b>Scripture</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/Kirtanavali.html'">
+                <img src="img/Kirtanavali.png" alt="Kirtanavali" />
+                <div>
+                    <b>Kirtanavali</b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img src="img/Magazine.png" alt="Magazine" />
+                <div>
+                    <b>Magazine</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img src="img/Nirnay.png" alt="Nirnay" />
+                <div>
+                    <b>Nirnay</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img src="img/Coming.png" alt="Future Events" />
+                <div>
+                    <b>Future Events</b>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='html/aboutRKDYM.html'">
+                <img src="img/Mandal.png" alt="RKDYM" />
+                <div>
+                    <b>RKDYM</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                <img src="img/Social.png" alt="Social Media" />
+                <div>
+                    <b>Social Media</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" id="contactUs">
+                <a href="mailto:wadhwanmandir@gmail.com?subject=Regarding%20Mobile%20Application">
+                    <img src="img/Contact.png" alt="Contact US" />
+                    <div>
+                        <b>Contact Us</b>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

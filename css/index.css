@@ -147,7 +147,7 @@ h1 {
 }
 
 html, body {
-    color: darkred;
+    
 }
 
 .line-break {
@@ -157,4 +157,9 @@ html, body {
     width: 100%;
     clear: both;
     margin: 5px 0;
+}
+
+#contactUs a {
+    text-decoration: none;
+    color: #6f006f;
 }
