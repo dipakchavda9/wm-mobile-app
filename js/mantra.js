@@ -1,5 +1,4 @@
 $(window).load(function(){
-    $('#parentDiv').height($(window).height());
     displayMantraJaapCount();
 });
 
@@ -15,10 +14,10 @@ function incrementMantraJaapCount() {
 
 function displayMantraJaapCount() {
     var currentMantraJaapCount = getCurrentMantraJaapCount();
-    $('#counterSpan').html('<h1>' + currentMantraJaapCount + '</h1>');
+    $('#counterSpan').html(currentMantraJaapCount);
 
     var todaysMantraJaapCount = getTodaysMantraJaapCount();
-    $('#mantraJaapCount').html('<h1>' + todaysMantraJaapCount + '</h1>');
+    $('#mantraJaapCount').html(todaysMantraJaapCount);
 }
 
 function getCurrentMantraJaapCount() {
@@ -93,7 +92,7 @@ function resetCounter() {
 function populateHistoryTableBody() {
     var mantraJaapLogs = storage.getItem('MantraJaapLogs');
     if(!mantraJaapLogs) {
-        $('#historyTableDiv').html('<h1>No History Found</h1>');
+        $('#historyTableDiv').html('<h2>No History Found</h2>');
     } else {
         var tableHtml = '<table><thead><tr><th>Date</th><th>Manra Jaap</th></tr></thead><tbody>';
         var mantraJaapLogsArray = JSON.parse(mantraJaapLogs);
@@ -111,10 +110,10 @@ function populateHistoryTableBody() {
 
 function displayMantraLekhanCount() {
     var currentMantraLekhanCount = getCurrentMantraLekhanCount();
-    $('#counterSpan').html('<h1>' + currentMantraLekhanCount + '</h1>');
+    $('#counterSpan').html(currentMantraLekhanCount);
 
     var todaysMantraLekhanCount = getTodaysMantraLekhanCount();
-    $('#mantraLekhanCount').html('<h1>' + todaysMantraLekhanCount + '</h1>');
+    $('#mantraLekhanCount').html(todaysMantraLekhanCount);
 }
 
 function getCurrentMantraLekhanCount() {
@@ -209,7 +208,7 @@ function checkMantra(mantraLekhanTextbox) {
 function populateMantraLekhanHistoryTableDiv() {
     var mantraLekhanLogs = storage.getItem('MantraLekhanLogs');
     if(!mantraLekhanLogs) {
-        $('#mantraLekhanHistoryTableDiv').html('<h1>No History Found</h1>');
+        $('#mantraLekhanHistoryTableDiv').html('<h2>No History Found</h2>');
     } else {
         var tableHtml = '<table><thead><tr><th>Date</th><th>Manra Lekhan</th></tr></thead><tbody>';
         var mantraLekhanLogsArray = JSON.parse(mantraLekhanLogs);

@@ -1,21 +1,21 @@
 table a:link {
-	color: #666;
+	color: #6f006f;
 	font-weight: bold;
 	text-decoration:none;
 }
 table a:visited {
-	color: #999999;
+	color: #6f006f;
 	font-weight:bold;
 	text-decoration:none;
 }
 table a:active,
 table a:hover {
-	color: #bd5a35;
+	color: #6f006f;
 	text-decoration:underline;
 }
 table {
 	font-family: Arial, Helvetica, sans-serif;
-	color: darkred;
+	color: #6f006f;
 	font-size: 18px;
 	text-shadow: 1px 1px 0px #fff;
 	background: #eaebec;
@@ -30,10 +30,10 @@ table {
 
 	-moz-box-shadow: 0 1px 2px #d1d1d1;
 	-webkit-box-shadow: 0 1px 2px #d1d1d1;
-	box-shadow: 0 1px 2px #d1d1d1;
+	box-shadow: 0 5px 10px #d1d1d1;
 }
 table th {
-	padding:21px 25px 22px 25px;
+	padding:5px 25px 5px 25px;
 	border-top:1px solid #fafafa;
 	border-bottom:1px solid #e0e0e0;
 
@@ -65,7 +65,7 @@ table td:first-child {
 	border-left: 0;
 }
 table td {
-	padding:18px;
+	padding: 5px 18px;
 	border-top: 1px solid #ffffff;
 	border-bottom:1px solid #e0e0e0;
 	border-left: 1px solid #e0e0e0;

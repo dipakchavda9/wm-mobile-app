@@ -163,3 +163,15 @@ html, body {
     text-decoration: none;
     color: #6f006f;
 }
+
+.h2-heading {
+    font-size: 125%;
+}
+
+.horizontal-line {
+    display: block;
+    height: 1px;
+    width: 100%;
+    margin: 5px 0;
+    background-color: #6f006f;
+}
