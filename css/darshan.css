@@ -9,9 +9,9 @@
 }
 
 .message {
-    color: darkred;
+    color: #6f006f;
     margin: 0 auto;
     display: none;
     text-align: center;
-    margin-top: 225px;
+    margin-top: 40%;
 }
