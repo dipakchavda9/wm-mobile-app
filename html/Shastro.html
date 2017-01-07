@@ -1,88 +1,60 @@
 <html>
 <head>
-    <title>Shikshapatri</title>
-    <script type="text/javascript" src="../js/jquary.min.1.12.2.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
+    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
+    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
+    
+    <style type="text/css">
+        .row {
+            height: 17%;
+        }
+    </style>
+
+    <title>Shastra</title>
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
     <script type="text/javascript" src="../js/ShikshapatriData.js"></script>
     <script type="text/javascript" src="../js/Shikshapatri.js"></script>
-    <link rel="Stylesheet" href="../css/bootstrap.min.css" type="text/css" />
-    <link rel="Stylesheet" href="../css/common.css" type="text/css" />
-    <style type="text/css">
-       
-    .navbar-collapse.collapse{ display:block !important;
-        }
-        
-        .navbar-nav > li, .navbar-nav 
-        {
-            float: left !important;
-        }
-        
-        .navbar-nav.navbar-right:last-child
-        {
-            margin-left:-15px !important;
-        }
-        
-        .navbar-right
-        {
-            float:right !important;
-        }
-        
-    </style>
+
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" id="navHeader">
-    <div class="container">
-        <ul class="nav navbar-nav navbar-left" style="padding-right:20px;">
-        <li class="active" style="padding-top:0px;padding-bottom:0px;"><a style="background-color:#b63a3a" href="#" onclick="location.href='../index.html'" ><span class="glyphicon glyphicon-home"></span></a></li>
-            <li class="active" style="padding-top:0px;padding-bottom:0px;"><span id="header" ><b>;tXF:+</b></span></li>
-        </ul>
-        
-    </div>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
+        <div class="container-fluid">
+            <div class="navbar-header">
+                Shastra List
+            </div>
+        </div>
     </nav>
-    <nav class="navbar navbar-inverse navbar-fixed-bottom" >
-    <div class="container" style="font-size:10px;" >
-    <center>
-        <ul style="vertical-align:middle;list-style:none;color:White">
-            <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
-        </ul>
-        </center>
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            Copyright @ Wadhwan Mandir
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='JanmangalNamavali.html'">
+                <img src="../img/Janmangal.png" alt="Janmangal Namavali" />
+                <div>
+                    <b>Janmangal Namavali</b>
+                </div>
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" onclick="location.href='Shikashapatri.html'">
+                <img src="../img/Shikshapatri.png" alt="Shikshapatri" />
+                <div>
+                    <b>Shikshapatri</b>
+                </div>
+            </div>
+        </div>
     </div>
-    
-</nav>
-<div class="container-top" style="margin:50px 0px 20px 0px;>
-    <div class="row">
-        <div class="col-xs-4" style="text-align:center">
-            <img src="../img/Janmangal.png" width="60px" height="60px" alt="Janmangal" onclick="location.href='JanmangalNamavali.html'" />
-            <div id="janmangal">
-                <b></b>
-            </div>
-        </div>
-        <div class="col-xs-4" style="text-align:center">
-            <img src="../img/Shikshapatri.png" width="60px" height="60px" alt="Shikshapatri" onclick="location.href='Shikashapatri.html'" />
-            <div id="shikshapatri">
-                <b>Mantralekhan</b>
-            </div>
-        </div>
-        </div>
-        </div>
-        <script type="text/javascript">
-            window.onload = function () {
-                var strLanguage = localStorage.getItem("language");
-                if (strLanguage == "Gujarati") {
-                    document.getElementById("janmangal").innerHTML = "<b>HGD\\U, GFDFJ,L</b>";
-                    document.getElementById("janmangal").className = "gujaratiFont";
-                    document.getElementById("shikshapatri").innerHTML = "<b>lX1FF5+L</b>";
-                    document.getElementById("shikshapatri").className = "gujaratiFont";
-                    document.getElementById("header").innerHTML = "<b>;tXF:+</b>";
-                    document.getElementById("header").className = "gujaratiFont";
-                } else {
-                    document.getElementById("janmangal").innerHTML = "<b>Janmangal Namavali</b>";
-                    document.getElementById("shikshapatri").innerHTML = "<b>Shikshapatri</b>";
-                    document.getElementById("janmangal").className = "englishFont";
-                    document.getElementById("shikshapatri").className = "englishFont";
-                    document.getElementById("header").innerHTML = "<b>Scripture</b>";
-                    document.getElementById("header").className = "englishFont";
-                }
-            }
-        </script>
-        </body>
-        </html>
+</body>
+</html>
