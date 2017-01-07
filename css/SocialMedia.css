@@ -1,0 +1,26 @@
+#SocialMediaIcons {
+    font-size: 300%;
+    text-align: center;
+}
+
+#SocialMediaIcons div {
+    display: inline-block;
+    margin: 1% 3%;
+}
+
+i.ion-social-facebook {
+    color: #3b5998;
+}
+
+i.ion-social-youtube {
+    color: #bb0000;
+}
+
+#SocialMediaModal {
+    color: #6f006f;
+}
+
+.modal-dialog {
+    margin-top: 50%;
+}
+
