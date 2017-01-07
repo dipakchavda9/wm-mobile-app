@@ -39,3 +39,10 @@
     margin-bottom: 10px;
 }
 
+#accordion h3 span.ui-icon {
+    display: none;
+}
+
+.container {
+    margin-top: 10%;
+}
