@@ -4,12 +4,12 @@ function ListAlbums(albums) {
     
     var totalAlbums = albums._embedded.photoset.length;
     
-    var i = 0;
+    var i = totalAlbums - 1;
     var listHtml = '<div class="list"><ul>';
     
-    while(i < totalAlbums) {
+    while(i >= 0) {
         listHtml += '<li onclick="RedirectToDisplayAlbum(' + albums._embedded.photoset[i].id + ');"><span>' + albums._embedded.photoset[i].name + '</span></li>';
-        i++;
+        i--;
     }
     listHtml += '</ul></div>';
     

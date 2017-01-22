@@ -4,12 +4,12 @@ function ListAudiosets(audiosets) {
     
     var totalAudiosets = audiosets.total_items;
 
-    var i = 0;
+    var i = totalAudiosets - 1;
     var listHtml = '<div class="list"><ul>';
     
-    while(i < totalAudiosets) {
+    while(i >= 0) {
         listHtml += '<li onclick="RedirectToPlayAudioSet(' + audiosets._embedded.audioset[i].id + ');"><span>' + audiosets._embedded.audioset[i].name + '</span></li>';
-        i++;
+        i--;
     }
     listHtml += '</ul></div>';
     

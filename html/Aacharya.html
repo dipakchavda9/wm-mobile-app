@@ -45,12 +45,6 @@
             // The scope of 'this' is the event. In order to call the 'receivedEvent'
             // function, we must explicitly call 'app.receivedEvent(...);'
             onDeviceReady: function() {
-                var networkState = navigator.connection.type;
-                if(networkState == Connection.NONE) {
-                    alert('No network connection.');
-                    window.location='../index.html';
-                    return;
-                }
                 $('body').height($(window).height() * 0.9);
 
                 $('#accordion').css('display', 'block');
