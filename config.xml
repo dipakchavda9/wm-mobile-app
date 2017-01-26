@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.wadhwanmandir.dailydarshan" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.wadhwanmandir.officialmobileapp" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Wadhwan Mandir</name>
     <description>
-        This is official application of Wadhwan Sanstha.
+        This is official mobile application of Swaminarayan Mandir - Wadhwan.
     </description>
-    <author email="support@phonegap.com" href="http://phonegap.com">
-        Radhakrishnadev Yuvak Mandal - Wadhwan
+    <author email="wadhwanmandir@gmail.com" href="http://wadhwanmandir.org">
+        Shree Radhakrishnadev Yuvak Mandal - Wadhwan
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
