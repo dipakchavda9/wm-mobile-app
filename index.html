@@ -15,13 +15,16 @@
     <link rel="stylesheet" type="text/css" href="css/Container.css" />
     <link rel="stylesheet" type="text/css" href="css/SocialMedia.css" />
     <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
+
+    <script type="text/javascript" src="js/jquery-v1_11_1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.3.3.6.js"></script>
+    <script type="text/javascript" src="js/SatshastraSync.js"></script>
+
     <title>Main Menu</title>
 </head>
 
 <body>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/jquery-v1_11_1.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.3.3.6.js"></script>
     <script type="text/javascript">
         
         var app = {
@@ -43,6 +46,7 @@
             // function, we must explicitly call 'app.receivedEvent(...);'
             onDeviceReady: function() {
                 $('body').height(($(window).height() * 0.9));
+                SyncSatshastraDetails();
                 return;
             },
             exitAppFunction: function() {
@@ -199,6 +203,11 @@
 
       </div>
     </div>
+
+    <div>RowCount:</div>
+    <div id="rowCount"></div>
+    <div>Table Data:</div>
+    <div id="TableData"></div>
 
 </body>
 </html>
