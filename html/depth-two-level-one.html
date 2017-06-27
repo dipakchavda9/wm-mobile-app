@@ -19,10 +19,9 @@
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
-    <script type="text/javascript" src="../js/ShastraList.js"></script>
-    <script type="text/javascript" src="../js/SatshastraSync.js"></script>
+    <script type="text/javascript" src="../js/depth-two-level-one.js"></script>
 
-    <title>Shatshastra List</title>
+    <title>Chapters List</title>
 </head>
 
 <body>
@@ -46,8 +45,7 @@
             // function, we must explicitly call 'app.receivedEvent(...);'
             onDeviceReady: function() {
                 $('body').height(($(window).height() * 0.9));
-//                SyncSatshastraDetails();
-                getShastraList();
+                loadChapterList();
                 return;
             },
         };
@@ -58,7 +56,7 @@
         <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
         <div class="container-fluid">
             <div class="navbar-header">
-                Shatshastra List
+                Chapters List
             </div>
         </div>
     </nav>
@@ -72,7 +70,7 @@
     </nav>
 
     <div class="container">
-        <div class="row" id="ShastraList">
+        <div class="row" id="ChaptersList">
         </div>
     </div>
 

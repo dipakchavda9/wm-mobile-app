@@ -328,7 +328,7 @@ function syncSatshastraContent() {
 			book = null;
 			for (var i = 0; i < len; i++){
 				book = results.rows.item(i);
-				alert("Updating content of book " + book.book_name);
+				// alert("Updating content of book " + book.book_name);
 				fetchBookContentFromRest(book);
 			}
 		}, (tx, error) => {

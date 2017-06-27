@@ -21,20 +21,27 @@ function getShastraList() {
 			return;
 
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			// alert('Selection error: ' + error.message);
 			displayDownloadMessage();
 		});
 	}, (error) => {
-		alert('Transaction error: ' + error.message);
+		// alert('Transaction error: ' + error.message);
 		displayDownloadMessage();
 		// var booksToDisplay = [];
 		// booksToDisplay[0] = {
 		// 	"id" : 1,
-		// 	"book_name" : "Vachanamrut"
+		// 	"book_name" : "Vachanamrut",
+		// 	"level_depth" : 3
 		// };
 		// booksToDisplay[1] = {
 		// 	"id" : 2,
-		// 	"book_name" : "Shikshapatri"
+		// 	"book_name" : "Shikshapatri",
+		// 	"level_depth" : 2
+		// };
+		// booksToDisplay[2] = {
+		// 	"id" : 3,
+		// 	"book_name" : "Satsangijivan",
+		// 	"level_depth" : 2
 		// };
 		// displayBooks(booksToDisplay);
 	}, () => {
@@ -62,7 +69,7 @@ function displayBooks(books) {
 
 	for( i = 0 ; i < len ; i++) {
 		htmlStr += `
-			<li onclick="RedirectToShastra(` + books[i].id + `);"><span>` + books[i].book_name + `</span></li>
+			<li onclick="RedirectToShastra(` + books[i].id + `, ` + books[i].level_depth + `);"><span>` + books[i].book_name + `</span></li>
 		`;
 	}
 
@@ -72,6 +79,14 @@ function displayBooks(books) {
 
 }
 
-function RedirectToShastra(id) {
-	alert("Redirecting to Shastra with id: " + id);
+function RedirectToShastra(id, level_depth) {
+	var storage = window.localStorage;
+	storage.setItem('book_id', id);
+
+	if(level_depth == 2) {
+		window.location.href = "depth-two-level-one.html";
+	} else if (level_depth == 3) {
+		window.location.href = "depth-three-level-one.html";
+	}
+	return;
 }
