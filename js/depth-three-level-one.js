@@ -60,10 +60,27 @@ function displaySectionList() {
 
 }
 
+function getLastChapterId() {
+	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
+	db.transaction((tx) => {
+		tx.executeSql('SELECT MAX(chapter_id) AS last_chapter_id FROM ' + local_table_name , [], (tx, results) => {
+			var row = results.rows.item(0);
+			storage.setItem('last_chapter_id', row.last_chapter_id);
+			window.location.href = "depth-three-level-two.html";
+		}, (tx, error) => {
+			alert('Selection error: ' + error.message);
+		});
+	}, (error) => {
+		alert('Transaction error: ' + error.message);
+	}, () => {
+
+	});
+}
+
 function RedirectToSection(section_id) {
 
 	storage.setItem('book_id', book_id);
 	storage.setItem('section_id', section_id);
-	alert("Redirecting to section: " + section_id);
-	// window.location.href = "depth-two-level-two.html";
+	getLastChapterId();
+
 }

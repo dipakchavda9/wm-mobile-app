@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+
+    <link rel="stylesheet" type="text/css" href="../css/index.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
+    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
+    <link rel="stylesheet" type="text/css" href="../css/list.css" />
+    <link rel="stylesheet" type="text/css" href="../css/resize-fonts-modal.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" ">
+
+    <style type="text/css">
+        hr.top {
+            margin-top: 10px;
+            margin-bottom: 2px;
+        }
+        hr.bottom {
+            margin-top: 2px;
+            margin-bottom: 0px;
+        }
+    </style>
+
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
+    <script type="text/javascript" src="../js/depth-three-level-three.js"></script>
+
+    <title>Chapter</title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        
+        var app = {
+            // Application Constructor
+            initialize: function() {
+                this.bindEvents();
+            },
+            // Bind Event Listeners
+            //
+            // Bind any events that are required on startup. Common events are:
+            // 'load', 'deviceready', 'offline', and 'online'.
+            bindEvents: function() {
+                document.addEventListener('deviceready', this.onDeviceReady, false);
+            },
+            // deviceready Event Handler
+            //
+            // The scope of 'this' is the event. In order to call the 'receivedEvent'
+            // function, we must explicitly call 'app.receivedEvent(...);'
+            onDeviceReady: function() {
+                $('body').height(($(window).height() * 0.9));
+                $('.container').height(($(window).height() * 0.85));
+                loadChapter();
+                return;
+            },
+        };
+        app.initialize();
+    </script>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
+        <div class="container-fluid">
+            <div class="navbar-header" id="ChapterTitle">
+                
+            </div>
+        </div>
+        <div class="font-resize"  title="Resize Fonts" data-toggle="modal" data-target="#resizeFontsModal" id="resizeFontsDiv"><span id="smallFont">A</span><span id="bigFont">A</span></div>
+    </nav>
+
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+      <div class="container-fluid">
+        <div class="navbar-header">
+            Copyright @ Wadhwan Mandir
+        </div>
+      </div>
+    </nav>
+
+    <div class="container" id="chapterDiv">
+        <div class="row resizableFonts" id="Chapter">
+        </div>
+        <div class="row">
+            <b>
+                <span id="ChapterEnding" class="resizableFonts" ></span>
+            </b>
+        </div>
+    </div>
+
+    <div id="resizeFontsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span class="blue">&times;</span></button>
+            <h4 class="modal-title blue"><b>Resize Fonts</b></h4>
+          </div>
+          <div class="modal-body">
+            <div id="fontSizeSliderDiv">
+                <div id="slider-range-max"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="blue">Ok</span></button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+</body>
+</html>

@@ -30,7 +30,7 @@
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
     <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
     <script type="text/javascript" src="../js/depth-two-level-two.js"></script>
 
@@ -58,6 +58,7 @@
             // function, we must explicitly call 'app.receivedEvent(...);'
             onDeviceReady: function() {
                 $('body').height(($(window).height() * 0.9));
+                $('.container').height(($(window).height() * 0.85));
                 loadChapter();
                 return;
             },

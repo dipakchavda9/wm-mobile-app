@@ -41,6 +41,9 @@ function displayChapter() {
 		tx.executeSql('SELECT * FROM ' + local_table_name + ' WHERE chapter_id = ?', [chapter_id], (tx, results) => {
 			var chapterRow = results.rows.item(0);
 			chapterTitle = chapterRow.chapter_title;
+			if(chapterTitle.length > 25) {
+				chapterTitle = chapterTitle.substring(0, 25) + '...';
+			}
 			chapterContent = chapterRow.chapter_content;
 			chapterEnding = chapterRow.chapter_ending;
 			chapterContent = processChapterContent(chapterContent);
