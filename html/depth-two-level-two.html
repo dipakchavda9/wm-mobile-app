@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
     <link rel="stylesheet" type="text/css" href="../css/Container.css" />
     <link rel="stylesheet" type="text/css" href="../css/list.css" />
+    <link rel="stylesheet" type="text/css" href="../css/resize-fonts-modal.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" ">
 
     <style type="text/css">
         hr.top {
@@ -28,6 +30,7 @@
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
     <script type="text/javascript" src="../js/jquery.mobile-1.4.5.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
     <script type="text/javascript" src="../js/depth-two-level-two.js"></script>
 
@@ -69,6 +72,7 @@
                 
             </div>
         </div>
+        <div class="font-resize"  title="Resize Fonts" data-toggle="modal" data-target="#resizeFontsModal" id="resizeFontsDiv"><span id="smallFont">A</span><span id="bigFont">A</span></div>
     </nav>
 
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
@@ -79,14 +83,36 @@
       </div>
     </nav>
 
-    <div class="container">
-        <div class="row" id="Chapter">
+    <div class="container" id="chapterDiv">
+        <div class="row resizableFonts" id="Chapter">
         </div>
         <div class="row">
             <b>
-                <span id="ChapterEnding"></span>
+                <span id="ChapterEnding" class="resizableFonts" ></span>
             </b>
         </div>
+    </div>
+
+    <div id="resizeFontsModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span class="blue">&times;</span></button>
+            <h4 class="modal-title blue"><b>Resize Fonts</b></h4>
+          </div>
+          <div class="modal-body">
+            <div id="fontSizeSliderDiv">
+                <div id="slider-range-max"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="blue">Ok</span></button>
+          </div>
+        </div>
+
+      </div>
     </div>
 
 </body>

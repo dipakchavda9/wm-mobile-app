@@ -20,3 +20,29 @@
     background-color: transparent;
     text-align: center;
 }
+
+.container-fluid {
+    display: inline-block;
+    padding-top: 1.5%;
+}
+
+.font-resize {
+    display: inline-block;
+    float: right;
+    color: white;
+    background-color: transparent;
+    text-align: center;
+    margin-top: 3px;
+    margin-right: 2%;
+    padding-right: 2px;
+    padding-left: 2px;
+    border: 1px solid white;
+}
+
+.font-resize #smallFont {
+    font-size: 100%;
+}
+
+.font-resize #bigFont {
+    font-size: 125%;
+}

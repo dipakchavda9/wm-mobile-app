@@ -1,6 +1,7 @@
 var book_id = null;
 var storage = window.localStorage;
 var local_table_name = null;
+var book_name = null;
 
 function loadChapterList() {
 	book_id = storage.getItem("book_id");
@@ -10,9 +11,10 @@ function loadChapterList() {
 function getLocalTableNameOfBook(id) {
 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
 	db.transaction((tx) => {
-		tx.executeSql('SELECT local_table_name FROM books WHERE id = ?', [id], (tx, results) => {
+		tx.executeSql('SELECT local_table_name, book_name FROM books WHERE id = ?', [id], (tx, results) => {
 			var row = results.rows.item(0);
 			local_table_name = row.local_table_name;
+			book_name = row.book_name;
 
 			displayChapterList();
 
@@ -47,6 +49,7 @@ function displayChapterList() {
 			htmlStr += '</ul></div>';
 
 			$('#ChaptersList').html(htmlStr);
+			$('#BookName').html(book_name);
 
 		}, (tx, error) => {
 			alert('Selection error: ' + error.message);

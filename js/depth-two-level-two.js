@@ -56,6 +56,15 @@ function displayChapter() {
 
 			bindSwipeEvents();
 
+			var fontSize = storage.getItem('font-size');
+
+			if(fontSize) {
+				resizeFonts(fontSize);
+			} else {
+				storage.setItem('font-size', 14);
+				resizeFonts(14);
+			}
+
 		}, (tx, error) => {
 			alert('Selection error: ' + error.message);
 		});
@@ -81,12 +90,14 @@ function processChapterContent(content) {
 // 	`;
 // 	str = processChapterContent(str);
 // 	$('#Chapter').html(str);
+// 	$('#ChapterTitle').html('પ્રકરણ ૨: કવિએ સ્તુતિ ');
+// 	$('#ChapterEnding').html('ઇતિ શ્રીમદેકાંતિક ધર્મપ્રવર્તક શ્રીસહજાનંદ સ્વામી શિષ્ય નિષ્કુળાનંદમુનિ વિરચિતે ભક્તચિંતામણિ મધ્યે કવિએ સ્તુતિ કરી એ નામે બીજું પ્રકરણ');
+// 	bindSwipeEvents();
 // }
 
 function bindSwipeEvents() {
 
-	$(document).on("swipeleft",function(){
-
+	$('#chapterDiv').on("swipeleft",function(){
 		var lastChapterId = parseInt(storage.getItem('last_chapter_id'));
 
 		if(chapter_id < lastChapterId) {
@@ -97,7 +108,7 @@ function bindSwipeEvents() {
 
 	});
 
-	$(document).on("swiperight",function(){
+	$('#chapterDiv').on("swiperight",function(){
 
 		if(chapter_id > 1) {
 			storage.setItem('book_id', book_id);
@@ -108,3 +119,26 @@ function bindSwipeEvents() {
 	});
 
 }
+
+function resizeFonts(size) {
+	$(".resizableFonts").css('font-size', size + 'px');
+}
+
+$( function() {
+	var fontSize = storage.getItem('font-size');
+	if(!fontSize) {
+		fontSize = 14;
+		storage.setItem('font-size', fontSize);
+	}
+	$( "#slider-range-max" ).slider({
+		range: "max",
+		min: 12,
+		max: 34,
+		value: fontSize,
+		step: 2,
+		slide: function( event, ui ) {
+			resizeFonts(ui.value);
+			storage.setItem('font-size', ui.value);
+		}
+	});
+} );
