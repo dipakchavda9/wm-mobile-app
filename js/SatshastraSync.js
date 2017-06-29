@@ -5,10 +5,32 @@ var bookDetailsFromRest = null;
 var bookDetailsFromDB = null;
 var sqlite = null;
 var db = null;
+var noOfBooksToUpdate = 0;
+var noOfBooksUpdated = 0;
+var processingDialogOpenStatus = 0;
 
 function SyncSatshastraDetails() {
-	getBookDetailsFromRest();
+	if(checkConnection()) {
+		getBookDetailsFromRest();
+	} else {
+		alert("No network connection available.");
+	}
 };
+
+function checkConnection() {
+    var networkState = navigator.connection.type;
+
+    if(networkState == Connection.ETHERNET || 
+    	networkState == Connection.WIFI || 
+    	networkState == Connection.CELL_2G || 
+    	networkState == Connection.CELL_3G || 
+    	networkState == Connection.CELL_4G || 
+    	networkState == Connection.CELL) {
+    	return true;
+    }
+
+    return false;
+}
 
 function getBookDetailsFromRest() {
     $.ajax({
@@ -24,7 +46,9 @@ function getBookDetailsFromRest() {
 		getBookDetailsFromDB();
 		// updateBookDetails(bookDetails);
 	})
-    .fail(() => alert("Failed getting book data from Rest, Error: " + error));
+    .fail(() => {
+    	// alert("Failed getting book data from Rest, Error: " + error)
+    });
 }
 
 function getBookDetailsFromDB() {
@@ -49,13 +73,13 @@ function getBookDetailsFromDB() {
 
 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
 
-	db.transaction(function(tx) {
+	db.transaction((tx) => {
 		tx.executeSql(createBookTableSql, [],
-		function(tx, result) {
+		(tx, result) => {
 			//alert("Table created successfully. Result: " + result);
 		},
-		function(error) {
-			alert("Error occurred while creating the table. " + error);
+		(error) => {
+			// alert("Error occurred while creating the table. " + error);
 		});
 		tx.executeSql('SELECT * FROM books', [], (tx, results) => {
 			bookDetailsFromDB = [];
@@ -67,11 +91,11 @@ function getBookDetailsFromDB() {
 			//alert("Within getBookDetailsFromDB function, books length: ", bookDetailsFromDB.length);
 			compareBookDetails();
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			// alert('Selection error: ' + error.message);
 			bookDetailsFromDB = null;
 		});
 	}, (error) => {
-		alert('ERROR: ' + error.message);
+		// alert('ERROR: ' + error.message);
 		bookDetailsFromDB = null;
 	}, () => {
 
@@ -89,9 +113,17 @@ function compareBookDetails() {
 		//alert("remoteBook= " + remoteBook);
 		localBook = getLocalBookByID(remoteBook.id);
 		if(!localBook) {
-			insertLocalBook(remoteBook);
+			if(confirmUpdateAction()) {
+				noOfBooksToUpdate++;
+				openProcessingDialog();
+				insertLocalBook(remoteBook);
+			}
 		} else if(localBook.version != remoteBook.version) {
-			updateLocalBookByID(localBook.id, remoteBook);
+			if(confirmUpdateAction()) {
+				noOfBooksToUpdate++;
+				openProcessingDialog();
+				updateLocalBookByID(localBook.id, remoteBook);
+			}
 		}
 	}
 
@@ -103,12 +135,38 @@ function compareBookDetails() {
 		//alert("Local Book: " + localBook);
 		remoteBook = getRemoteBookByID(localBook.id);
 		if(!remoteBook) {
-			removeLocalBookByID(localBook.id);
+			if(confirmUpdateAction()) {
+				removeLocalBookByID(localBook.id);
+			}
 		}
 	}
 
 //	showFinalBookDetails();
 	syncSatshastraContent();
+}
+
+var updateDecisionTaken = false;
+var allowUpdate = false;
+
+function nullifyUpdateActionVars() {
+	updateDecisionTaken = false;
+	allowUpdate = false;
+	processingDialogOpenStatus = 0;
+}
+
+function confirmUpdateAction() {
+	if(updateDecisionTaken) {
+		return allowUpdate;
+	}
+
+	if(confirm("Update of Shatshastras are available, do you want to download the same? \n\n[Note: This action may take between 2 to 10 minutes depending on your internet connection speed!]")) {
+		allowUpdate = true;
+	} else {
+		allowUpdate = false;
+	}
+	updateDecisionTaken = true;
+
+	return allowUpdate;
 }
 
 function getLocalBookByID(id) {
@@ -178,12 +236,12 @@ function insertLocalBook(book) {
 		0
 	];
 
-	db.transaction(function(tx) {
+	db.transaction((tx) => {
 		tx.executeSql(insertBookSql, dataBinding);
-	}, function(error) {
+	}, (error) => {
 		// console.log('ERROR: ' + error.message);
-		alert("Error inserting book: " + book.id + ". Error: " + error);
-	}, function() {
+		// alert("Error inserting book: " + book.id + ". Error: " + error);
+	}, () => {
 		// console.log('Populated database OK');
 		//alert("Book inserted: " + book.id);
 	});
@@ -227,12 +285,12 @@ function updateLocalBookByID(id, remoteBook) {
 		book.id
 	];
 
-	db.transaction(function(tx) {
+	db.transaction((tx) => {
 		tx.executeSql(updateBookSql, dataBinding);
-	}, function(error) {
+	}, (error) => {
 		// console.log('ERROR: ' + error.message);
-		alert("Error updating Book: " + id + ". Error: " + error);
-	}, function() {
+		// alert("Error updating Book: " + id + ". Error: " + error);
+	}, () => {
 		// console.log('Populated database OK');
 		//alert("Book updated: " + id);
 	});
@@ -250,72 +308,72 @@ function removeLocalBookByID(id) {
 		book.id
 	];
 
-	db.transaction(function(tx) {
+	db.transaction((tx) => {
 		tx.executeSql(deleteBookSql, dataBinding);
-	}, function(error) {
+	}, (error) => {
 		// console.log('ERROR: ' + error.message);
-		alert("Error removing Book: " + id + ". Error: " + error);
-	}, function() {
+		// alert("Error removing Book: " + id + ". Error: " + error);
+	}, () => {
 		// console.log('Populated database OK');
 		//alert("Book removed: " + id);
 	});
 }
 
-function showFinalBookDetails() {
-	//alert("Within showFinalBookDetails function.");
-	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
-	var booksToDisplay = [];
+// function showFinalBookDetails() {
+// 	//alert("Within showFinalBookDetails function.");
+// 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
+// 	var booksToDisplay = [];
 
-	db.transaction(function(tx) {
-		tx.executeSql('SELECT * FROM books', [], (tx, results) => {
-			var len = results.rows.length;
-			//alert("Local books length: " + len);
-			for (var i = 0; i < len; i++){
-				booksToDisplay[i] = results.rows.item(i);
-			}
-			//alert("Within showFinalBookDetails function, books length: ", booksToDisplay.length);
-			var len = booksToDisplay.length;
-			$('#rowCount').append(len);
-			for (var i = 0; i < len; i++){
-				$("#TableData").append(	"<tr><td>"
-										+ booksToDisplay[i].id
-										+ "</td><td>" 
-										+ booksToDisplay[i].book_name
-										+ "</td><td>"
-										+ booksToDisplay[i].description
-										+ "</td><td>"
-										+ booksToDisplay[i].icon_link
-										+ "</td><td>"
-										+ booksToDisplay[i].author
-										+ "</td><td>"
-										+ booksToDisplay[i].date_uploaded
-										+ "</td><td>"
-										+ booksToDisplay[i].date_modified
-										+ "</td><td>"
-										+ booksToDisplay[i].version
-										+ "</td><td>"
-										+ booksToDisplay[i].api_link
-										+ "</td><td>"
-										+ booksToDisplay[i].published
-										+ "</td><td>"
-										+ booksToDisplay[i].level_depth
-										+ "</td><td>"
-										+ booksToDisplay[i].local_table_name
-										+ "</td></tr>");
-			}
-			//alert("Data displayed.");
-		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
-			booksToDisplay = null;
-		});
-	}, (error) => {
-		alert('ERROR: ' + error.message);
-		booksToDisplay = null;
-	}, () => {
+// 	db.transaction(function(tx) {
+// 		tx.executeSql('SELECT * FROM books', [], (tx, results) => {
+// 			var len = results.rows.length;
+// 			//alert("Local books length: " + len);
+// 			for (var i = 0; i < len; i++){
+// 				booksToDisplay[i] = results.rows.item(i);
+// 			}
+// 			//alert("Within showFinalBookDetails function, books length: ", booksToDisplay.length);
+// 			var len = booksToDisplay.length;
+// 			$('#rowCount').append(len);
+// 			for (var i = 0; i < len; i++){
+// 				$("#TableData").append(	"<tr><td>"
+// 										+ booksToDisplay[i].id
+// 										+ "</td><td>" 
+// 										+ booksToDisplay[i].book_name
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].description
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].icon_link
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].author
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].date_uploaded
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].date_modified
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].version
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].api_link
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].published
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].level_depth
+// 										+ "</td><td>"
+// 										+ booksToDisplay[i].local_table_name
+// 										+ "</td></tr>");
+// 			}
+// 			//alert("Data displayed.");
+// 		}, (tx, error) => {
+// 			alert('Selection error: ' + error.message);
+// 			booksToDisplay = null;
+// 		});
+// 	}, (error) => {
+// 		alert('ERROR: ' + error.message);
+// 		booksToDisplay = null;
+// 	}, () => {
 
-	});
+// 	});
 
-}
+// }
 
 function syncSatshastraContent() {
 	//alert("Within syncSatshastraContent function.");
@@ -332,10 +390,10 @@ function syncSatshastraContent() {
 				fetchBookContentFromRest(book);
 			}
 		}, (tx, error) => {
-			alert('Error: ' + error.message);
+			// alert('Error: ' + error.message);
 		});
 	}, (error) => {
-		alert('ERROR: ' + error.message);
+		// alert('ERROR: ' + error.message);
 	}, () => {
 
 	});
@@ -357,7 +415,9 @@ function fetchBookContentFromRest(book) {
 		bookData = bookData[book.api_link];
 		createLocalTableForBook(book, bookData);
 	})
-    .fail(() => alert("Failed getting book data from Rest, Error: " + error));
+    .fail(() => {
+    	// alert("Failed getting book data from Rest, Error: " + error)
+    });
 }
 
 function createLocalTableForBook(book, bookData) {
@@ -388,7 +448,7 @@ function createLocalTableForBook(book, bookData) {
 			)
 		`;
 	} else {
-		alert("Invalid level depth of book: " + book.book_name);
+		// alert("Invalid level depth of book: " + book.book_name);
 		return;
 	}
 
@@ -402,10 +462,10 @@ function createLocalTableForBook(book, bookData) {
 				//alert("Table " + book.local_table_name + " deleted successfully.");
 			},
 			(error) => {
-				alert("Error occurred while removing the local table: " + book.local_table_name + " Error: " + error);
+				// alert("Error occurred while removing the local table: " + book.local_table_name + " Error: " + error);
 			});
 	}, (error) => {
-		alert('ERROR: ' + error.message);
+		// alert('ERROR: ' + error.message);
 	}, () => {
 
 	});
@@ -419,10 +479,10 @@ function createLocalTableForBook(book, bookData) {
 				insertBookContentIntoLocalTable(book, bookData);
 			},
 			(error) => {
-				alert("Error occurred while creating the local table: " + book.local_table_name + " Error: " + error);
+				// alert("Error occurred while creating the local table: " + book.local_table_name + " Error: " + error);
 			});
 	}, (error) => {
-		alert('ERROR: ' + error.message);
+		// alert('ERROR: ' + error.message);
 	}, () => {
 
 	});
@@ -535,10 +595,10 @@ function executeInsert(sql, binding) {
 		tx.executeSql(sql, binding, (tx, results) => {
 			//alert('Data inserted successfully for, id: ' + dataBinding[0] + '; chapter_title: ' + dataBinding[2]);
 		}, (tx, error) => {
-			alert('Error: ' + error.message);
+			// alert('Error: ' + error.message);
 		});
 	}, (error) => {
-		alert('ERROR: ' + error.message);
+		// alert('ERROR: ' + error.message);
 	}, () => {
 
 	});
@@ -557,14 +617,47 @@ function markBookAsContentUpdated(book) {
 
 	db.transaction((tx) => {
 		tx.executeSql(sql, binding, (tx, results) => {
-			alert("Book " + book.book_name + " marked as updated.");
+			// alert("Updated Shastra: '" + book.book_name + "'");
+			noOfBooksUpdated++;
+			updateProgressBar();
+			if(noOfBooksUpdated == noOfBooksToUpdate) {
+				closeProcessingDialog();
+			}
 		}, (tx, error) => {
-			alert('Error: ' + error.message);
+			// alert('Error: ' + error.message);
 		});
 	}, (error) => {
-		alert('ERROR: ' + error.message);
+		// alert('ERROR: ' + error.message);
 	}, () => {
 
 	});
 
+}
+
+function openProcessingDialog() {
+	if(processingDialogOpenStatus == 0) {
+		processingDialogOpenStatus = 1;
+	    var pleaseWait = $('#pleaseWaitDialog');
+        pleaseWait.modal('show');
+	}
+}
+
+function closeProcessingDialog() {
+	if(processingDialogOpenStatus == 1) {
+		processingDialogOpenStatus = 0;
+	    var pleaseWait = $('#pleaseWaitDialog');
+        pleaseWait.modal('hide');
+		window.location.reload(false);
+	}
+}
+
+function updateProgressBar() {
+	var percentage = 0;
+	if(noOfBooksToUpdate) {
+		percentage = (noOfBooksUpdated/noOfBooksToUpdate) * 100;
+	} else {
+		percentage = 100;
+	}
+	$('.progress-bar').css('width', percentage + '%').attr('aria-valuenow', percentage);
+	$('#percentageText').html(percentage + "%");
 }

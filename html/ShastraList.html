@@ -46,7 +46,8 @@
             // function, we must explicitly call 'app.receivedEvent(...);'
             onDeviceReady: function() {
                 $('body').height(($(window).height() * 0.9));
-//                SyncSatshastraDetails();
+                nullifyUpdateActionVars();
+                SyncSatshastraDetails();
                 getShastraList();
                 return;
             },
@@ -74,6 +75,24 @@
     <div class="container">
         <div class="row" id="ShastraList">
         </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h1>Downloading Shatshastras...</h1>
+          </div>
+          <div class="modal-body">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
+                <span class="sr-only" id="percentageText">5%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
 </body>

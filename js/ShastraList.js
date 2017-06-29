@@ -53,9 +53,6 @@ function getShastraList() {
 function displayDownloadMessage() {
 	var htmlStr = `
         <h3>No Shatshastras are downloaded yet!</h3>
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <button onclick="SyncSatshastraDetails();">Download Shatshastras</button>
-        </div>
 	`;
 	$('#ShastraList').html(htmlStr);
 }
