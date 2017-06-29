@@ -13,7 +13,7 @@ function SyncSatshastraDetails() {
 	if(checkConnection()) {
 		getBookDetailsFromRest();
 	} else {
-		alert("No network connection available.");
+		// alert("No network connection available.");
 	}
 };
 
@@ -46,7 +46,8 @@ function getBookDetailsFromRest() {
 		getBookDetailsFromDB();
 		// updateBookDetails(bookDetails);
 	})
-    .fail(() => {
+    .fail((error) => {
+    	errorUpdatingAllBooks();
     	// alert("Failed getting book data from Rest, Error: " + error)
     });
 }
@@ -79,6 +80,7 @@ function getBookDetailsFromDB() {
 			//alert("Table created successfully. Result: " + result);
 		},
 		(error) => {
+			errorUpdatingAllBooks();
 			// alert("Error occurred while creating the table. " + error);
 		});
 		tx.executeSql('SELECT * FROM books', [], (tx, results) => {
@@ -92,10 +94,12 @@ function getBookDetailsFromDB() {
 			compareBookDetails();
 		}, (tx, error) => {
 			// alert('Selection error: ' + error.message);
+			errorUpdatingAllBooks();
 			bookDetailsFromDB = null;
 		});
 	}, (error) => {
 		// alert('ERROR: ' + error.message);
+		errorUpdatingAllBooks();
 		bookDetailsFromDB = null;
 	}, () => {
 
@@ -110,19 +114,21 @@ function compareBookDetails() {
 	for(var i=0; i < len; i++) {
 		//alert("i= " + i);
 		remoteBook = bookDetailsFromRest[i];
-		//alert("remoteBook= " + remoteBook);
-		localBook = getLocalBookByID(remoteBook.id);
-		if(!localBook) {
-			if(confirmUpdateAction()) {
-				noOfBooksToUpdate++;
-				openProcessingDialog();
-				insertLocalBook(remoteBook);
-			}
-		} else if(localBook.version != remoteBook.version) {
-			if(confirmUpdateAction()) {
-				noOfBooksToUpdate++;
-				openProcessingDialog();
-				updateLocalBookByID(localBook.id, remoteBook);
+		if(remoteBook.published == 1) {
+			//alert("remoteBook= " + remoteBook);
+			localBook = getLocalBookByID(remoteBook.id);
+			if(!localBook) {
+				if(confirmUpdateAction()) {
+					noOfBooksToUpdate++;
+					openProcessingDialog();
+					insertLocalBook(remoteBook);
+				}
+			} else if(localBook.version != remoteBook.version) {
+				if(confirmUpdateAction()) {
+					noOfBooksToUpdate++;
+					openProcessingDialog();
+					updateLocalBookByID(localBook.id, remoteBook);
+				}
 			}
 		}
 	}
@@ -134,14 +140,13 @@ function compareBookDetails() {
 		localBook = bookDetailsFromDB[i];
 		//alert("Local Book: " + localBook);
 		remoteBook = getRemoteBookByID(localBook.id);
-		if(!remoteBook) {
+		if(!remoteBook || remoteBook.published != 1) {
 			if(confirmUpdateAction()) {
 				removeLocalBookByID(localBook.id);
 			}
 		}
 	}
 
-//	showFinalBookDetails();
 	syncSatshastraContent();
 }
 
@@ -198,8 +203,6 @@ function getRemoteBookByID(id) {
 }
 
 function insertLocalBook(book) {
-	// console.log("Books to insert");
-	// console.log(book);
 	//alert("Book to insert: " + book.id);
 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
 	var insertBookSql = `
@@ -239,17 +242,14 @@ function insertLocalBook(book) {
 	db.transaction((tx) => {
 		tx.executeSql(insertBookSql, dataBinding);
 	}, (error) => {
-		// console.log('ERROR: ' + error.message);
+		errorUpdatingPerticularBook(book);
 		// alert("Error inserting book: " + book.id + ". Error: " + error);
 	}, () => {
-		// console.log('Populated database OK');
 		//alert("Book inserted: " + book.id);
 	});
 }
 
-function updateLocalBookByID(id, remoteBook) {
-	// console.log("Books to update");
-	// console.log(id, remoteBook);
+function updateLocalBookByID(id, book) {
 	//alert("Book to update: " + id);
 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
 	var updateBookSql = `
@@ -288,101 +288,40 @@ function updateLocalBookByID(id, remoteBook) {
 	db.transaction((tx) => {
 		tx.executeSql(updateBookSql, dataBinding);
 	}, (error) => {
-		// console.log('ERROR: ' + error.message);
+		errorUpdatingPerticularBook(book);
 		// alert("Error updating Book: " + id + ". Error: " + error);
 	}, () => {
-		// console.log('Populated database OK');
 		//alert("Book updated: " + id);
 	});
 }
 
 function removeLocalBookByID(id) {
-	// console.log("Books to remove");
-	// console.log(id);
 	//alert("Book to remove: " + id);
 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
 	var deleteBookSql = `
 		DELETE FROM books WHERE id = ?
 	`;
 	var dataBinding = [
-		book.id
+		id
 	];
 
 	db.transaction((tx) => {
 		tx.executeSql(deleteBookSql, dataBinding);
 	}, (error) => {
-		// console.log('ERROR: ' + error.message);
 		// alert("Error removing Book: " + id + ". Error: " + error);
 	}, () => {
-		// console.log('Populated database OK');
 		//alert("Book removed: " + id);
 	});
 }
 
-// function showFinalBookDetails() {
-// 	//alert("Within showFinalBookDetails function.");
-// 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
-// 	var booksToDisplay = [];
-
-// 	db.transaction(function(tx) {
-// 		tx.executeSql('SELECT * FROM books', [], (tx, results) => {
-// 			var len = results.rows.length;
-// 			//alert("Local books length: " + len);
-// 			for (var i = 0; i < len; i++){
-// 				booksToDisplay[i] = results.rows.item(i);
-// 			}
-// 			//alert("Within showFinalBookDetails function, books length: ", booksToDisplay.length);
-// 			var len = booksToDisplay.length;
-// 			$('#rowCount').append(len);
-// 			for (var i = 0; i < len; i++){
-// 				$("#TableData").append(	"<tr><td>"
-// 										+ booksToDisplay[i].id
-// 										+ "</td><td>" 
-// 										+ booksToDisplay[i].book_name
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].description
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].icon_link
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].author
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].date_uploaded
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].date_modified
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].version
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].api_link
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].published
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].level_depth
-// 										+ "</td><td>"
-// 										+ booksToDisplay[i].local_table_name
-// 										+ "</td></tr>");
-// 			}
-// 			//alert("Data displayed.");
-// 		}, (tx, error) => {
-// 			alert('Selection error: ' + error.message);
-// 			booksToDisplay = null;
-// 		});
-// 	}, (error) => {
-// 		alert('ERROR: ' + error.message);
-// 		booksToDisplay = null;
-// 	}, () => {
-
-// 	});
-
-// }
-
 function syncSatshastraContent() {
-	//alert("Within syncSatshastraContent function.");
+
 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
 
 	db.transaction((tx) => {
-		tx.executeSql('SELECT * FROM books WHERE content_updated = 0', [], (tx, results) => {
+		tx.executeSql('SELECT * FROM books WHERE content_updated = 0 AND published = 1', [], (tx, results) => {
 			var len = results.rows.length;
-			//alert("Total number of books which need content update: " + len);
+			// alert("Total number of books which need content update: " + len);
 			book = null;
 			for (var i = 0; i < len; i++){
 				book = results.rows.item(i);
@@ -390,9 +329,11 @@ function syncSatshastraContent() {
 				fetchBookContentFromRest(book);
 			}
 		}, (tx, error) => {
+			errorUpdatingAllBooks();
 			// alert('Error: ' + error.message);
 		});
 	}, (error) => {
+		errorUpdatingAllBooks();
 		// alert('ERROR: ' + error.message);
 	}, () => {
 
@@ -402,6 +343,7 @@ function syncSatshastraContent() {
 
 function fetchBookContentFromRest(book) {
 	//Fetch content from REST
+	// alert("Fetching content for book: " + book.book_name);
     $.ajax({
         url: baseURL + book.api_link,
         beforeSend: function (xhr) {
@@ -410,12 +352,13 @@ function fetchBookContentFromRest(book) {
         },
     })
     .done((data) => {
-    	//alert("Data for " + book.book_name + " fetched successfully.");
+    	// alert("Data for " + book.book_name + " fetched successfully.");
 		bookData = data._embedded;
 		bookData = bookData[book.api_link];
 		createLocalTableForBook(book, bookData);
 	})
-    .fail(() => {
+    .fail((error) => {
+    	errorUpdatingPerticularBook(book);
     	// alert("Failed getting book data from Rest, Error: " + error)
     });
 }
@@ -459,12 +402,14 @@ function createLocalTableForBook(book, bookData) {
 			"DROP TABLE IF EXISTS " + book.local_table_name, 
 			[],
 			(tx, result) => {
-				//alert("Table " + book.local_table_name + " deleted successfully.");
+				// alert("Table " + book.local_table_name + " deleted successfully.");
 			},
 			(error) => {
+				errorUpdatingPerticularBook(book);
 				// alert("Error occurred while removing the local table: " + book.local_table_name + " Error: " + error);
 			});
 	}, (error) => {
+		errorUpdatingPerticularBook(book);
 		// alert('ERROR: ' + error.message);
 	}, () => {
 
@@ -479,59 +424,17 @@ function createLocalTableForBook(book, bookData) {
 				insertBookContentIntoLocalTable(book, bookData);
 			},
 			(error) => {
+				errorUpdatingPerticularBook(book);
 				// alert("Error occurred while creating the local table: " + book.local_table_name + " Error: " + error);
 			});
 	}, (error) => {
+		errorUpdatingPerticularBook(book);
 		// alert('ERROR: ' + error.message);
 	}, () => {
 
 	});
 
 }
-
-// function debugData() {
-// 	alert('Debug data called.');
-// 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
-
-// 	db.transaction((tx) => {
-// 		tx.executeSql('select * from bhakta_chintamani', [], (tx, results) => {
-// 			//alert('Data inserted successfully for, id: ' + dataBinding[0] + '; chapter_title: ' + dataBinding[2]);
-// 			var len = results.rows.length;
-// 			alert("Bhakta Chintamani Length: " + len);
-// 			//alert("Total number of books which need content update: " + len);
-// 			// row = null;
-// 			// for (var i = 0; i < len; i++){
-// 			// 	row = results.rows.item(i);
-// 			// 	alert(row.chapter_title);
-// 			// }
-// 		}, (tx, error) => {
-// 			alert('Error: ' + error.message);
-// 		});
-// 	}, (error) => {
-// 		alert('ERROR: ' + error.message);
-// 	}, () => {
-
-// 	});
-
-// 	db.transaction((tx) => {
-// 		tx.executeSql('select * from shikshapatri', [], (tx, results) => {
-// 			var len = results.rows.length;
-// 			alert("Shikshapatri length: " + len);
-// 			// row = null;
-// 			// for (var i = 0; i < len; i++){
-// 			// 	row = results.rows.item(i);
-// 				// alert(row.chapter_title);
-// 			// }
-// 		}, (tx, error) => {
-// 			alert('Error: ' + error.message);
-// 		});
-// 	}, (error) => {
-// 		alert('ERROR: ' + error.message);
-// 	}, () => {
-
-// 	});
-
-// }
 
 function insertBookContentIntoLocalTable(book, bookData) {
 
@@ -583,8 +486,6 @@ function insertBookContentIntoLocalTable(book, bookData) {
 
 	markBookAsContentUpdated(book);
 
-	// setTimeout(debugData, 10000);
-
 }
 
 function executeInsert(sql, binding) {
@@ -593,7 +494,7 @@ function executeInsert(sql, binding) {
 
 	db.transaction((tx) => {
 		tx.executeSql(sql, binding, (tx, results) => {
-			//alert('Data inserted successfully for, id: ' + dataBinding[0] + '; chapter_title: ' + dataBinding[2]);
+			// alert('Data inserted successfully for, id: ' + dataBinding[0] + '; chapter_title: ' + dataBinding[2]);
 		}, (tx, error) => {
 			// alert('Error: ' + error.message);
 		});
@@ -624,9 +525,11 @@ function markBookAsContentUpdated(book) {
 				closeProcessingDialog();
 			}
 		}, (tx, error) => {
+			errorUpdatingPerticularBook(book);
 			// alert('Error: ' + error.message);
 		});
 	}, (error) => {
+		errorUpdatingPerticularBook(book);
 		// alert('ERROR: ' + error.message);
 	}, () => {
 
@@ -660,4 +563,18 @@ function updateProgressBar() {
 	}
 	$('.progress-bar').css('width', percentage + '%').attr('aria-valuenow', percentage);
 	$('#percentageText').html(percentage + "%");
+}
+
+function errorUpdatingAllBooks() {
+	alert("There was some internal error in updating Shatshastras, please download latest version of application and retry.");
+	closeProcessingDialog();
+}
+
+function errorUpdatingPerticularBook(book) {
+	alert("There was some internal error in updating Shatshastra: " + book.book_name + ", hence skipping it.");
+	noOfBooksUpdated++;
+	updateProgressBar();
+	if(noOfBooksUpdated == noOfBooksToUpdate) {
+		closeProcessingDialog();
+	}
 }
