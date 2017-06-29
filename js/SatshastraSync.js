@@ -572,6 +572,7 @@ function errorUpdatingAllBooks() {
 
 function errorUpdatingPerticularBook(book) {
 	alert("There was some internal error in updating Shatshastra: " + book.book_name + ", hence skipping it.");
+	removeLocalBookByID(book.id);
 	noOfBooksUpdated++;
 	updateProgressBar();
 	if(noOfBooksUpdated == noOfBooksToUpdate) {
