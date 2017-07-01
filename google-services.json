@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "476875120878",
+    "firebase_url": "https://wadhwanmandirappnotification.firebaseio.com",
+    "project_id": "wadhwanmandirappnotification",
+    "storage_bucket": "wadhwanmandirappnotification.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:476875120878:android:9e0d9fb2f11dfc39",
+        "android_client_info": {
+          "package_name": "org.wadhwanmandir.officialmobileapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "476875120878-vsmeikqi94q1j1bovsbihncad8qg8mg3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoak1O5fwqqRU943FhSHApAedBW8q4hps"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
