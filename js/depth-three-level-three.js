@@ -94,6 +94,7 @@ function processChapterContent(content) {
 	content = content.replace(/(સામેરી)/ig, "<hr class='top'/><b>$1</b><hr class='bottom'/>");
 	content = content.replace(/(પૂર્વછાયો)/ig, "<hr class='top'/><b>$1</b><hr class='bottom'/>");
 	content = content.replace(/(ચોપાઇ)/ig, "<hr class='top'/><b>$1</b><hr class='bottom'/>");
+	content = content.replace(/(દોહા)/ig, "<hr class='top'/><b>$1</b><hr class='bottom'/>");
 	return content;
 }
 
