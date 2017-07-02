@@ -37,11 +37,11 @@ function PlayAudioset(audioset) {
     for(i = 0; i < totalAudios; i++) {
         audioLinks[i] = encodeURI(audioLinks[i]);
         var parts = audioLinks[i].split('/');
-        var AudioName = parts[parts.length - 1];
+        var AudioName = decodeURI(parts[parts.length - 1]);
 
         html += '<h3>' + AudioName + '</h3> <audio preload="metadata" controls> <source src="' + audioLinks[i] + '"> </audio> <span class="download-icon"><a href="' + audioLinks[i] + '"><i class="ion-ios-cloud-download"></i></a></span> <div class="line-break"></div>';
     }
-    
+
     $("#wrapper").html(html);
 
     $(function() {$('audio').audioPlayer();});
