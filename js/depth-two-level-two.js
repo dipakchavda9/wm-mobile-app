@@ -10,23 +10,29 @@ function loadChapter() {
 	book_id = parseInt(storage.getItem('book_id'));
 	chapter_id = parseInt(storage.getItem('chapter_id'));
 	$('div.ui-loader').hide();
-	getLocalTableNameOfBook(book_id);
+	if(book_id && chapter_id) {
+		getLocalTableNameOfBook();
+	} else {
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+	}
 }
 
-function getLocalTableNameOfBook(id) {
+function getLocalTableNameOfBook() {
 	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
 	db.transaction((tx) => {
-		tx.executeSql('SELECT local_table_name FROM books WHERE id = ?', [id], (tx, results) => {
+		tx.executeSql('SELECT local_table_name FROM books WHERE id = ?', [book_id], (tx, results) => {
 			var row = results.rows.item(0);
 			local_table_name = row.local_table_name;
 
 			displayChapter();
 
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+			// alert('Selection error: ' + error.message);
 		});
 	}, (error) => {
-		alert('Transaction error: ' + error.message);
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+		// alert('Transaction error: ' + error.message);
 	}, () => {
 
 	});
@@ -69,10 +75,12 @@ function displayChapter() {
 			}
 
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+			// alert('Selection error: ' + error.message);
 		});
 	}, (error) => {
-		alert('Transaction error: ' + error.message);
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+		// alert('Transaction error: ' + error.message);
 	}, () => {
 
 	});

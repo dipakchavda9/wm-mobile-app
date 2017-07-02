@@ -81,7 +81,7 @@ function getBookDetailsFromDB() {
 		},
 		(error) => {
 			errorUpdatingAllBooks();
-			// alert("Error occurred while creating the table. " + error);
+			// alert("Error occurred while creating the book table. " + error);
 		});
 		tx.executeSql('SELECT * FROM books', [], (tx, results) => {
 			bookDetailsFromDB = [];
@@ -242,8 +242,8 @@ function insertLocalBook(book) {
 	db.transaction((tx) => {
 		tx.executeSql(insertBookSql, dataBinding);
 	}, (error) => {
-		errorUpdatingPerticularBook(book);
-		// alert("Error inserting book: " + book.id + ". Error: " + error);
+		errorUpdatingPerticularBook(book, false);
+		// alert("Error inserting book: " + book.id + " into books table. Error: " + error);
 	}, () => {
 		//alert("Book inserted: " + book.id);
 	});
@@ -288,8 +288,8 @@ function updateLocalBookByID(id, book) {
 	db.transaction((tx) => {
 		tx.executeSql(updateBookSql, dataBinding);
 	}, (error) => {
-		errorUpdatingPerticularBook(book);
-		// alert("Error updating Book: " + id + ". Error: " + error);
+		errorUpdatingPerticularBook(book, true);
+		// alert("Error updating Book: " + id + " into books table. Error: " + error);
 	}, () => {
 		//alert("Book updated: " + id);
 	});
@@ -308,7 +308,7 @@ function removeLocalBookByID(id) {
 	db.transaction((tx) => {
 		tx.executeSql(deleteBookSql, dataBinding);
 	}, (error) => {
-		// alert("Error removing Book: " + id + ". Error: " + error);
+		// alert("Error removing Book: " + id + " from book table. Error: " + error);
 	}, () => {
 		//alert("Book removed: " + id);
 	});
@@ -322,7 +322,7 @@ function syncSatshastraContent() {
 		tx.executeSql('SELECT * FROM books WHERE content_updated = 0 AND published = 1', [], (tx, results) => {
 			var len = results.rows.length;
 			// alert("Total number of books which need content update: " + len);
-			book = null;
+			var book = null;
 			for (var i = 0; i < len; i++){
 				book = results.rows.item(i);
 				// alert("Updating content of book " + book.book_name);
@@ -358,7 +358,7 @@ function fetchBookContentFromRest(book) {
 		createLocalTableForBook(book, bookData);
 	})
     .fail((error) => {
-    	errorUpdatingPerticularBook(book);
+    	errorUpdatingPerticularBook(book, true);
     	// alert("Failed getting book data from Rest, Error: " + error)
     });
 }
@@ -405,11 +405,11 @@ function createLocalTableForBook(book, bookData) {
 				// alert("Table " + book.local_table_name + " deleted successfully.");
 			},
 			(error) => {
-				errorUpdatingPerticularBook(book);
+				errorUpdatingPerticularBook(book, true);
 				// alert("Error occurred while removing the local table: " + book.local_table_name + " Error: " + error);
 			});
 	}, (error) => {
-		errorUpdatingPerticularBook(book);
+		errorUpdatingPerticularBook(book, true);
 		// alert('ERROR: ' + error.message);
 	}, () => {
 
@@ -424,11 +424,11 @@ function createLocalTableForBook(book, bookData) {
 				insertBookContentIntoLocalTable(book, bookData);
 			},
 			(error) => {
-				errorUpdatingPerticularBook(book);
+				errorUpdatingPerticularBook(book, true);
 				// alert("Error occurred while creating the local table: " + book.local_table_name + " Error: " + error);
 			});
 	}, (error) => {
-		errorUpdatingPerticularBook(book);
+		errorUpdatingPerticularBook(book, true);
 		// alert('ERROR: ' + error.message);
 	}, () => {
 
@@ -438,28 +438,28 @@ function createLocalTableForBook(book, bookData) {
 
 function insertBookContentIntoLocalTable(book, bookData) {
 
-	insertIntoLocalTableSql = "";
+	var insertIntoLocalTableSql = "";
+
+	if(book.level_depth == 2) {
+		insertIntoLocalTableSql = `
+			INSERT INTO ` + book.local_table_name + ` 
+				(id, chapter_id, chapter_title, chapter_content, chapter_ending)
+			VALUES
+				(?, ?, ?, ?, ?)
+		`;
+	} else if (book.level_depth == 3) {
+		insertIntoLocalTableSql = `
+			INSERT INTO ` + book.local_table_name + ` 
+				(id, section_id, section_title, chapter_id, chapter_title, chapter_content, chapter_ending)
+			VALUES
+				(?, ?, ?, ?, ?, ?, ?)
+		`;
+	}
 
 	len = bookData.length;
 	var i;
 	for(i = 0; i < len; i++) {
 		//Insert content into local table.
-		if(book.level_depth == 2) {
-			insertIntoLocalTableSql = `
-				INSERT INTO ` + book.local_table_name + ` 
-					(id, chapter_id, chapter_title, chapter_content, chapter_ending)
-				VALUES
-					(?, ?, ?, ?, ?)
-			`;
-		} else if (book.level_depth == 3) {
-			insertIntoLocalTableSql = `
-				INSERT INTO ` + book.local_table_name + ` 
-					(id, section_id, section_title, chapter_id, chapter_title, chapter_content, chapter_ending)
-				VALUES
-					(?, ?, ?, ?, ?, ?, ?)
-			`;
-		}
-
 		dataBinding = null;
 		if(book.level_depth == 2) {
 			dataBinding = [
@@ -525,11 +525,37 @@ function markBookAsContentUpdated(book) {
 				closeProcessingDialog();
 			}
 		}, (tx, error) => {
-			errorUpdatingPerticularBook(book);
+			errorUpdatingPerticularBook(book, true);
+			removeLocalTable(book.local_table_name);
 			// alert('Error: ' + error.message);
 		});
 	}, (error) => {
-		errorUpdatingPerticularBook(book);
+		errorUpdatingPerticularBook(book, true);
+		removeLocalTable(book.local_table_name);
+		// alert('ERROR: ' + error.message);
+	}, () => {
+
+	});
+
+}
+
+function removeLocalTable(localTableName) {
+
+	var db = window.sqlitePlugin.openDatabase({name: 'appDatabase.db', location: 'default'});
+
+	db.transaction((tx) => {
+		tx.executeSql(
+			"DROP TABLE IF EXISTS " + localTableName, 
+			[],
+			(tx, result) => {
+				// alert("Table " + book.local_table_name + " deleted successfully.");
+			},
+			(error) => {
+				// errorUpdatingPerticularBook(book, true);
+				// alert("Error occurred while removing the local table: " + book.local_table_name + " Error: " + error);
+			});
+	}, (error) => {
+		// errorUpdatingPerticularBook(book, true);
 		// alert('ERROR: ' + error.message);
 	}, () => {
 
@@ -541,7 +567,12 @@ function openProcessingDialog() {
 	if(processingDialogOpenStatus == 0) {
 		processingDialogOpenStatus = 1;
 	    var pleaseWait = $('#pleaseWaitDialog');
-        pleaseWait.modal('show');
+        pleaseWait.modal({
+    	    backdrop: 'static',
+		    keyboard: false,
+		    show: true
+        });
+        // pleaseWait.modal('show');
 	}
 }
 
@@ -566,13 +597,15 @@ function updateProgressBar() {
 }
 
 function errorUpdatingAllBooks() {
-	alert("There was some internal error in updating Shatshastras, please download latest version of application and retry.");
+	alert("There was some internal error in updating Shatshastras, please report this problem by 'Contact Us'.");
 	closeProcessingDialog();
 }
 
-function errorUpdatingPerticularBook(book) {
-	alert("There was some internal error in updating Shatshastra: " + book.book_name + ", hence skipping it.");
-	removeLocalBookByID(book.id);
+function errorUpdatingPerticularBook(bookWithError, removeExistingBook = false) {
+	alert("There was some internal error in updating Shatshastra: " + bookWithError.book_name + ", hence skipping it. Please report this problem by 'Contact US'.");
+	if(removeExistingBook) {
+		removeLocalBookByID(bookWithError.id);
+	}
 	noOfBooksUpdated++;
 	updateProgressBar();
 	if(noOfBooksUpdated == noOfBooksToUpdate) {

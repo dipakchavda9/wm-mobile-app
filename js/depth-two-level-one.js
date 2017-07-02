@@ -5,7 +5,11 @@ var book_name = null;
 
 function loadChapterList() {
 	book_id = storage.getItem("book_id");
-	getLocalTableNameOfBook(book_id);
+	if(book_id) {
+		getLocalTableNameOfBook(book_id);
+	} else {
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+	}
 }
 
 function getLocalTableNameOfBook(id) {
@@ -19,10 +23,12 @@ function getLocalTableNameOfBook(id) {
 			displayChapterList();
 
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+			// alert('Selection error: ' + error.message);
 		});
 	}, (error) => {
-		alert('Transaction error: ' + error.message);
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+		// alert('Transaction error: ' + error.message);
 	}, () => {
 
 	});
@@ -52,10 +58,12 @@ function displayChapterList() {
 			$('#BookName').html(book_name);
 
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+			// alert('Selection error: ' + error.message);
 		});
 	}, (error) => {
-		alert('Transaction error: ' + error.message);
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+		// alert('Transaction error: ' + error.message);
 	}, () => {
 
 	});

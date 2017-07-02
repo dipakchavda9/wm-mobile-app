@@ -5,7 +5,11 @@ var book_name = null;
 
 function loadSectionList() {
 	book_id = storage.getItem("book_id");
-	getLocalTableNameOfBook();
+	if(book_id) {
+		getLocalTableNameOfBook();
+	} else {
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+	}
 }
 
 function getLocalTableNameOfBook() {
@@ -19,10 +23,12 @@ function getLocalTableNameOfBook() {
 			displaySectionList();
 
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+			// alert('Selection error: ' + error.message);
 		});
 	}, (error) => {
-		alert('Transaction error: ' + error.message);
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+		// alert('Transaction error: ' + error.message);
 	}, () => {
 
 	});
@@ -50,10 +56,12 @@ function displaySectionList() {
 			$('#BookName').html(book_name);
 
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+			// alert('Selection error: ' + error.message);
 		});
 	}, (error) => {
-		alert('Transaction error: ' + error.message);
+		alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+		// alert('Transaction error: ' + error.message);
 	}, () => {
 
 	});
@@ -68,10 +76,14 @@ function getLastChapterId() {
 			storage.setItem('last_chapter_id', row.last_chapter_id);
 			window.location.href = "depth-three-level-two.html";
 		}, (tx, error) => {
-			alert('Selection error: ' + error.message);
+			// alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+			window.location.href = "depth-three-level-two.html";
+			// alert('Selection error: ' + error.message);
 		});
 	}, (error) => {
-		alert('Transaction error: ' + error.message);
+		// alert("There was some internal error in displaying this Shatshastra, please report this problem by 'Contact Us'.");
+		window.location.href = "depth-three-level-two.html";
+		// alert('Transaction error: ' + error.message);
 	}, () => {
 
 	});
