@@ -19,7 +19,7 @@
 
 var baseURL = 'http://wadhwanmandir.org/api/public/';
 var authorizationType = 'Basic';
-var authorizationHash = 'd2FkaHdhbm1hbmRpcmFwaTpXNGRodyRuYXBpITEwMDg=';
+var authorizationHash = 'd2FkaHdhbm1hbmRpcmFwaTI6VzRkaHckbiExMDA4';
 var storage = window.localStorage;
 
 var app = {

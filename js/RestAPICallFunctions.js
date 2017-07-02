@@ -1,6 +1,6 @@
 var baseURL = 'http://wadhwanmandir.org/api/public/';
 var authorizationType = 'Basic';
-var authorizationHash = 'd2FkaHdhbm1hbmRpcmFwaTpXNGRodyRuYXBpITEwMDg=';
+var authorizationHash = 'd2FkaHdhbm1hbmRpcmFwaTI6VzRkaHckbiExMDA4';
 
 function getAllKirtans(successCallback, errorCallback) {
     $(document).ready(function() {
