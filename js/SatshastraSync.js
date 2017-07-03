@@ -47,7 +47,7 @@ function getBookDetailsFromRest() {
 		// updateBookDetails(bookDetails);
 	})
     .fail((error) => {
-    	errorUpdatingAllBooks();
+    	// errorUpdatingAllBooks();
     	// alert("Failed getting book data from Rest, Error: " + error)
     });
 }
@@ -80,7 +80,7 @@ function getBookDetailsFromDB() {
 			//alert("Table created successfully. Result: " + result);
 		},
 		(error) => {
-			errorUpdatingAllBooks();
+			// errorUpdatingAllBooks();
 			// alert("Error occurred while creating the book table. " + error);
 		});
 		tx.executeSql('SELECT * FROM books', [], (tx, results) => {
@@ -94,12 +94,12 @@ function getBookDetailsFromDB() {
 			compareBookDetails();
 		}, (tx, error) => {
 			// alert('Selection error: ' + error.message);
-			errorUpdatingAllBooks();
+			// errorUpdatingAllBooks();
 			bookDetailsFromDB = null;
 		});
 	}, (error) => {
 		// alert('ERROR: ' + error.message);
-		errorUpdatingAllBooks();
+		// errorUpdatingAllBooks();
 		bookDetailsFromDB = null;
 	}, () => {
 
