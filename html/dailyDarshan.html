@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
     <link rel="stylesheet" type="text/css" href="../css/darshan.css" />
     <link rel="stylesheet" type="text/css" href="../css/lightgallery.css">
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
     <title>Daily Darshan</title>
 </head>
 
@@ -25,7 +26,7 @@
         <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
         <div class="container-fluid">
             <div class="navbar-header">
-                Today's Darshan
+                Darshan of date: <span id="titleDate"></span>
             </div>
         </div>
     </nav>
@@ -40,8 +41,17 @@
 
     <div class="container">
         <div class="row">
-            <div id="message" class="message"><h2>Jay Swaminarayan!<br/><br/>Today's Darshan will be displayed soon!</h2></div>
-            <div id="darshan" class="gallery"></div>
+            <div id="message" class="message"></div>
+            <div id="darshan" class="gallery">
+                <div id="lightgallery">
+
+                </div>
+            </div>
+        </div>
+        <div class="row" id="datepickerRow" style="display: none;">
+            <hr />
+            <p>Select Date of Darshan:</p>
+            <p><input type="text" id="datepicker" onchange="displayDarshan(this.value);"></p>
         </div>
     </div>
 
@@ -51,6 +61,7 @@
     <script type="text/javascript" src="../js/darshan.js"></script>
     <script src="../js/lightgallery.min.js"></script>
     <script src="../js/lg-thumbnail.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.min.js"></script>
     <script type="text/javascript">
         
         var app = {
@@ -78,7 +89,10 @@
                 }
                 $('body').height($(window).height() * 0.9);
 
-                displayTodaysDarshan();
+                displayDarshan();
+
+                $( "#datepicker" ).datepicker();
+                $( "#datepicker" ).datepicker("option", "dateFormat", "dd-mm-yy");
 
                 return;
             },
