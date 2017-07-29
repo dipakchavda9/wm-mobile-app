@@ -9,18 +9,31 @@
     <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-    <link rel="stylesheet" type="text/css" href="../css/index.css" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
-    <link rel="stylesheet" type="text/css" href="../css/list.css" />
 
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
     <script type="text/javascript" src="../js/depth-three-level-one.js"></script>
-
+    <style>
+    .navbar-collapse.collapse{ display:block !important;
+        }
+        
+        .navbar-nav > li, .navbar-nav 
+        {
+            float: left !important;
+        }
+        
+        .navbar-nav.navbar-right:last-child
+        {
+            margin-left:-15px !important;
+        }
+        
+        .navbar-right
+        {
+            float:right !important;
+        }
+    </style>
     <title>Chapters List</title>
 </head>
 
@@ -50,29 +63,38 @@
             },
         };
         app.initialize();
+        
     </script>
 
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
-        <div class="container-fluid">
-            <div class="navbar-header" id="BookName">
-                
-            </div>
-        </div>
-    </nav>
+    
+    <div class="container" >
+        <ul class="nav navbar-nav navbar-left"  style="padding-right:20px;" >
+            <li class="active" style="padding-top:0px;padding-bottom:0px;" onclick="window.location.href='../index.html'">
+                <a style="background-color:#53392d" href="#"><span class="glyphicon glyphicon-home" ></span></a>
+            </li>
+            <li class="active" style="padding-top:0px;padding-bottom:0px;">
+                <span id="BookName"><b></b></span>
+            </li>
+          </ul>
+          </div>
+</nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" >
+    <div class="container" style="font-size:10px;" >
+    <center>
+        <ul style="vertical-align:middle;list-style:none;color:White">
+            <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+        </ul>
+        </center>
+    </div>
+</nav>
 
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            Copyright @ Wadhwan Mandir
-        </div>
-      </div>
-    </nav>
-
-    <div class="container">
+    <div class="container" style="padding-top:45px">
         <div class="row" id="SectionList">
         </div>
     </div>
-
+    <div class="container" style="height:25px;">
+            <div class="row"></div>
+        </div>
 </body>
 </html>

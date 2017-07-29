@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -41,6 +41,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         $('body').height(($(window).height() * 0.9));
+        $('body').width(($(window).width() * 0.9));
         registerPushNotification();
         return;
     },
@@ -143,3 +144,73 @@ function storeRegIdToServer(reg_id) {
         });
     }
 }
+
+window.onload = function () {
+           if (!localStorage.getItem("language")) {
+               localStorage.setItem("language", "Gujarati");
+           }
+           ChangeLanguage(localStorage.getItem("language"));
+       }
+
+       function ChangeLanguage(strLanguage) {
+           if (strLanguage == "Gujarati") {
+               document.getElementById("mantrajap").innerHTML = "<b>મંત્રજાપ</b>";
+               document.getElementById("mantrajap").className = "gujaratiFont";
+               document.getElementById("mantralekhan").innerHTML = "<b>મંત્રલેખન</b>";
+               document.getElementById("mantralekhan").className = "gujaratiFont";
+               document.getElementById("nityadarshan").innerHTML = "<b>નિત્ય દર્શન</b>";
+               document.getElementById("nityadarshan").className = "gujaratiFont";
+               document.getElementById("gallary").innerHTML = "<b>ફોટો ગેલેરી</b>";
+               document.getElementById("gallary").className = "gujaratiFont";
+               document.getElementById("liveevent").innerHTML = "<b>લાઇવ કાર્યક્રમ</b>";
+               document.getElementById("liveevent").className = "gujaratiFont";
+               document.getElementById("audio").innerHTML = "<b>ઓડિયો ગેલેરી</b>";
+               document.getElementById("audio").className = "gujaratiFont";
+               document.getElementById("aachary").innerHTML = "<b>આચાર્ય પરંપરા</b>";
+               document.getElementById("aachary").className = "gujaratiFont";
+               document.getElementById("shastro").innerHTML = "<b>સત્શાસ્ત્રો</b>";
+               document.getElementById("shastro").className = "gujaratiFont";
+               document.getElementById("nirnay").innerHTML = "<b>નિર્ણય</b>";
+               document.getElementById("nirnay").className = "gujaratiFont";
+               document.getElementById("rkdym").innerHTML = "<b>યુવક મંડળ</b>";
+               document.getElementById("rkdym").className = "gujaratiFont";
+               document.getElementById("social").innerHTML = "<b>સામાજિક મીડિયા</b>";
+               document.getElementById("social").className = "gujaratiFont";
+               document.getElementById("contact").innerHTML = "<b>સંપર્ક માટે</b>";
+               document.getElementById("contact").className = "gujaratiFont";
+               document.getElementById("btnEnglish").style.backgroundColor = "#53392d";
+               document.getElementById("btnGujarati").style.backgroundColor = "#f6f1ee";
+               document.getElementById("mantra").innerHTML = "<b>|| શ્રી સ્વામિનારાયણો વિજયતેતરામ્ ||<b>";
+               document.getElementById("mantra").className = "gujaratiFont";
+           } else {
+               document.getElementById("mantrajap").innerHTML = "<b>Mantra Jaap</b>";
+               document.getElementById("mantralekhan").innerHTML = "<b>Mantra Lekhan</b>";
+               document.getElementById("nityadarshan").innerHTML = "<b>Daily Darshan</b>";
+               document.getElementById("gallary").innerHTML = "<b>Photo Gallery</b>";
+               document.getElementById("liveevent").innerHTML = "<b>Live Event</b>";
+               document.getElementById("audio").innerHTML = "<b>Audio Gallery</b>";
+               document.getElementById("aachary").innerHTML = "<b>Aacharya</b>";
+               document.getElementById("shastro").innerHTML = "<b>Scripture</b>";
+               document.getElementById("nirnay").innerHTML = "<b>Nirnay</b>";
+               document.getElementById("rkdym").innerHTML = "<b>RKDYM</b>";
+               document.getElementById("social").innerHTML = "<b>Social Media</b>";
+               document.getElementById("contact").innerHTML = "<b>Contact Us</b>";
+               document.getElementById("mantrajap").className = "englishFont";
+               document.getElementById("mantralekhan").className = "englishFont";
+               document.getElementById("nityadarshan").className = "englishFont";
+               document.getElementById("gallary").className = "englishFont";
+               document.getElementById("liveevent").className = "englishFont";
+               document.getElementById("audio").className = "englishFont";
+               document.getElementById("aachary").className = "englishFont";
+               document.getElementById("shastro").className = "englishFont";
+               document.getElementById("nirnay").className = "englishFont";
+               document.getElementById("rkdym").className = "englishFont";
+               document.getElementById("social").className = "englishFont";
+               document.getElementById("contact").className = "englishFont";
+               document.getElementById("btnEnglish").style.backgroundColor = "#f6f1ee";
+               document.getElementById("btnGujarati").style.backgroundColor = "#53392d";
+               document.getElementById("mantra").innerHTML = "<b>|| Shree Swaminarayano Vijaytetram ||<b>";
+               document.getElementById("mantra").className = "englishFont";
+           }
+           localStorage.setItem("language", strLanguage);
+       }

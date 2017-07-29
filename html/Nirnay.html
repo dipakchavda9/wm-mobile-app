@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 
@@ -9,12 +9,26 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-    <link rel="stylesheet" type="text/css" href="../css/index.css" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
-    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
-
+    <style>
+    .navbar-collapse.collapse{ display:block !important;
+        }
+        
+        .navbar-nav > li, .navbar-nav 
+        {
+            float: left !important;
+        }
+        
+        .navbar-nav.navbar-right:last-child
+        {
+            margin-left:-15px !important;
+        }
+        
+        .navbar-right
+        {
+            float:right !important;
+        }
+        </style>
     <title>Nirnay</title>
 
 </head>
@@ -65,23 +79,28 @@
     </script>
     
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
-        <div class="container-fluid">
-            <div class="navbar-header">
-                Nirnay
-            </div>
+        <div class="container-fluid" >
+            <ul class="nav navbar-nav navbar-left"  style="padding-right:20px;" >
+                <li class="active" style="padding-top:0px;padding-bottom:0px;" onclick="window.location.href='../index.html'">
+                    <a style="background-color:#53392d" href="#"><span class="glyphicon glyphicon-home" ></span></a>
+                </li>
+                <li class="active" style="padding-top:0px;padding-bottom:0px;">
+                    <span id="Span1"><b>નિર્ણય</b></span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" >
+        <div class="container-fluid" style="font-size:10px;" >
+        <center>
+            <ul style="vertical-align:middle;list-style:none;color:White">
+                <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+            </ul>
+            </center>
         </div>
     </nav>
 
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            Copyright @ Wadhwan Mandir
-        </div>
-      </div>
-    </nav>
-
-    <div class="container">
+    <div class="container" style="padding-top:50px;">
         <div class="row" id="iframeRow">
             <iframe src="http://wadhwanmandir.org/nirnay/" frameborder="0"></iframe>
         </div>

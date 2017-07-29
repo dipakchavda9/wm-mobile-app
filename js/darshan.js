@@ -1,7 +1,10 @@
-var errorCount;
+﻿var errorCount;
 var imageCount;
 var triedLoadingImageCount;
-
+var numbers=["1","2","3","4","5","6","7","8","9","0"];
+function changeDateFont(strDate) {
+    return strDate.replace(/1/ig, '૧').replace(/2/ig, '૨').replace(/3/ig, '૩').replace(/4/ig, '૪').replace(/5/ig, '૫').replace(/6/ig, '૬').replace(/7/ig, '૭').replace(/8/ig, '૮').replace(/9/ig, '૯').replace(/0/ig, '૦');
+}
 function displayDarshan(date = null) {
 
     errorCount = 0;
@@ -9,7 +12,7 @@ function displayDarshan(date = null) {
     triedLoadingImageCount = 0;
 
     $('#datepickerRow').hide();
-    $('#message').hide();
+    $('#alert').hide();
     $('#darshan').show();
 
     if(!date) {
@@ -25,15 +28,15 @@ function displayDarshan(date = null) {
         }
         date = dd+'-'+mm+'-'+yyyy;
 
-        $('#message').html(`<h2>Jay Swaminarayan!<br/><br/>Today's Darshan will be displayed soon!</h2>`);
+        $('#message').html('<h2>જય સ્વામિનારાયણ!<br/><br/>આજના દર્શન ટૂંક સમયમાં પ્રદશિત થશે!</h2>');
 
     } else {
 
-        $('#message').html(`<h2>Jay Swaminarayan!<br/><br/>Sorry...<br/>Darshan of date '` + date + `' is not available.</h2>`);
+        $('#message').html('<h2>જય સ્વામિનારાયણ!<br/><br/>માફ કરશો...<br/>તારીખ ' + changeDateFont(date) + ' નાં દર્શન ઉપલબ્ધ નથી.</h2>');
 
     }
 
-    $('#titleDate').html(date);
+    $('#titleDate').html(changeDateFont(date));
 
     var screenHeight = $(window).height();
     var screenWidth = $(window).width();
@@ -67,7 +70,7 @@ function addStyletoImage(img) {
 }
 
 function showMessageBlock() {
-    $('#message').show();
+    $('#alert').show();
     $('#darshan').hide();
 }
 

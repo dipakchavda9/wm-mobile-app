@@ -1,4 +1,4 @@
-$(window).load(function(){
+﻿$(window).load(function(){
     displayMantraJaapCount();
 });
 
@@ -94,10 +94,10 @@ function populateHistoryTableBody() {
     if(!mantraJaapLogs) {
         $('#historyTableDiv').html('<h2>No History Found</h2>');
     } else {
-        var tableHtml = '<table><thead><tr><th>Date</th><th>Manra Jaap</th></tr></thead><tbody>';
+        var tableHtml = "<table class='table table-hovered table-bordered'><thead><tr class='danger'><th>તારીખ</th><th>મંત્રજાપ</th></tr></thead><tbody>";
         var mantraJaapLogsArray = JSON.parse(mantraJaapLogs);
         for(var date in mantraJaapLogsArray) {
-            tableHtml += '<tr><td>' + date + '</td><td>' + mantraJaapLogsArray[date] + '</td></tr>';
+            tableHtml += '<tr class="warning"><th>' + date + '</th><th>' + mantraJaapLogsArray[date] + '</th></tr>';
         }
         tableHtml += '</tbody></table>';
         $('#historyTableDiv').html(tableHtml);
@@ -159,6 +159,7 @@ function incrementMantraLekhanCount() {
     storage.setItem('MantraLekhanCount', newMantraLekhanCount);
     updateMantraLekhanLog();
     displayMantraLekhanCount();
+    $("#mantraLekhanTextbox").val('');
 }
 
 function updateMantraLekhanLog() {
@@ -210,10 +211,10 @@ function populateMantraLekhanHistoryTableDiv() {
     if(!mantraLekhanLogs) {
         $('#mantraLekhanHistoryTableDiv').html('<h2>No History Found</h2>');
     } else {
-        var tableHtml = '<table><thead><tr><th>Date</th><th>Manra Lekhan</th></tr></thead><tbody>';
+        var tableHtml = '<table class="table table-bordered"><thead><tr class="danger"><th>તારીખ</th><th>મંત્રલેખન</th></tr></thead><tbody>';
         var mantraLekhanLogsArray = JSON.parse(mantraLekhanLogs);
         for(var date in mantraLekhanLogsArray) {
-            tableHtml += '<tr><td>' + date + '</td><td>' + mantraLekhanLogsArray[date] + '</td></tr>';
+            tableHtml += '<tr class="warning"><th>' + date + '</th><th>' + mantraLekhanLogsArray[date] + '</th></tr>';
         }
         tableHtml += '</tbody></table>';
         $('#mantraLekhanHistoryTableDiv').html(tableHtml);

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 
@@ -9,50 +9,79 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-    <link rel="stylesheet" type="text/css" href="../css/index.css" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
-    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
     <link rel="stylesheet" type="text/css" href="../css/darshan.css" />
-    <link rel="stylesheet" type="text/css" href="../css/lightgallery.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="../css/lightgallery.css" />
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" />
     <title>Daily Darshan</title>
+    <style>
+    .navbar-collapse.collapse{ display:block !important;
+        }
+        
+        .navbar-nav > li, .navbar-nav 
+        {
+            float: left !important;
+        }
+        
+        .navbar-nav.navbar-right:last-child
+        {
+            margin-left:-15px !important;
+        }
+        
+        .navbar-right
+        {
+            float:right !important;
+        }
+        </style>
 </head>
 
 <body>
 
+    
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
-        <div class="container-fluid">
-            <div class="navbar-header">
-                Darshan of date: <span id="titleDate"></span>
+        <div class="container" >
+            <ul class="nav navbar-nav navbar-left"  style="padding-right:20px;" >
+                <li class="active" style="padding-top:0px;padding-bottom:0px;" onclick="window.location.href='../index.html'">
+                    <a style="background-color:#53392d" href="#"><span class="glyphicon glyphicon-home" ></span></a>
+                </li>
+                <li class="active" style="padding-top:0px;padding-bottom:0px;">
+                    <span><b>નિત્ય દર્શન તારીખ : </b></span><span id="titleDate"></span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" >
+    <div class="container" style="font-size:10px;" >
+    <center>
+        <ul style="vertical-align:middle;list-style:none;color:White">
+            <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+        </ul>
+        </center>
+    </div>
+</nav>
+    <div class="container" style="padding-top:50px">
+        <div class="row" id="datepickerRow" style="display: none;">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label for="darshan">તારીખ પસંદ કરો</label>
+                <input type="text" id="datepicker" class="form-control" onchange='displayDarshan(this.value)' placeholder="તારીખ પસંદ કરો" />
             </div>
         </div>
-    </nav>
-
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            Copyright @ Wadhwan Mandir
+            
         </div>
-      </div>
-    </nav>
-
-    <div class="container">
+        <div class="alert alert-danger" id="alert" style="text-align:center">
+                <span id="message"></span>
+            </div>
         <div class="row">
-            <div id="message" class="message"></div>
+            
+            
             <div id="darshan" class="gallery">
                 <div id="lightgallery">
 
                 </div>
             </div>
         </div>
-        <div class="row" id="datepickerRow" style="display: none;">
-            <hr />
-            <p>Select Date of Darshan:</p>
-            <p><input type="text" id="datepicker" onchange="displayDarshan(this.value);"></p>
-        </div>
+        
     </div>
 
     <script type="text/javascript" src="../cordova.js"></script>
