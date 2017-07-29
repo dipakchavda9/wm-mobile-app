@@ -2,6 +2,41 @@
     displayMantraJaapCount();
 });
 
+$("#mantraLekhanTextbox").keydown(function (event) {
+    var MyWord = "SWAMINARAYAN";
+    var KeyID;
+    KeyID = event.which;
+    if (KeyID < 65) {
+        return false;
+    }
+    else if (KeyID >= 65 && KeyID <= 90) {
+        var CharPosition = $("#mantraLekhanTextbox").val().length;
+        var CmpCharCode = MyWord.charCodeAt(CharPosition);
+        var CmpChar = MyWord.charAt(CharPosition);
+
+        if (KeyID == CmpCharCode) {
+            if (CharPosition == 11 && KeyID == 78) {
+                incrementMantraLekhanCount();
+                return false;
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+    if (event.which == 13) {
+        event.preventDefault();
+    }
+    xTriggered++;
+    var msg = "Handler for .keydown() called " + xTriggered + " time(s).";
+    $.print(msg, "html");
+    $.print(event);
+});
+
 var storage = window.localStorage;
 
 function incrementMantraJaapCount() {
