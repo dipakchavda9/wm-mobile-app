@@ -29,6 +29,7 @@
     right: 0px;
     padding: 1em;
     display: none;
+	
 }
 
 .sidenav a:hover{
@@ -126,7 +127,7 @@ ol {
         .rounded-list span{
     position: relative;
     display: block;
-    padding: .4em .4em .4em 1em;
+    padding: .4em .4em .4em 2.7em;
     *padding: .4em;
     margin: .5em 0;
     background: #dcc8bc;
@@ -134,7 +135,7 @@ ol {
     text-decoration: none;
     border-radius: .3em;
     transition: all .3s ease-out;   
-    font-size:16px;
+    font-size:18px;
     font-weight:bold;
 }
 
@@ -150,11 +151,11 @@ ol {
     content: counter(li,upper-alpha);
     counter-increment: li;
     position: absolute; 
-    left: -2.3em;
+    left: -0.4em;
     top: 50%;
     margin-top: -1.3em;
-    background-color: #f6f1ee;
-    color:#f6f1ee;
+    background-color: #53392d;
+    color:white;
     height: 2.6em;
     width: 2.6em;
     line-height: 2em;
@@ -163,5 +164,11 @@ ol {
     font-weight: normal;
     border-radius: 2em;
     transition: all .3s ease-out;
-    font-family:Times New Roman;
+    font-family:Tahoma;
+	
+}
+
+.disabledLi {
+    pointer-events:none; 
+    opacity:0.6;        
 }

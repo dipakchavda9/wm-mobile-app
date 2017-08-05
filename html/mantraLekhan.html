@@ -66,7 +66,7 @@
         
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 form-group-lg">
-                    <input type="text" id="mantraLekhanTextbox" style="font-size:30px; box-shadow:4px 4px 8px -1px #53392d;text-transform:uppercase;color:Red; border-color:#53392d;border-width:2px;font-weight:700;font-family:Calibri" class="form-control" placeholder="SWAMINARAYAN" /> 
+                    <input type="text" id="mantraLekhanTextbox" style="font-size:30px; box-shadow:4px 4px 8px -1px #53392d;text-transform:uppercase;color:Red; border-color:#53392d;border-width:2px;font-weight:700;font-family:Calibri" onkeyup="checkMantra(this)" class="form-control" placeholder="SWAMINARAYAN" /> 
             </div>
             
             
@@ -101,6 +101,7 @@
             // 'load', 'deviceready', 'offline', and 'online'.
             bindEvents: function() {
                 document.addEventListener('deviceready', this.onDeviceReady, false);
+				document.addEventListener('backbutton', this.backToMainMenu, false);
             },
             // deviceready Event Handler
             //
@@ -109,6 +110,9 @@
             onDeviceReady: function() {
                 
             },
+            backToMainMenu: function () {
+                window.location.href = "../index.html";
+            }
             // Update DOM on a Received Event
         };
         app.initialize();

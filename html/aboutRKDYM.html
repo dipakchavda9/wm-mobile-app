@@ -9,6 +9,9 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+	<script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
     <style>
         .GujaratiFont
         {
@@ -40,6 +43,53 @@
 </head>
 
 <body>
+<script type="text/javascript">
+        
+        var app = {
+            // Application Constructor
+            initialize: function() {
+                this.bindEvents();
+            },
+            // Bind Event Listeners
+            //
+            // Bind any events that are required on startup. Common events are:
+            // 'load', 'deviceready', 'offline', and 'online'.
+            bindEvents: function() {
+                document.addEventListener('deviceready', this.onDeviceReady, false);
+				document.addEventListener('backbutton', this.backToMainMenu, false);
+            },
+            // deviceready Event Handler
+            //
+            // The scope of 'this' is the event. In order to call the 'receivedEvent'
+            // function, we must explicitly call 'app.receivedEvent(...);'
+            onDeviceReady: function() {
+                var offset = 10;
+				var duration = 500;
+				jQuery(window).scroll(function () {
+					if (jQuery(this).scrollTop() > offset) {
+						jQuery('.back-to-top').fadeIn(duration);
+					} else {
+						jQuery('.back-to-top').fadeOut(duration);
+					}
+				});
+
+				jQuery('.back-to-top').click(function (event) {
+					event.preventDefault();
+					jQuery('html, body').animate({ scrollTop: 0 }, duration);
+					return false;
+				})
+            },
+            backToMainMenu: function () {
+                window.localStorage.setItem("LevelNum", "");
+                window.location.href = "../index.html";
+            }
+            // Update DOM on a Received Event
+        };
+        app.initialize();
+        $(window).load(function(){
+            $('#parentDiv').height($(window).height());
+        });
+    </script>   
         <nav class="navbar navbar-inverse navbar-fixed-top">
         
         <div class="container" >
@@ -106,35 +156,8 @@ EUJFG :JFlDGFZFI6 sZ V[l5|, !*(!v ! H]G !(#_f cczL ;CHFG\N :JFDL DCFZFHcc4 cczL 
     </div>
         
     </div>
-    <script type="text/javascript" src="../cordova.js"></script>
-    <script type="text/javascript" src="../js/jquary.min.1.12.2"></script>
-    <script type="text/javascript">
-        
-        var app = {
-            // Application Constructor
-            initialize: function() {
-                this.bindEvents();
-            },
-            // Bind Event Listeners
-            //
-            // Bind any events that are required on startup. Common events are:
-            // 'load', 'deviceready', 'offline', and 'online'.
-            bindEvents: function() {
-                document.addEventListener('deviceready', this.onDeviceReady, false);
-            },
-            // deviceready Event Handler
-            //
-            // The scope of 'this' is the event. In order to call the 'receivedEvent'
-            // function, we must explicitly call 'app.receivedEvent(...);'
-            onDeviceReady: function() {
-                
-            },
-            // Update DOM on a Received Event
-        };
-        app.initialize();
-        $(window).load(function(){
-            $('#parentDiv').height($(window).height());
-        });
-    </script>        
+    
+    
+<img src="../img/back-to-top.png" class="back-to-top" alt="backtotop" />	
 </body>
 </html>

@@ -31,14 +31,12 @@ function displaySectionList() {
         tx.executeSql('SELECT DISTINCT section_id, section_title FROM ' + local_table_name + ' ORDER BY section_id ASC', [], (tx, results) => {
             var len = results.rows.length;
             var sectionRow = null;
-            var htmlStr = '<div class="list-big"><ul>';
+            var htmlStr = '<ol class="rounded-list">';
             for(var i=0; i<len; i++) {
                 sectionRow = results.rows.item(i);
-                htmlStr += `
-                    <li onclick="RedirectToSection(` + sectionRow.section_id + `);"><span>` + sectionRow.section_title + `</span></li>
-                `;
+                htmlStr += "<li onclick='RedirectToSection(" + sectionRow.section_id + ");'><label>" + sectionRow.section_title + "</label></li>";
             }
-            htmlStr += '</ul></div>';
+            htmlStr += '</ol>';
             $('#SectionList').html(htmlStr);
             $('#BookName').html(book_name);
         }, (tx, error) => {

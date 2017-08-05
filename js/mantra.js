@@ -2,7 +2,7 @@
     displayMantraJaapCount();
 });
 
-$("#mantraLekhanTextbox").keydown(function (event) {
+/* $("#mantraLekhanTextbox").keydown(function (event) {
     var MyWord = "SWAMINARAYAN";
     var KeyID;
     KeyID = event.which;
@@ -35,7 +35,7 @@ $("#mantraLekhanTextbox").keydown(function (event) {
     var msg = "Handler for .keydown() called " + xTriggered + " time(s).";
     $.print(msg, "html");
     $.print(event);
-});
+}); */
 
 var storage = window.localStorage;
 
@@ -228,15 +228,21 @@ function updateMantraLekhanLog() {
 }
 
 function checkMantra(mantraLekhanTextbox) {
-
+	var mantra="SWAMINARAYAN";
     var currentStr = mantraLekhanTextbox.value.toUpperCase();
-
-    if(currentStr.length >= 12) {
-        if(currentStr == 'SWAMINARAYAN') {
-            incrementMantraLekhanCount();
-        }
-        mantraLekhanTextbox.value = '';
-    }
+	var currLength=currentStr.length;
+	var currentMantr=mantra.substr(0,currLength)
+	if(currentStr==currentMantr) {
+		if(currentStr.length >= 12) {
+			if(currentStr == 'SWAMINARAYAN') {
+				incrementMantraLekhanCount();
+			}
+			mantraLekhanTextbox.value = '';
+		}
+	} else {
+		mantraLekhanTextbox.value=mantraLekhanTextbox.value.substr(0,currLength-1);
+	}
+    
 
     return;
 }

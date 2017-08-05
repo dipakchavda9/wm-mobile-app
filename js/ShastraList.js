@@ -11,6 +11,7 @@ function getShastraList() {
                 for (var i = 0; i < len; i++){
                     booksToDisplay[i] = results.rows.item(i);
                 }
+				$("divError").addClass("hidden");
                 displayBooks(booksToDisplay);
             }
             return;
@@ -24,19 +25,17 @@ function displayDownloadMessage() {
     var htmlStr = `
     <h3>No Shatshastras are downloaded yet!</h3>
     `;
-    $('#ShastraList').html(htmlStr);
+    $("divError").removeClass("hidden");
 }
 
 function displayBooks(books) {
     var i;
     var len = books.length;
-    var htmlStr = '<div class="list-big"><ul>';
+    var htmlStr = '<ol class="rounded-list">';
     for( i = 0 ; i < len ; i++) {
-        htmlStr += `
-            <li onclick="RedirectToShastra(` + books[i].id + `, ` + books[i].level_depth + `);"><span>` + books[i].book_name + `</span></li>
-        `;
+        htmlStr += "<li><label onclick='RedirectToShastra(" + books[i].id + ", " + books[i].level_depth + ");'>" + books[i].book_name + "</label></li>";
     }
-    htmlStr += '</ul></div>';
+    htmlStr += '</ol>';
     $('#ShastraList').html(htmlStr);
 }
 

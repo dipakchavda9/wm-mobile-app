@@ -31,7 +31,7 @@ function displayChapterList() {
         tx.executeSql('SELECT * FROM ' + local_table_name + ' ORDER BY chapter_id ASC', [], (tx, results) => {
             var len = results.rows.length;
             var chapterRow = null;
-            var htmlStr = '<div class="list"><ul>';
+            var htmlStr = '<ol class="rounded-list">';
             storage.setItem('last_chapter_id', len);
             for(var i=0; i<len; i++) {
                 chapterRow = results.rows.item(i);
@@ -39,7 +39,7 @@ function displayChapterList() {
                     <li onclick="RedirectToChapter(` + chapterRow.chapter_id + `);"><span>` + chapterRow.chapter_title + `</span></li>
                 `;
             }
-            htmlStr += '</ul></div>';
+            htmlStr += '</ol>';
             $('#ChaptersList').html(htmlStr);
             $('#BookName').html(book_name);
         }, (tx, error) => {

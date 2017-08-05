@@ -33,14 +33,14 @@ function displayChapterList() {
         tx.executeSql('SELECT * FROM ' + local_table_name + ' WHERE section_id = ? ORDER BY chapter_id ASC', [section_id], (tx, results) => {
             var len = results.rows.length;
             var chapterRow = null;
-            var htmlStr = '<div class="list"><ul>';
+            var htmlStr = '<ol class="rounded-list">';
             for(var i=0; i<len; i++) {
                 chapterRow = results.rows.item(i);
                 htmlStr += `
                     <li onclick="RedirectToChapter(` + chapterRow.chapter_id + `);"><span>` + chapterRow.chapter_title + `</span></li>
                 `;
             }
-            htmlStr += '</ul></div>';
+            htmlStr += '</ol>';
             $('#ChaptersList').html(htmlStr);
             $('#BookName').html(book_name);
         }, (tx, error) => {

@@ -5,13 +5,13 @@ function ListAudiosets(audiosets) {
     var totalAudiosets = audiosets.total_items;
 
     var i = totalAudiosets - 1;
-    var listHtml = '<div class="list"><ul>';
+    var listHtml = '<ol class="rounded-list"';
     
     while(i >= 0) {
         listHtml += '<li onclick="RedirectToPlayAudioSet(' + audiosets._embedded.audioset[i].id + ');"><span>' + audiosets._embedded.audioset[i].name + '</span></li>';
         i--;
     }
-    listHtml += '</ul></div>';
+    listHtml += '</ol>';
     
     $('#AudiosetList').html(listHtml);
 
@@ -39,7 +39,7 @@ function PlayAudioset(audioset) {
         var parts = audioLinks[i].split('/');
         var AudioName = decodeURI(parts[parts.length - 1]);
 
-        html += '<h3>' + AudioName + '</h3> <audio preload="metadata" controls> <source src="' + audioLinks[i] + '"> </audio> <span class="download-icon"><a href="' + audioLinks[i] + '"><i class="ion-ios-cloud-download"></i></a></span> <div class="line-break"></div>';
+        html += '<h3>' + AudioName + '</h3> <audio preload="metadata" controls> <source src="' + audioLinks[i] + '"> </audio> <span class="download-icon"><a href="' + audioLinks[i] + '"><i class="glyphicon glyphicon-download-alt"></i></a></span><br />';
     }
 
     $("#wrapper").html(html);
