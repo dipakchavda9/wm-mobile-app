@@ -66,10 +66,10 @@ function getQuestionCountFromDB() {
             tx.executeSql('SELECT MAX(que_id) as QUE_COUNT FROM quiz', [], (tx, results) => {
                 var len = results.rows.length;
                 if(len>0) {
-					if(results.rows[0].QUE_COUNT!=null) {
-						maxNoOfQuestionsInDB=results.rows[0].QUE_COUNT;
-						noOfQuestionsInDB=maxNoOfQuestionsInDB - 2;	
-					}                    
+                    if(results.rows[0].QUE_COUNT != null) {
+                        maxNoOfQuestionsInDB = results.rows[0].QUE_COUNT;
+                        noOfQuestionsInDB = maxNoOfQuestionsInDB - 2;
+                    }                    
                 }
                 compareQuizQuestions();
             }, (tx, error) => {
@@ -85,20 +85,16 @@ function getQuestionCountFromDB() {
 function compareQuizQuestions() {
     var len = questionsFromRest.length;
     var lastQuestionID = questionsFromRest[len-1].que_id;
-    if(maxNoOfQuestionsInDB<lastQuestionID) {
-        quetionsToUpdate=len-noOfQuestionsInDB;
+    if(maxNoOfQuestionsInDB < lastQuestionID) {
+        quetionsToUpdate = len-noOfQuestionsInDB;
         if(confirmUpdateAction()) {
             openProcessingDialog();
             var remoteQue;
             for(var i=0; i < len; i++) {
                 remoteQue = questionsFromRest[i];
                 var remoteQueNum=remoteQue.que_id;
-                if(maxNoOfQuestionsInDB<remoteQueNum) {
+                if(maxNoOfQuestionsInDB < remoteQueNum) {
                     insertLocalQuestion(remoteQue);
-                }
-                updateProgressBar();
-                if(questionsUpdated==quetionsToUpdate) {
-                    closeProcessingDialog();
                 }
             }
         }
@@ -154,10 +150,17 @@ function insertLocalQuestion(question) {
         question.que_ans_correct
     ];
     
-    questionsUpdated++;
     
     db.transaction((tx) => {
-        tx.executeSql(insertQuestionSql, dataBinding,null,null);
+        tx.executeSql(insertQuestionSql, dataBinding, (tx, results) => {
+            questionsUpdated++;
+            updateProgressBar();
+            if(questionsUpdated >= quetionsToUpdate) {
+                closeProcessingDialog();
+            }
+        }, (tx, error) => {
+            
+        });
     });
 }
 
