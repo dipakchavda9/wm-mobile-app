@@ -112,3 +112,9 @@ $( function() {
         }
     });
 } );
+
+function enableScroll() {
+    setInterval(function() {
+        $.mobile.silentScroll(window.pageYOffset + 1);
+    }, 100);
+}
