@@ -18,8 +18,8 @@ function ListAudiosets(audiosets) {
 }
 
 function ErrorListingAudiosets(error) {
-    alert('Error listing Audiosets.');
-    location.href='/index.html';
+//    alert('Error listing Audiosets.');
+    location.href='../index.html';
 }
 
 function RedirectToPlayAudioSet(audiosetId) {
@@ -48,6 +48,6 @@ function PlayAudioset(audioset) {
 }
 
 function ErrorPlayingAudioset(error) {
-    alert('Error playing Audioset.');
-    location.href='/html/ListAudioSets.html';
+//    alert('Error playing Audioset.');
+    location.href='ListAudioSets.html';
 }

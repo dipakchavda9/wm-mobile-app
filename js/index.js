@@ -181,10 +181,10 @@ window.onload = function () {
                document.getElementById("btnGujarati").style.backgroundColor = "#f6f1ee";
                document.getElementById("mantra").innerHTML = "<b>|| શ્રી સ્વામિનારાયણો વિજયતેતરામ્ ||<b>";
                document.getElementById("mantra").className = "gujaratiFont";
-			   document.getElementById("Quiz").className="gujaratiFont";
-			   document.getElementById("Quiz").innerHTML="<b>સત્સંગ ક્વિઝ</b>";
-			   document.getElementById("history").className="gujaratiFont";
-			   document.getElementById("history").innerHTML="<b>મંદિરનો ઈતિહાસ</b>";
+                document.getElementById("Quiz").className="gujaratiFont";
+                document.getElementById("Quiz").innerHTML="<b>સત્સંગ ક્વિઝ</b>";
+//                document.getElementById("history").className="gujaratiFont";
+//                document.getElementById("history").innerHTML="<b>મંદિરનો ઈતિહાસ</b>";
            } else {
                document.getElementById("mantrajap").innerHTML = "<b>Mantra Jaap</b>";
                document.getElementById("mantralekhan").innerHTML = "<b>Mantra Lekhan</b>";
@@ -198,8 +198,8 @@ window.onload = function () {
                document.getElementById("rkdym").innerHTML = "<b>RKDYM</b>";
                document.getElementById("social").innerHTML = "<b>Social Media</b>";
                document.getElementById("contact").innerHTML = "<b>Contact Us</b>";
-			   document.getElementById("Quiz").innerHTML="<b>Satsang Quiz</b>";
-			   document.getElementById("history").innerHTML="<b>Temple History</b>";
+                document.getElementById("Quiz").innerHTML="<b>Satsang Quiz</b>";
+//                document.getElementById("history").innerHTML="<b>Temple History</b>";
                document.getElementById("mantrajap").className = "englishFont";
                document.getElementById("mantralekhan").className = "englishFont";
                document.getElementById("nityadarshan").className = "englishFont";
@@ -216,8 +216,8 @@ window.onload = function () {
                document.getElementById("btnGujarati").style.backgroundColor = "#53392d";
                document.getElementById("mantra").innerHTML = "<b>|| Shree Swaminarayano Vijaytetram ||<b>";
                document.getElementById("mantra").className = "englishFont";
-			   document.getElementById("Quiz").className="englishFont";
-			   document.getElementById("history").className="englishFont";
+                document.getElementById("Quiz").className="englishFont";
+//                document.getElementById("history").className="englishFont";
 			   
            }
            localStorage.setItem("language", strLanguage);

@@ -10,9 +10,9 @@ var processingDialogOpenStatus = 0;
 var db = window.openDatabase("appDatabase", "1.0", "Application Databse", 50 * 1024 * 1024);
 
 function SyncSatshastraDetails() {
-    if(checkConnection()) {
+//    if(checkConnection()) {
         getBookDetailsFromRest();
-    }
+//    }
 };
 
 function checkConnection() {
