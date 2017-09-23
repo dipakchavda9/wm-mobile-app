@@ -22,37 +22,6 @@ var authorizationType = 'Basic';
 var authorizationHash = 'd2FkaHdhbm1hbmRpcmFwaTI6VzRkaHckbiExMDA4';
 var storage = window.localStorage;
 
-var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
-    bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
-        
-    },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
-    onDeviceReady: function() {
-		document.addEventListener('backbutton', this.exitAppFunction, false);
-        $('body').height(($(window).height() * 0.9));
-        registerPushNotification();
-        return;
-    },
-    exitAppFunction: function() {
-        navigator.app.exitApp();
-    },
-
-};
-
-app.initialize();
-
 function registerPushNotification() {
 
     var push = PushNotification.init({ "android": {"senderID": "476875120878"} });
@@ -184,7 +153,8 @@ window.onload = function () {
                document.getElementById("mantra").className = "gujaratiFont";
 			   document.getElementById("Quiz").className="gujaratiFont";
 			   document.getElementById("Quiz").innerHTML="<b>સત્સંગ ક્વિઝ</b>";
-			   
+//                document.getElementById("history").className="gujaratiFont";
+//                document.getElementById("history").innerHTML="<b>મંદિરનો ઈતિહાસ</b>";
            } else {
                document.getElementById("mantrajap").innerHTML = "<b>Mantra Jaap</b>";
                document.getElementById("mantralekhan").innerHTML = "<b>Mantra Lekhan</b>";
@@ -200,6 +170,7 @@ window.onload = function () {
                document.getElementById("contact").innerHTML = "<b>Contact Us</b>";
 			   document.getElementById("Quiz").innerHTML="<b>Satsang Quiz</b>";
 			   document.getElementById("mantrajap").className = "englishFont";
+//                document.getElementById("history").innerHTML="<b>Temple History</b>";
                document.getElementById("mantralekhan").className = "englishFont";
                document.getElementById("nityadarshan").className = "englishFont";
                document.getElementById("gallary").className = "englishFont";
@@ -215,7 +186,8 @@ window.onload = function () {
                document.getElementById("btnGujarati").style.backgroundColor = "#53392d";
                document.getElementById("mantra").innerHTML = "<b>|| Shree Swaminarayano Vijaytetram ||<b>";
                document.getElementById("mantra").className = "englishFont";
-			   document.getElementById("Quiz").className="englishFont";
+               document.getElementById("Quiz").className="englishFont";
+//                document.getElementById("history").className="englishFont";
 			   
            }
            localStorage.setItem("language", strLanguage);

@@ -51,7 +51,7 @@
             // 'load', 'deviceready', 'offline', and 'online'.
             bindEvents: function() {
                 document.addEventListener('deviceready', this.onDeviceReady, false);
-				document.addEventListener('backbutton', this.backToMainMenu, false);
+                document.addEventListener('backbutton', this.backToMainMenu, false);
             },
             // deviceready Event Handler
             //
@@ -61,7 +61,6 @@
                 
             },
             backToMainMenu: function () {
-                window.localStorage.setItem("LevelNum", "");
                 window.location.href = "mantraLekhan.html";
             }
             // Update DOM on a Received Event

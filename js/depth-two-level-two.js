@@ -97,7 +97,7 @@ function resizeFonts(size) {
 $( function() {
     var fontSize = storage.getItem('font-size');
     if(!fontSize) {
-        fontSize = 14;
+        fontSize = 20;
         storage.setItem('font-size', fontSize);
     }
     $( "#slider-range-max" ).slider({
@@ -112,3 +112,9 @@ $( function() {
         }
     });
 } );
+
+function enableScroll() {
+    setInterval(function() {
+        $.mobile.silentScroll(window.pageYOffset + 1);
+    }, 175);
+}

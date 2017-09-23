@@ -89,9 +89,12 @@
 					return false;
 				})
                 loadChapter();
+                enableScroll();
+                window.plugins.insomnia.keepAwake()
                 return;
             },
             backToMainMenu: function () {
+                window.plugins.insomnia.allowSleepAgain()
                 window.location.href = "depth-two-level-one.html";
             }
         };

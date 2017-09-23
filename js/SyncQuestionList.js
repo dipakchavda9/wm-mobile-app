@@ -170,7 +170,7 @@ function confirmUpdateAction() {
     if(updateDecisionTaken) {
         return allowUpdate;
     }
-    if(confirm("New questions have been added in the list. Do you want to update question list? \n\n[Note: This action may take between 2 to 10 minutes depending on your internet connection speed!]")) {
+    if(confirm("New questions have been added in the list. Do you want to update question list? \n\n[Note: This action may take between 1 to 5 minutes depending on your internet connection speed!]")) {
         allowUpdate = true;
     } else {
         allowUpdate = false;

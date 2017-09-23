@@ -16,6 +16,7 @@
     <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
     <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
     <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+    <plugin name="cordova-plugin-insomnia" />
     <gap:plugin name="cordova-plugin-datepicker" source="npm" />
     <gap:icon src="res/Android/res/drawable/icon.png" gap:role="default" />
     <gap:splash src="res/Android/res/drawable/screen.png" gap:role="default" />
@@ -47,4 +48,5 @@
     <plugin name="phonegap-plugin-push" spec="~1.10.5">
         <variable name="SENDER_ID" value="476875120878" />
     </plugin>
+    <allow-navigation href="*" />
 </widget>
