@@ -1,54 +1,94 @@
 var baseURL = 'http://wadhwanmandir.org/api/public/';
 var authorizationType = 'Basic';
 var authorizationHash = 'd2FkaHdhbm1hbmRpcmFwaTI6VzRkaHckbiExMDA4';
+var remoteVersion = null;
+var localVersion = null;
 var questionsFromRest = null;
 var questionsFromDB = null;
 var sqlite = null;
 var processingDialogOpenStatus = 0;
-var maxNoOfQuestionsInDB = 0;
-var noOfQuestionsInDB = 0;
 var quetionsToUpdate = 0;
 var questionsUpdated = 0;
 var db = window.openDatabase("appDatabase", "1.0", "Application Databse", 50 * 1024 * 1024);
 
 function SyncQuizQuestions() {
     if(checkConnection()) {
-        getQuestionsFromRest();
+		getVersionFromRest();
     }
 };
 
-function checkConnection() {
-    var networkState = navigator.connection.type;
-    if(networkState == Connection.ETHERNET || 
-    	networkState == Connection.WIFI || 
-    	networkState == Connection.CELL_2G || 
-    	networkState == Connection.CELL_3G || 
-    	networkState == Connection.CELL_4G || 
-    	networkState == Connection.CELL) {
-    	return true;
-    }
-    return false;
-}
-
-function getQuestionsFromRest() {
-    $.ajax({
-        url: baseURL + 'quiz',
+function getVersionFromRest() {
+	$.ajax({
+        url: baseURL + 'quiz_metadata/1',
         beforeSend: function (xhr) {
             xhr.setRequestHeader('Accept', 'application/json');
             xhr.setRequestHeader('Authorization', authorizationType + ' ' + authorizationHash);
         },
     })
     .done((data) => {
-        questionsFromRest = data._embedded.quiz;
-        getQuestionCountFromDB();
+        remoteVersion = data.version;
+		getVersionFromDB();       
     })
     .fail((error) => {
         
     });
 }
 
-function getQuestionCountFromDB() {
-    var createQuestionTableSql = `
+function getVersionFromDB(){
+	var createQuizMetadataTable = `
+          CREATE TABLE IF NOT EXISTS quiz_metadata (
+          version text
+        )
+    `;
+	
+	db.transaction((tx) => {
+        tx.executeSql(createQuizMetadataTable, [],
+        (tx, result) => {
+            tx.executeSql('SELECT version as version FROM quiz_metadata', [], (tx, results) => {
+                if(results!=null) {
+                    if(results.rows.length>0) {
+                        localVersion = results.rows[0].version; 
+						CompareVersion();
+                    } else {
+						InsertRowIntoQuizMetadata();
+					}						
+                } else {
+					InsertRowIntoQuizMetadata();
+				}                
+            }, (tx, error) => {
+                maxNoOfQuestionsInDB = 0;
+            });
+        },
+        (tx, error) => {
+            maxNoOfQuestionsInDB = 0;
+        });
+    });
+}
+
+function InsertRowIntoQuizMetadata() {
+	var InsertMetadata=`INSERT INTO quiz_metadata(version)
+		values('1.0.0')`;
+	db.transaction((tx) => {
+        tx.executeSql(InsertMetadata, [], (tx, results) => {
+			localVersion="1.0.0";
+            CompareVersion();
+        }, (tx, error) => {
+            
+        });
+    });
+}
+
+function CompareVersion(){
+	if(remoteVersion!=localVersion) {
+		if(confirmUpdateAction()) {
+            openProcessingDialog();
+            DeleteQuestionsFromLocal();
+        }
+	}
+}
+
+function DeleteQuestionsFromLocal(){
+	var createQuestionTableSql = `
           CREATE TABLE IF NOT EXISTS quiz (
           que_id int(5) PRIMARY KEY NOT NULL,
           que_level int(5) NOT NULL,
@@ -63,43 +103,58 @@ function getQuestionCountFromDB() {
     db.transaction((tx) => {
         tx.executeSql(createQuestionTableSql, [],
         (tx, result) => {
-            tx.executeSql('SELECT MAX(que_id) as QUE_COUNT FROM quiz', [], (tx, results) => {
-                var len = results.rows.length;
-                if(len>0) {
-                    if(results.rows[0].QUE_COUNT != null) {
-                        maxNoOfQuestionsInDB = results.rows[0].QUE_COUNT;
-                        noOfQuestionsInDB = maxNoOfQuestionsInDB - 2;
-                    }                    
-                }
-                compareQuizQuestions();
+            tx.executeSql('DELETE FROM quiz', [], (tx, results) => {
+                GetQuestionsFromRest();
             }, (tx, error) => {
-                maxNoOfQuestionsInDB = 0;
+                alert("There was some internal error in updating Question list, please report this problem by 'Contact Us'.");
+				closeProcessingDialog();
             });
         },
         (tx, error) => {
-            maxNoOfQuestionsInDB = 0;
+            alert("There was some internal error in updating Question list, please report this problem by 'Contact Us'.");
+			closeProcessingDialog();
         });
     });
 }
 
-function compareQuizQuestions() {
-    var len = questionsFromRest.length;
-    var lastQuestionID = questionsFromRest[len-1].que_id;
-    if(maxNoOfQuestionsInDB < lastQuestionID) {
-        quetionsToUpdate = len-noOfQuestionsInDB;
-        if(confirmUpdateAction()) {
-            openProcessingDialog();
-            var remoteQue;
-            for(var i=0; i < len; i++) {
-                remoteQue = questionsFromRest[i];
-                var remoteQueNum=remoteQue.que_id;
-                if(maxNoOfQuestionsInDB < remoteQueNum) {
-                    insertLocalQuestion(remoteQue);
-                }
-            }
-        }
+function checkConnection() {
+    var networkState = navigator.connection.type;
+    if(networkState == Connection.ETHERNET || 
+    	networkState == Connection.WIFI || 
+    	networkState == Connection.CELL_2G || 
+    	networkState == Connection.CELL_3G || 
+    	networkState == Connection.CELL_4G || 
+    	networkState == Connection.CELL) {
+    	return true;
     }
-    
+    return false;
+}
+
+function GetQuestionsFromRest() {
+    $.ajax({
+        url: baseURL + 'quiz',
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Accept', 'application/json');
+            xhr.setRequestHeader('Authorization', authorizationType + ' ' + authorizationHash);
+        },
+    })
+    .done((data) => {
+        questionsFromRest = data._embedded.quiz;
+        InsertQuestionsToLocal();
+    })
+    .fail((error) => {
+        
+    });
+}
+
+function InsertQuestionsToLocal() {
+    var len = questionsFromRest.length;   
+	quetionsToUpdate=len;
+	var remoteQue;
+	for(var i=0; i < len; i++) {
+		remoteQue = questionsFromRest[i];
+		insertLocalQuestion(remoteQue);        
+    }
 }
 
 var updateDecisionTaken = false;
@@ -156,12 +211,39 @@ function insertLocalQuestion(question) {
             questionsUpdated++;
             updateProgressBar();
             if(questionsUpdated >= quetionsToUpdate) {
-                closeProcessingDialog();
+                UpdateVersionNumberInMetadata();
             }
         }, (tx, error) => {
-            
+            alert("There was some internal error in updating Question list, please report this problem by 'Contact Us'.");
+			closeProcessingDialog();
         });
     });
+}
+
+function UpdateVersionNumberInMetadata(){
+	var UpdateVersionNumber=`UPDATE quiz_metadata SET version=?`;
+	db.transaction((tx) => {
+        tx.executeSql(UpdateVersionNumber, [remoteVersion], (tx, results) => {
+                closeProcessingDialog();
+			
+        }, (tx, error) => {
+            alert("There was some internal error in updating Question list, please report this problem by 'Contact Us'.");
+			if(localVersion=="1.0.0"){
+				DeleteMetadataEntry();
+			} else {
+				closeProcessingDialog();
+			}				
+        });
+    });
+}
+
+function DeleteMetadataEntry(){
+	var deleteMetadata=`DELETE FROM quiz_metadata`;
+	db.transaction((tx) => {
+		tx.executeSql(deleteMetadata, [] , (tx, results) => {
+			closeProcessingDialog();
+		});
+	});
 }
 
 function openProcessingDialog() {

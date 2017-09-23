@@ -8,7 +8,7 @@ function ListAlbums(albums) {
     var listHtml = '<ol class="rounded-list">';
     
     while(i >= 0) {
-        listHtml += '<li onclick="RedirectToDisplayAlbum(' + albums._embedded.photoset[i].id + ');"><span>' + albums._embedded.photoset[i].name + '</span></li>';
+        listHtml += '<li onclick="RedirectToDisplayAlbum(' + albums._embedded.photoset[i].id + ');"><label>' + albums._embedded.photoset[i].name + '</label></li>';
         i--;
     }
     listHtml += '</ol>';

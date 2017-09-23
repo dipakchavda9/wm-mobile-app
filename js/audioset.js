@@ -8,7 +8,7 @@ function ListAudiosets(audiosets) {
     var listHtml = '<ol class="rounded-list"';
     
     while(i >= 0) {
-        listHtml += '<li onclick="RedirectToPlayAudioSet(' + audiosets._embedded.audioset[i].id + ');"><span>' + audiosets._embedded.audioset[i].name + '</span></li>';
+        listHtml += '<li onclick="RedirectToPlayAudioSet(' + audiosets._embedded.audioset[i].id + ');"><label>' + audiosets._embedded.audioset[i].name + '</label></li>';
         i--;
     }
     listHtml += '</ol>';

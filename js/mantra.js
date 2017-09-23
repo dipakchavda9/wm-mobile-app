@@ -240,6 +240,9 @@ function checkMantra(mantraLekhanTextbox) {
 			mantraLekhanTextbox.value = '';
 		}
 	} else {
+		if(currentStr.length >= 12) {
+			mantraLekhanTextbox.value = '';
+		}
 		mantraLekhanTextbox.value=mantraLekhanTextbox.value.substr(0,currLength-1);
 	}
     

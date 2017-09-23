@@ -37,7 +37,7 @@ function displayChapterList() {
             for(var i=0; i<len; i++) {
                 chapterRow = results.rows.item(i);
                 htmlStr += `
-                    <li onclick="RedirectToChapter(` + chapterRow.chapter_id + `);"><span>` + chapterRow.chapter_title + `</span></li>
+                    <li onclick="RedirectToChapter(` + chapterRow.chapter_id + `);"><label>` + chapterRow.chapter_title + `</label></li>
                 `;
             }
             htmlStr += '</ol>';

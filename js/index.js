@@ -33,13 +33,14 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-        document.addEventListener('backbutton', this.exitAppFunction, false);
+        
     },
     // deviceready Event Handler
     //
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+		document.addEventListener('backbutton', this.exitAppFunction, false);
         $('body').height(($(window).height() * 0.9));
         registerPushNotification();
         return;
@@ -183,8 +184,7 @@ window.onload = function () {
                document.getElementById("mantra").className = "gujaratiFont";
 			   document.getElementById("Quiz").className="gujaratiFont";
 			   document.getElementById("Quiz").innerHTML="<b>સત્સંગ ક્વિઝ</b>";
-			   document.getElementById("history").className="gujaratiFont";
-			   document.getElementById("history").innerHTML="<b>મંદિરનો ઈતિહાસ</b>";
+			   
            } else {
                document.getElementById("mantrajap").innerHTML = "<b>Mantra Jaap</b>";
                document.getElementById("mantralekhan").innerHTML = "<b>Mantra Lekhan</b>";
@@ -199,8 +199,7 @@ window.onload = function () {
                document.getElementById("social").innerHTML = "<b>Social Media</b>";
                document.getElementById("contact").innerHTML = "<b>Contact Us</b>";
 			   document.getElementById("Quiz").innerHTML="<b>Satsang Quiz</b>";
-			   document.getElementById("history").innerHTML="<b>Temple History</b>";
-               document.getElementById("mantrajap").className = "englishFont";
+			   document.getElementById("mantrajap").className = "englishFont";
                document.getElementById("mantralekhan").className = "englishFont";
                document.getElementById("nityadarshan").className = "englishFont";
                document.getElementById("gallary").className = "englishFont";
@@ -217,7 +216,6 @@ window.onload = function () {
                document.getElementById("mantra").innerHTML = "<b>|| Shree Swaminarayano Vijaytetram ||<b>";
                document.getElementById("mantra").className = "englishFont";
 			   document.getElementById("Quiz").className="englishFont";
-			   document.getElementById("history").className="englishFont";
 			   
            }
            localStorage.setItem("language", strLanguage);
