@@ -1,7 +1,7 @@
 ﻿var CreateResult = "CREATE TABLE IF NOT EXISTS RESULT_MASTER(RESULT_LEVEL INTEGER,RESULT_PERCENTAGE INTEGER)";
 var LastLevel = "SELECT RESULT_LEVEL FROM RESULT_MASTER WHERE RESULT_PERCENTAGE>=70 ORDER BY RESULT_LEVEL DESC";
 var DeleteResultQuery = "DELETE FROM QUESTION_MASTER";
-var queNumbers = ["૧", "૨", "૩", "૪", "૫", "૬", "૭", "૮", "૯", "૧૦"];
+var queNumbers = ["૧", "૨", "૩", "૪", "૫", "૬", "૭", "૮", "૯", "૧૦", "૧૧", "૧૨", "૧૩", "૧૪", "૧૫", "૧૬", "૧૭", "૧૮", "૧૯", "૨૦", "૨૧", "૨૨", "૨૩", "૨૪", "૨૫", "૨૬", "૨૭", "૨૮", "૨૯", "૩૦", "૩૧", "૩૨", "૩૩", "૩૪", "૩૫", "૩૬", "૩૭", "૩૮", "૩૯", "૪૦", "૪૧", "૪૨", "૪૩", "૪૪", "૪૫", "૪૬", "૪૭", "૪૮", "૪૯", "૫૦"];
 
 var db = window.openDatabase("appDatabase", "1.0", "Application Databse", 50 * 1024 * 1024);
 var intLastLevel = 0;
