@@ -133,8 +133,8 @@ function ChangeLanguage(strLanguage) {
         document.getElementById("gallary").className = "gujaratiFont";
         document.getElementById("liveevent").innerHTML = "<b>લાઇવ કાર્યક્રમ</b>";
         document.getElementById("liveevent").className = "gujaratiFont";
-        document.getElementById("audio").innerHTML = "<b>ઓડિયો ગેલેરી</b>";
-        document.getElementById("audio").className = "gujaratiFont";
+//        document.getElementById("audio").innerHTML = "<b>ઓડિયો ગેલેરી</b>";
+//        document.getElementById("audio").className = "gujaratiFont";
         document.getElementById("aachary").innerHTML = "<b>આચાર્ય પરંપરા</b>";
         document.getElementById("aachary").className = "gujaratiFont";
         document.getElementById("shastro").innerHTML = "<b>સત્શાસ્ત્રો</b>";
@@ -161,7 +161,7 @@ function ChangeLanguage(strLanguage) {
         document.getElementById("nityadarshan").innerHTML = "<b>Daily Darshan</b>";
         document.getElementById("gallary").innerHTML = "<b>Photo Gallery</b>";
         document.getElementById("liveevent").innerHTML = "<b>Live Event</b>";
-        document.getElementById("audio").innerHTML = "<b>Audio Gallery</b>";
+//        document.getElementById("audio").innerHTML = "<b>Audio Gallery</b>";
         document.getElementById("aachary").innerHTML = "<b>Aacharya</b>";
         document.getElementById("shastro").innerHTML = "<b>Scripture</b>";
         document.getElementById("nirnay").innerHTML = "<b>Nirnay</b>";
@@ -175,7 +175,7 @@ function ChangeLanguage(strLanguage) {
         document.getElementById("nityadarshan").className = "englishFont";
         document.getElementById("gallary").className = "englishFont";
         document.getElementById("liveevent").className = "englishFont";
-        document.getElementById("audio").className = "englishFont";
+//        document.getElementById("audio").className = "englishFont";
         document.getElementById("aachary").className = "englishFont";
         document.getElementById("shastro").className = "englishFont";
         document.getElementById("nirnay").className = "englishFont";

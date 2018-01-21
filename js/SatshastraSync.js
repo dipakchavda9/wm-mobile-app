@@ -259,11 +259,10 @@ function removeLocalBookByID(id) {
 
 function syncSatshastraContent() {
     db.transaction((tx) => {
-        tx.executeSql('SELECT * FROM books WHERE content_updated = 0 AND published = 1', [], (tx, results) => {
-            var len = results.rows.length;
+        tx.executeSql('SELECT * FROM books WHERE content_updated = 0 AND published = 1 LIMIT 1', [], (tx, results) => {
             var book = null;
-            for (var i = 0; i < len; i++){
-                book = results.rows.item(i);
+            if (results.rows.length === 1){
+                book = results.rows.item(0);
                 fetchBookContentFromRest(book);
             }
         }, (tx, error) => {
@@ -391,11 +390,9 @@ function insertBookContentIntoLocalTable(book, bookData) {
 function executeInsert(sql, binding, book = null) {
     db.transaction((tx) => {
         tx.executeSql(sql, binding, (tx, results) => {
-            setTimeout(() => {
-                if(book) {
-                    markBookAsContentUpdated(book);
-                }
-            }, 30000);
+            if(book) {
+                markBookAsContentUpdated(book);
+            }
         }, (tx, error) => {
 
         });
@@ -415,6 +412,7 @@ function markBookAsContentUpdated(book) {
             if(noOfBooksUpdated == noOfBooksToUpdate) {
                 closeProcessingDialog();
             }
+            syncSatshastraContent();
         }, (tx, error) => {
             errorUpdatingPerticularBook(book, true);
             removeLocalTable(book.local_table_name);
