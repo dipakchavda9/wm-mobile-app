@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.wadhwanmandir.officialmobileapp" version="1.4.4" versionCode="10404" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.wadhwanmandir.officialmobileapp" version="1.5.1" versionCode="10501" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Wadhwan Mandir</name>
     <description>
         This is official mobile application of Swaminarayan Mandir - Wadhwan.
@@ -9,22 +9,23 @@
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="28" />
+    <preference name="android-minSdkVersion" value="21" />
+    <preference name="android-targetSdkVersion" value="27" />
     <preference name="phonegap-version" value="cli-8.1.1" />
-    <gap:plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
-    <gap:plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
-    <gap:plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
-    <gap:plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
-    <gap:plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
-    <gap:plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
+    <gap:plugin name="cordova-plugin-console" source="npm" />
+    <gap:plugin name="cordova-plugin-device" source="npm" />
+    <gap:plugin name="cordova-plugin-dialogs" source="npm" />
+    <gap:plugin name="cordova-plugin-network-information" source="npm" />
+    <gap:plugin name="cordova-plugin-splashscreen" source="npm" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <gap:plugin name="cordova-plugin-datepicker" source="npm" />
     <gap:icon src="res/Android/res/drawable/icon.png" role="default" />
     <gap:splash src="res/Android/res/drawable/screen.png" role="default" />
     <gap:platform name="android">
         <gap:preference name="AndroidLaunchMode" value="singleTop"/>
-        <gap:preference name="android-minSdkVersion" value="28" />
-        <gap:preference name="android-targetSdkVersion" value="28" />
-        <gap:preference name="android-versionCode" value="10404" />
+        <gap:preference name="android-minSdkVersion" value="21" />
+        <gap:preference name="android-targetSdkVersion" value="27" />
+        <gap:preference name="android-versionCode" value="10501" />
     </gap:platform>
     <platform name="android">
         <icon density="ldpi" qualifier="ldpi" src="res/Android/res/drawable-ldpi/icon.png" />
