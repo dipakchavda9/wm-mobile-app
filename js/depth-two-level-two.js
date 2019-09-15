@@ -7,6 +7,13 @@ var chapterEnding = null;
 var storage = window.localStorage;
 var db = window.openDatabase("appDatabase", "1.0", "Application Databse", 50 * 1024 * 1024);
 
+function redirectToLevelOne() {
+    storage.removeItem('chapter_id');
+    window.location.href = "depth-two-level-one.html";
+}
+
+document.addEventListener('backbutton', redirectToLevelOne, false);
+
 function loadChapter() {
     book_id = parseInt(storage.getItem('book_id'));
     chapter_id = parseInt(storage.getItem('chapter_id'));
