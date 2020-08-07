@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.wadhwanmandir.officialmobileapp" version="1.6.0" versionCode="10600" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.wadhwanmandir.officialmobileapp" version="1.6.1" versionCode="10601" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Wadhwan Mandir</name>
     <description>
         This is official mobile application of Swaminarayan Mandir - Wadhwan.
@@ -25,7 +25,7 @@
         <gap:preference name="AndroidLaunchMode" value="singleTop"/>
         <gap:preference name="android-minSdkVersion" value="21" />
         <gap:preference name="android-targetSdkVersion" value="28" />
-        <gap:preference name="android-versionCode" value="10600" />
+        <gap:preference name="android-versionCode" value="10601" />
     </gap:platform>
     <platform name="android">
         <icon density="ldpi" qualifier="ldpi" src="res/Android/res/drawable-ldpi/icon.png" />
