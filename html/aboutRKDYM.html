@@ -1,4 +1,4 @@
-<!DOCTYPE html5>
+﻿<!DOCTYPE html5>
 <html>
 
 <head>
@@ -9,15 +9,16 @@
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
-    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
+	<script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
+	<script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
     <style>
         .GujaratiFont
         {
             font-family:centurySchoolbook;
             font-size:24px;
             text-align:justify;
+            color:#53392d;
         }
         .navbar-collapse.collapse{ display:block !important;
         }
@@ -37,39 +38,88 @@
             float:right !important;
         }
 
-        body {
-            color: #6f006f;
-        }
-
     </style>
     <title>About RKDYM</title>
 </head>
 
 <body>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <span id="header" style="font-family:centurySchoolbook;font-weight:bold;font-size:16;"><b>ZFWFS'Q6 N[J I]JS D\0/</b></span>
-                </div>
-            </div>
-        </nav>
-        <nav class="navbar navbar-inverse navbar-fixed-bottom">
-          <div class="container-fluid">
-            <div class="navbar-header" style="text-transform:uppercase;">
-                Copyright @ Wadhwan Mandir
-            </div>
-          </div>
-        </nav>
+<script type="text/javascript">
+        
+        var app = {
+            // Application Constructor
+            initialize: function() {
+                this.bindEvents();
+            },
+            // Bind Event Listeners
+            //
+            // Bind any events that are required on startup. Common events are:
+            // 'load', 'deviceready', 'offline', and 'online'.
+            bindEvents: function() {
+                document.addEventListener('deviceready', this.onDeviceReady, false);
+                document.addEventListener('backbutton', this.backToMainMenu, false);
+            },
+            // deviceready Event Handler
+            //
+            // The scope of 'this' is the event. In order to call the 'receivedEvent'
+            // function, we must explicitly call 'app.receivedEvent(...);'
+            onDeviceReady: function() {
+                var offset = 10;
+				var duration = 500;
+				jQuery(window).scroll(function () {
+					if (jQuery(this).scrollTop() > offset) {
+						jQuery('.back-to-top').fadeIn(duration);
+					} else {
+						jQuery('.back-to-top').fadeOut(duration);
+					}
+				});
 
-    <div class="container">
+				jQuery('.back-to-top').click(function (event) {
+					event.preventDefault();
+					jQuery('html, body').animate({ scrollTop: 0 }, duration);
+					return false;
+				})
+            },
+            backToMainMenu: function () {
+                window.location.href = "../index.html";
+            }
+            // Update DOM on a Received Event
+        };
+        app.initialize();
+        $(window).load(function(){
+            $('#parentDiv').height($(window).height());
+        });
+    </script>   
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+        
+        <div class="container" >
+            <ul class="nav navbar-nav navbar-left"  style="padding-right:20px;" >
+                <li class="active" style="padding-top:0px;padding-bottom:0px;" onclick="window.location.href='../index.html'">
+                    <a style="background-color:#53392d" href="#"><span class="glyphicon glyphicon-home" ></span></a>
+                </li>
+                <li class="active" style="padding-top:0px;padding-bottom:0px;">
+                    <span><b>શ્રી રાધાકૃષ્ણ દેવ યુવક મંડળ</b></span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" >
+        <div class="container" style="font-size:10px;" >
+        <center>
+            <ul style="vertical-align:middle;list-style:none;color:White">
+                <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+            </ul>
+            </center>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top:45px;padding-bottom:25px">
         <div class="panel">
             <div class="panel panel-danger">
                 <div class="panel-body">
                 <p class="GujaratiFont">
 EUJFG :JFlDGFZFI6 sZ V[l5|, !*(!v ! H]G !(#_f cczL ;CHFG\N :JFDL DCFZFHcc4 cczL GL,S\9 J6L"cc4 cczL 3GxIFD DCFZFHcc4 cczL ClZS'Q6 DCFZFHcc TZLS[ 56 VF[/BFI K[P
 </p>
-<p class="GujaratiFont">EUJFG :JFlDGFZFI6GM HgD ;G[ !(*! DF\ K5{IF sI]5L v EFZTf DF\ scc3GxIFD 5F\0[cc GF GFD ;FY[f YIM CTMP ;G[ !*)ZDF\ sccGL,S\9 J6L"cc GF GFD ;FY[f ;DU| EFZTGL ;FT JQF"GL IF+F X~ SZL CTLP ;G[ !*)) VF;5F; U]HZFTDF\ :YFIL YIF CTFP ;G[ !(__ DF\ T[DGM U]~ :JFDL ZFDFG\N N=JFZF pwWJ ;\5|NFIDF\ 5|J[X YIMP scc;CHFG\N :JFDLcc GFD VF5JFDF\ VFjI]\PfP </p>
+<p class="GujaratiFont">EUJFG :JFlDGFZFI6GM HgD ;G[ !*(! DF\ K5{IF sI]5L v EFZTf DF\ scc3GxIFD 5F\0[cc GF GFD ;FY[f YIM CTMP ;G[ !*)ZDF\ sccGL,S\9 J6L"cc GF GFD ;FY[f ;DU| EFZTGL ;FT JQF"GL IF+F X~ SZL CTLP ;G[ !*)) VF;5F; U]HZFTDF\ :YFIL YIF CTFP ;G[ !(__ DF\ T[DGM U]~ :JFDL ZFDFG\N N=JFZF pwWJ ;\5|NFIDF\ 5|J[X YIMP scc;CHFG\N :JFDLcc GFD VF5JFDF\ VFjI]\PfP </p>
 <p class="GujaratiFont">;CHFG\N :JFDLV[ cc:JFlDGFZFI6 DCFD\+cc GM pN=3MQF SIM"P VF SFZ6[ T[ cc:JFlDGFZFI6 EUJFGcc s5}6" 5]Z]QFMtTD :J~5f TZLS[ HF6LTF AgIF VG[ pwWJ ;\5|NFI 56 cc:JFlDGFZFI6 ;\5|NFIcc TZLS[ 5|l;wW YIMP
 <p class="GujaratiFont">JRGFD'TDF\ zL :JFlDGFZFI6 EUJFG c:JFlDGFZFI6 ;\5|NFIc DF\ U]~ 5Z\5ZFsJ\Xf G]\ DCtJ ;DHFJ[ K[P </p>
 <p class="GujaratiFont">ZFDFG\N :JFDL zL pwWJGF VJTFZ CTF4 VG[ T[D6[ zL :JFlDGFZFI6 EUJFGG[ J{Q6JL NL1FF VF5[, CTLP T[YL ZFDFG\N :JFDL :JFlDGFZFI6 EUJFGGF U]~ K[P </p>
@@ -95,7 +145,96 @@ EUJFG :JFlDGFZFI6 sZ V[l5|, !*(!v ! H]G !(#_f cczL ;CHFG\N :JFDL DCFZFHcc4 cczL 
 <p class="GujaratiFont">5P5}P WPW]P lJnDFG VFRFI" DCFZFHzL C\D[XF pDNF4 XF\lT5}6" VG[ AWF TZO 5|[DF/ K[P 5P5}P WPW]P lJnDFG VFRFI" DCFZFHzL I]JFG 5[-LGF RFl+I VG[ ;N=U]6MG]\ l;\RG SZJFDF\ ;TT SFI"ZT K[P AF/SM VG[ I]JFGM HLJGDF\ S];\U VG[ lJ5ZLT N[XSF/ ~5 EI\SZ DMHFVMGM ;FDGM SZL DM1FGF VlWSFZL AGL XS[ T[ DF8[ ;\:SFZ VG[ ;N=U]6MG]\ l;\RG SZJF 5P5}P WPW]P lJnDFG VFRFI" DCFZFHzL C\D[XF Tt5Z K[P </p>
 <p class="GujaratiFont">zL ZFWFS'Q6N[J I]JS D\0/o zL VFRFI" DCFZFHzL GL VDLN|Q8 VG[ DFU"NX"G C[9/ _)q_!qZ_!! GF ZMH cczL ZFWFS'Q6N[J I]JS D\0/ccGL :YF5GF SZL CTL VG[ JQF" Z_!! G[ ccI]JF JQF"cc TZLS[ pHJL I]JFGMG[ pt;FlCT SZL ;t;\U TZO JF?IFP JQF" Z_!Z G[ ccjI;G D]lSTcc JQF" TZLS[ pHJL I]JFGMDF\ ZC[,F jI;G TYF N]QF6~5L SFD4 S|MW4 ,ME DMCG[ 8F/L I]JFGMG[ EUJFG 5ZFI6 AGFjIFP JQF" Z_!# G[ ccpt;J JQF"cc TZLS[ pHJL I]JFGMDF\ ;t;\U DF8[GL HFU'TTF ,FJL pt;FC4 zwWF VG[ B\TGL J'lwW SZLP JQF" Z_!$ G[ cc7FG ;+ JQF"cc TZLS[ pHJL I]JFGMG[ EUJFGGF :J~5GL VF[/BF6 SZFJL 5|U8 VG[ 5|tI1F EUJFGG[ lJQF[ zwWFJFG SIF"P </p>
 <p class="GujaratiFont">5P5}P WPW]P lJnDFG VFRFI" DCFZFHzLV[ !$_ UFDDF\ ;EF SZL VG[S lJnFYL"VF[4 5|MO[XG<;4 W\WFNFZLVF[4 B[0}TMG[ EUJFGGF :J~5GL VF[/BF6 SZFJL DM1FGF EFULNFZ DFGL VF D\0/GF ;eIM AGFjIFP </p>
-
+<p style='text-indent:20px;text-align:justify;'>આ અધ્યાયમાં શૌનકમુનિએ સૂતપુત્ર ઉગ્રશ્રવા પ્રત્યે અને સાવર્ણિમુનિએ કાર્તિક સ્વામી પ્રત્યે આત્યંતિક શ્રેયનો સહેલામાં સહેલો ઉપાય જાણવા માટે પુછેલા પ્રશ્નનો અર્થ સવિસ્તર વર્ણવ્યો છે.</p>
+<p style='text-indent:20px;text-align:justify;'>शौनक उवाच – </p>
+<p style='text-indent:20px;text-align:justify;'>जीवानां श्रेयसे सौते ! बहुधा साधनानि ते ||</p>
+<p style='text-indent:20px;text-align:justify;'>धर्मो ज्ञानं च वैराग्यं योगादीन्युदितानि नः ॥ १ ||</p>
+<p style='text-indent:20px;text-align:justify;'>અધ્યાય ૧ લો</p>
+<p style='text-indent:20px;text-align:justify;'>[સમસ્ત મુમુક્ષુ જીવોના નિ:શ્રેયસમાટે પ્રાદુભવેલા પરમ કૃપાળું ભગવાન શ્રીવેદવ્યાસ, જીવોના પરમ મોક્ષમાં ઉપયોગી ઉપાસનાકાંડમાં રૂચિ ઉપજાવામાં હેતુભૂત અંતઃકરણશુદ્ધિ માટે, સપ્તખંડાત્મક સ્કંદપુરાણમાં આવેલા વિષ્ણુ ખંડના પ્રથમ દ્વિતીય ભાગમાં કર્મકાંડ તથા જ્ઞાનકાંડનું ઉપપત્તિ (નિર્ણયાત્મક પ્રામાણિક વાક્ય) સાથે સપ્રપંચ (વિસ્તુત) વિવેચન કરીને, ભગવદ્ભક્તિએ રહિત કેવળ પ્રવૃત્ત નિવૃત્ત કર્મ જ જેમ એમ તેવું આત્મજ્ઞાન પણ શાસ્ત્રમાં હેય કહેલું હોવાથી ઉપાસનાકાંડના પરમ રહસ્યભૂત અને સમગ્ર વિષ્ણુ ખંડ રૂપ મહાકલ્પતરૂના ફળભૂત એવું સાક્ષાત
+પરંબહ્મ શ્રીવાસુદેવ ભગવાનના ચરણારવિંદનું જે ઉપાસન છે તે જ આત્યંતિક શ્રેયનું સાક્ષાત પરમ સાધન છે એમ નિશ્ચય કરીને, તેનો ઉપદેશ વિષ્ણુ ખંડના ત્રીજા ભાગમાં ૩ર બત્રીશ અધ્યાયાત્મક ‘શ્રીવાસુદેવ માહાત્મય’ ગ્રંથથી કરતાં, પૂર્વોક્ત સમગ્ર અધિકારીઓએ દુ:સાધ્ય એવું જે બ્રહ્માત્મ જ્ઞાન અને તેના અંગભૂત ધર્માદિ સકળ સાધનોનું પણ સાફલ્ય શ્રીવાસુદેવ ભગવાનના ચરણારવિંદની ઉપાસનાથી જ થાય છે એમ પ્રતિપાદન કરતા થકા, આવા અર્થની જીજ્ઞાસાવાળા શૌનક, સાવર્ણિ આદિકના પ્રશ્નનોને ઉતારતાં, આ ગ્રંથનો પ્રસ્તાવ કરે છે.]
+આત્યંતિક શ્રેયનું સુખ સાધ્ય સાધન શૌનક મહર્ષિ પુછે છે - હે સૌતે! - સૂતપુરાણીના પુત્ર ઉગ્રશ્રવા ! તમોએ મુમુક્ષુ જીવોના શ્રેયની સાક્ષાત કે પરંપરાએ પ્રાપ્તિ માટેનાં બહુ બહુ સાધનો, જેર્વા કે ધર્મ – વર્ણાશ્રમ સંબધી, જ્ઞાન-જીવાત્મા સંબધી, વૈરાગ્ય-ભગવાન થકી બીજા વસ્તુમાત્રમાં અરૂચિરૂપ અને યોગ-પરમાત્મા સંબંધી અષ્ટાંગ યોગ આદિક અમોને વિસ્તારથી કહ્યાં || ૧ ||</p>
+<p style='text-indent:20px;text-align:justify;'>इतिहासैब्र्रहुविधैविस्पष्टअर्थानि  तानि च || </p>
+<p style='text-indent:20px;text-align:justify;'>सर्वाण्यपि महाबुद्ध ! श्रुतान्यस्माभिरादरात् ॥ २ ॥ </p>
+<p style='text-indent:20px;text-align:justify;'>હે મહાબુદ્ધ ! બહુ બહુ ઇતિહાસો કહી કહીને જેનો અર્થ અતિશય સ્પષ્ટ કર્યો છે એવા તે સમગ્ર ધર્માદિ સાધનો, તેના તેના ફળ સાથે મેં યજ્ઞસ્થ મુનિગણોની સાથે આદરથી સાંભળ્યાં || ર ||</p>
+<p style='text-indent:20px;text-align:justify;'>सर्वेषां मनुजानां तु दुष्कराण्येव तानि तु || </p>
+<p style='text-indent:20px;text-align:justify;'>बाहुल्याच्चान्तरायाणां तत्सिद्धिरपि दुर्लभा || ३ || </p>
+<p style='text-indent:20px;text-align:justify;'>તમોએ કહેલાં અને મેં સાંભળેલાં તે ધર્માદિ સમસ્ત સાધનો તો બુદ્ધિશક્તિઆદિકે રહિત એવા ત્રેવર્ણિકો તથા સ્ત્રી શૂદ્રઆદિક સર્વ કોઈ  મનુષ્યોએ નહિ સિદ્ધ કરાય એવા અતિ કઠિન છે. વળી તેમાં અશુભ દેશકાળાદિક અનંત અંતરાયો અતર્કિત આવી પડતા હોવાથી તેની સિદ્ધિ જે અભીષ્ટ ફળપ્રાપ્તિ તે પણ દુર્લભ છે || ૩ ||</p>
+<p style='text-indent:20px;text-align:justify;'>प्रयत्रेनापि महता पुरुषेधैर्यशालिभिः || </p>
+<p style='text-indent:20px;text-align:justify;'>साधितान्यपि सिद्धयन्ति तानि कालेन भूयसा || ४ || </p>
+<p style='text-indent:20px;text-align:justify;'>अतो भवान् द्विजातीनामाश्रमाणां च सर्वशः || </p>
+<p style='text-indent:20px;text-align:justify;'>ब्रवीतु सुकरोपायं स्त्रिशूद्रादेरपिह नः || ५ ||</p>
+<p style='text-indent:20px;text-align:justify;'>कृतेन येनाप्यल्पेन येन केनापि देहिना || </p>
+<p style='text-indent:20px;text-align:justify;'>अन्तरायैविहितं महदेव फ़लम् भवेत् || ६ ||</p>
+<p style='text-indent:20px;text-align:justify;'>मोक्षस्य साधनं तादृक् सुविचार्य महामते ! || </p>
+<p style='text-indent:20px;text-align:justify;'>हिताय सर्वजीवानां कृपया वक्तुमर्हसि || ७ || </p>
+<p style='text-indent:20px;text-align:justify;'>[ જાજળી તથા શિલોંછવૃત્તિ મુદ્દગળ આદિક બહુ મહર્ષિઓ ધર્માદિ સાધનો વડે જ ઈપ્સિત સિદ્ધિને પૂર્વે પામી ગયા છે, તો તમો તેને દુર્લભ કેમ કહો છો ? એવી શંકામાં કહે છે કે - તમારૂં તે કહેવું સત્ય (અર્ધઅંગીકારમાં) છે. બહુ લાંબો કાળ અને વળી સતત અભ્યાસ આદિકવડે તેવા મહાસમર્થોને ધર્માદિવડે અભિલષિત સિદ્ધિ ભલે થઈ છે પરંતુ આધુનિક જે અમો આદિક અલ્પશક્તિવાળા સર્વ જનો છીએ તેમનાથી તો તે સાધનો દુ:સાધ્ય છે. તો સર્વની ઉપર દયા લાવીને સુખ સાધ્ય જે કોઈ બીજો ઉપાય હોય તે કહો ? એવા અભિપ્રાયથી ચાર શ્લોક વડે કહે છે] - તમોએ કહેલાં તે સાધનો મહાધૈર્યશાળી પુરુષોએ મહા પ્રયાસે કરીને સાધતાં પણ બહુ દીર્ઘકાળે કરીને માંડ માંડ સિદ્ધ થયાં છે. એક તો બહુ લાંબો કાળ જાય અને વળી પ્રયાસનો પાર જ નહિ અને વળી મહા ધૈર્યશાળી થી જ સાધી શકાય છે. માટે બ્રાહ્મણાદિ ત્રેવર્ણિકો તથા બ્રહ્મચારી આદિક ચાર આશ્રમીઓ તથા સ્ત્રીઓ શૂદ્રો આદિક સર્વ કોઈએ પણ આ લોકમાં સહજ સાધ્ય એવો જે મોક્ષોપાય તે અમને દયા લાવીને કહો. નરદેહધારી જે કોઈ પણ જને કરેલા અલ્પ પણ સાધનથી વિના વિઘ્ને મોટું મનોભિષ્ટ અવિનાશી મોક્ષરૂપ મહાફળ થાય એવું મોક્ષસાધન સર્વ જીવોના હિત માટે સારી રીતે વિચાર કરીને અમારી ઉપર કૃપા કરીને કહેવાને યોગ્ય છો. તમો મહાબુદ્ધિશાળી છો. જે કોઈ સાધારણ જન પણ કરી શકે અને વળી તે સાધન પણ બહુ મોટું નહિ પણ અલ્પ જ હોય અને વળી તેમાં કોઈ અંતરાયો ન આવી શકે અને આવે તો તેનું નિવારણ થઈ જાય અને વળી ફળ પણ અલ્પ નહિ પણ બહુ મોટું થાય એવું મોક્ષસાધન કહો ? એવો પૂછવાનો આશય છે || ૪-૭ ||</p>
+<p style='text-indent:20px;text-align:justify;'>प्रसादाद्बलदेवस्य व्यासस्य जनकस्य च || </p>
+<p style='text-indent:20px;text-align:justify;'>जानासि सर्वमेव त्वं तन्त्रो ब्रुहि बुभुत्सतः ॥ ८ ॥ </p>
+<p style='text-indent:20px;text-align:justify;'>હું અલ્પબુદ્ધિ છું તે મારાથી સ્વલપ( થોડા ) પ્રયાસ કરવાથી પણ મહાફળ આપે એવું બીજું મોક્ષસાધન કહેવા માટે શી રીતે સમર્થ થવાય ? એમ પણ કહી શકાય તેમ નથી. કેમ કે તમો તો મોટા મોટાઓના મહા કૃપાપાત્ર છો. પરંબ્રહ્મ ભગવાન શ્રીકૃષ્ણના ભ્રાતા મહાસમર્થ બળદેવજી તથા સર્વ લોકોના ઉપકારાર્થે અવતરેલા મહા કારૂણિક ભગવાન વેદવ્યાસ તથા પિતા રોમહર્ષણના (તથા ત્રેયારૂણિ, કાશ્યપ, સાવર્ણિ, અકૃતવ્રણ, વૈશંપાયન, હારીત, આ છ પુરાણીઓના પણ) મહા અનુગ્રહથી તમો સમસ્ત શાસ્ત્રોના સિદ્ધાંતને સારી રીતે જાણો છો. માટે મોક્ષનો સહેલો ઉપાય જાણવા ઈચ્છતા અમોને તે કહેવાને યોગ્ય છો || ૮ ||</p>
+<p style='text-indent:20px;text-align:justify;'>सौतिरुवाच </p>
+<p style='text-indent:20px;text-align:justify;'>महिर्षिरपि सावर्णिरेवमेव हि शौनक ! || </p>
+<p style='text-indent:20px;text-align:justify;'>विनीतः स्कन्दमप्राक्षीत्पुनः शङ्करनन्दनम् || ९ ||</p>
+<p style='text-indent:20px;text-align:justify;'>આ રીતે પૂછેલા સૂતપુત્ર ઉગ્રશ્રવા કહે છે-હે શૌનક! સાવર્ણી નામના મહર્ષિએ પણ તમો પૂછો છો તેમજ શંકરનંદન કાર્તિક સ્વામી પ્રત્યે જ્ઞાનકાંડનો અર્થ સાંભળ્યા પછી વિનયથી પૂછ્યું હતું || ૯ ||</p>
+<p style='text-indent:20px;text-align:justify;'>सावर्णिरुवाच </p>
+<p style='text-indent:20px;text-align:justify;'>श्रुता नानाविधा धर्माः साङ्खयज्ञानं च नैकधा ||</p>
+<p style='text-indent:20px;text-align:justify;'>योगादीनि त्वदुतानि साधनानि मया गुह ! || १० ॥</p>
+<p style='text-indent:20px;text-align:justify;'>સાવર્ણિ મુનિ પૂછે છે-હે ગુહ ! (કાર્તિકસ્વામિ !) ધર્મો કે જે વર્ણાશ્રમભેદથી અનેક પ્રકારના છે, સાંખ્ય જ્ઞાન કે જે આત્મા-અનાત્માના વિવેકરૂપ હોઈને અનેક પ્રકારનું છે, યોગ કે જે અષ્ટાંગ હોઇ ને બહુ પ્રકારના છે, ઇત્યાદિ તે આ સમગ્ર સાધનો તમોએ કહેલાં મેં સાંભળ્યાં છે.( આદિ શબ્દથી વેરાગ્યાદિ લેવા) || ૧૦ ||</p>
+<p style='text-indent:20px;text-align:justify;'>सुदुष्कराणि मन्येऽहं तानि त्वस्मादृशां किल || </p>
+<p style='text-indent:20px;text-align:justify;'>महतामपि चान्येषां कृच्छ्रसाध्यानि वै चिरात् || ११ ॥</p>
+<p style='text-indent:20px;text-align:justify;'>તે ધર્માદિ સાધનો તો અમારા જેવા અલ્પ બળવાળાઓથી અત્યંત દુષ્કર છે એમ હું નિશ્ચયથી માનું છું. કિં બહુના-મારા થકી જે બીજા મોટા છે તેઓએ પણ મહા કષ્ટથી સાધ્ય અને તેમાં પણ બહુ કાળ સાધ્ય છે એમ હું નિશ્ચયથી માનું છું || ૧૧ ||</p>
+<p style='text-indent:20px;text-align:justify;'>अतो वर्णाश्रमवतां श्रेयस्कृत्सुकरं च यत् ||</p>
+<p style='text-indent:20px;text-align:justify;'>साधनं तच्छेष्टतमं वक्तृमर्हसि मेऽधुना || १२ ||</p>
+<p style='text-indent:20px;text-align:justify;'>માટે વર્ણાશ્રમી સર્વ કોઈ જનોએ સુખેથી થઈ શકે એવું અને વળી સર્વથી શ્રેષ્ઠતમ એવું જે શ્રેયસ્કારી સાધન હોય તે મને હાલમાં કહેવાને યોગ્ય છો. સુકર કહ્યું એ ઉપરથી તે પૂર્વોક્ત ધર્માદિ સાધનની અપેક્ષાએ નિર્બળ ન હોવું જોઈએ, કિંતુ શ્રેષ્ઠતમ હોવું જોઈએ. સાધનોમાં ધર્માદિક શ્રેષ્ઠ કહેવાય છે, યોગાદિક શ્રેષ્ઠતર કહેવાય છે, તેના કરતાં પણ શ્રેષ્ઠતર નિરતિશય શ્રેષ્ઠ કહો. જે સાધન કહો તે સર્વેથી સુખેથી થાય એવું હોવું જોઇએ અને વળી નિ:શ્રેયસ્કારી હોવું જોઇએ અને વળી સર્વની અપેક્ષાએ શ્રેષ્ઠતમ હોવું જોઈએ એવો પૂછવાનો અભિપ્રાય છે || ૧૨ ||</p>
+<p style='text-indent:20px;text-align:justify;'>सौतिरुवाच </p>
+<p style='text-indent:20px;text-align:justify;'>इति पृध्ये मुनीन्द्रेण तेन जिज्ञासुना गुहः || </p>
+<p style='text-indent:20px;text-align:justify;'>वासुदेवं हृदि ध्यायन्कार्तिकेय: स ऊचिवान् || १३ ॥ </p>
+<p style='text-indent:20px;text-align:justify;'>સૂતપુત્ર ઉગ્રશ્રવા કહે છે- આ રીતે જીજ્ઞાસુ મુનિવર્ય સાવર્ણિએ પૂછેલા કૃત્તિકાપુત્ર ગુહ હૃદયમાં વાસુદેવ ભગવાનનું ધ્યાન ધરીને બોલ્યા. (ભગવાનની પ્રસન્નતા વિના આ પ્રશ્વનો ઉત્તર દુષ્કર હોવાથી ભગવાનનું હૃદયમાં ધ્યાન વિધાન જણાવ્યું છે) || ૧૩ ||</p>
+<p style='text-indent:20px;text-align:justify;'>स्कन्द उवाच </p>
+<p style='text-indent:20px;text-align:justify;'>शूणु ब्रह्मन् ! प्रवक्ष्येऽहं श्रुतं पितृमुखान्मया ||</p>
+<p style='text-indent:20px;text-align:justify;'>सर्वेषामपि जीवानां सुकरं मोक्षसाधनम् ॥ १४ || </p>
+<p style='text-indent:20px;text-align:justify;'>કાર્તિક સ્વામી કહે છે-હે બ્રહ્મન્ ! મેં પિતા મહાદેવના મુખથકી સાંભળેલું, સર્વ કોઈ જીવોએ સુખેથી કરી શકાય એવું મોક્ષ સાધન હું તમોને કહીશ તેને તમે સાવધાન મનથી સાંભળો || ૧૪ ||</p>
+<p style='text-indent:20px;text-align:justify;'>देवताप्रीणानसमं स्वेष्टसिद्धिमभिप्सिताम</p>
+<p style='text-indent:20px;text-align:justify;'>नास्त्यन्यत्साधनं किञ्चिद्वर्णाश्रमवतामिह || १५ || </p>
+<p style='text-indent:20px;text-align:justify;'>આ લોકમાં પોતાના અર્ભીષ્ટ સિદ્ધિને ઇચ્છનારા વર્ણાશ્રમી જનોને દેવતાના આરાધનને તુલ્ય બીજું કોઈ પણ સાધન નથી. || ૧૫ ||</p>
+<p style='text-indent:20px;text-align:justify;'>अप्यल्पं सुकृतं कर्म देवसंबन्धतः कृतम् ||</p>
+<p style='text-indent:20px;text-align:justify;'>फलं ददाति निर्विध्नं महदेव हि तन्न्रृणाम् ॥ १६ ॥</p>
+<p style='text-indent:20px;text-align:justify;'>અલ્પ પણ યત્ કિંચિત્ શુભ કર્મ જો દેવતાને ઉદ્દેશીને કરવામાં આવ્યું હોય તો અંતરાય વિના મનુષ્યોને મહાફળને નિશ્વે આપે છે. || ૧૬ ||</p>
+<p style='text-indent:20px;text-align:justify;'>दैवं पित्र्यं स्वधर्मश्च काम्यं कर्मापि यच्च तत् ||</p>
+<p style='text-indent:20px;text-align:justify;'>देवतायास्तु संबन्धात्सध्यः स्यादिष्टसिद्धिदम् || १७ || </p>
+<p style='text-indent:20px;text-align:justify;'>જે દૈવ-અગ્નિહોત્રાદિક, જે પિત્ર્ય-શ્રાદ્ધાદિક, જે સ્વધર્મ-વર્ણાશ્રમોચિત સદાચાર, જે કામ્ય-પુત્રેષ્ટચાદિક, ઇત્યાદિ જે કોઈ પણ કર્મ છે તે દેવતાને ઉદ્દેશીને કરવામાં આવ્યું હોય તો તત્કાળ ઇચ્છિત સિદ્ધિને આપનારૂં થાય છે ॥ १७ ॥ </p>
+<p style='text-indent:20px;text-align:justify;'>साङ्खययोगविरागादि प्रागुक्तं यच्च दुष्करम् || </p>
+<p style='text-indent:20px;text-align:justify;'>तदपि स्याद्धि सुकरमनेनैवाशु सिद्धिदम् || १८ ||</p>
+<p style='text-indent:20px;text-align:justify;'>[કેવળ નિત્ય નૈમિત્તિક આદિક જ અલ્પ સાધન હોવાથી બલિષ્ઠ દેવતાના આશ્રયથી ઈષ્ટ ફળને આપનારૂં છે એમ નહિ કિંતુ પૂર્વોક્ત સમગ્ર સાધનો પણ દેવતાના આશ્રયથી જ ઇષ્ટ સિદ્ધિને આપનારાં થાય છે એમ હવે કહે છે]-જે સાંખ્ય યોગ વૈરાગ્ય આદિક દુષ્કર સાધનો પ્રથમ કહ્યાં તે પણ આ દેવતાના સંબધથી સુકર અને તત્કાળ ઇષ્ટ સિદ્ધિને આપનારાં થાય જ || ૧૮ ||</p>
+<p style='text-indent:20px;text-align:justify;'>देवस्याराधनेनैव यतः सिद्धयति वाञ्छितम् || </p>
+<p style='text-indent:20px;text-align:justify;'>अतः सर्वेर्यथाशक्ति प्रीत्याऽऽराध्यः स मानवैः || १९ || </p>
+<p style='text-indent:20px;text-align:justify;'>જે હેતુ માટે દેવતાના આરાધને કરીને જ વાંચ્છિત ફળ સિદ્ધ થાય છે તે હેતુ માટે સર્વ મનુષ્યોએ તે દેવતાનું યથાશક્તિ પ્રીતિથી આરાધન કરવું || ૧૯ ||</p>
+<p style='text-indent:20px;text-align:justify;'>सावर्णिरुवाच</p>
+<p style='text-indent:20px;text-align:justify;'>देवा बहुविधाः प्रोक्ता स्त्वया षण्मुख ! मे पुरा ||</p>
+<p style='text-indent:20px;text-align:justify;'>नानाविधा वर्णीताश्च तदाराधनरीतयः || २० ||</p>
+<p style='text-indent:20px;text-align:justify;'>[દેવતાના સંબધથી જ સર્વ કર્મ ઇષ્ટ ફળને આપનારૂં થાય છે, એમ સાંભળીને જેમના મનમાં સંશય થયો છે એવા સાવર્ણી મુનિ આઠ શ્લોકથી પૂછે છે] - હે સ્વામી કાર્તિક ! તમોએ ખંડના પ્રથમ ભાગમાં ઊર્ધ્વલોક વાસી દેવતાઓ વસુ રુદ્ર આદિત્ય આદિક ભેદથી બહુ પ્રકારના મને કહ્યા છે અને તે દેવોની આરાધનાની રીતિઓ (પ્રવૃત્ત કર્મસંજ્ઞાવાળી) બહુ પ્રકારની વર્ણન કરી છે || ૨૦ || </p>
+<p style='text-indent:20px;text-align:justify;'>तत्फलानि च सर्वाणि त्वयोक्तानि पृथक् पृथक् ||</p>
+<p style='text-indent:20px;text-align:justify;'>स्वर्गादिप्राप्तिमुख्यानि कालग्रस्तानि तानि तु || २१ ॥ </p>
+<p style='text-indent:20px;text-align:justify;'>સ્વર્ગાદિ લોકની પ્રાપ્તિ તે જેમાં મુખ્ય છે એવા તે દેવતારાધનનાં ફળો પણ તમોએ જુદાં જુદાં કહ્યાં પરંતુ તે ફળો તો કાળે ગળેલાં અતિતુચ્છ નાશવંત છે એમ પણ તમોએ કહ્યું છે || ૨૧ ||</p>
+<p style='text-indent:20px;text-align:justify;'>निवृत्तिधर्मिणां ब्रह्माध्युपास्तेर्योगिनां गुह ! || </p>
+<p style='text-indent:20px;text-align:justify;'>जनादिलोकाप्तिफलं द्विपरार्धान्तनश्चरम् || २२ ||</p>
+<p style='text-indent:20px;text-align:justify;'>હે ગુહ ! નિવૃત્ત ધર્મવાળા યોગી પુરુષોને બ્રહ્માદિ દેવોના ઉપાસનથી જન-તપ-સત્ય આ લોકોની પ્રાપ્તિરૂપી ફળ જે કહ્યું તે તો પરાર્ધને અંતે નાશ થઈ જનારૂં છે || ૨૨ ||</p>
+<p style='text-indent:20px;text-align:justify;'>दुष्कराणीह संसाध्य कर्माणि पुरुकृच्छ्तः ||</p>
+<p style='text-indent:20px;text-align:justify;'>क्षयिष्णुफललाभश्चेत्तर्हि किं तदुपार्जनैः || २३ || </p>
+<p style='text-indent:20px;text-align:justify;'>આ લોકમાં દુષ્કર એવા પ્રવૃત્તિ નિવૃત્તિ કર્મોને મહા કષ્ટ વડે સિદ્ધ કરીને જ્યારે નાશવંત ફળની પ્રાપ્તિ થાય તો તેવા કર્મ કરવાનું શું પ્રયોજન ? કેવળ વૃથા પરિશ્રમ જ છે || ૨૩ || </p>
+<p style='text-indent:20px;text-align:justify;'>कालेन नाश्यते येषां वपु:स्थानबलादिकम् ||</p>
+<p style='text-indent:20px;text-align:justify;'>तेषां न रोचते मुह्यं उपासाऽत्र दिवौकसाम् || २४ ॥</p>
+<p style='text-indent:20px;text-align:justify;'>જે દેવોનું શરીર-સ્થાન-બળ એ આદિનો કાળે નાશ કરાય છે તે દેવતાઓની ઉપાસના આ કર્મભૂમિમાં મને રૂચિકર થતી નથી || ૨૪ || </p>
+<p style='text-indent:20px;text-align:justify;'>यः स्वयं निर्भयोऽन्येषां भयहर्ता सनातनः || </p>
+<p style='text-indent:20px;text-align:justify;'>नित्यधामाऽक्षयफलप्रदाता भक्तवत्सलः ॥ २५ ||</p>
+<p style='text-indent:20px;text-align:justify;'>यस्य प्रसादात्सर्वेषां सर्व एव मनोरथाः ||</p>
+<p style='text-indent:20px;text-align:justify;'>सिद्धयेयुश्चाञ्जसैवात्र तं देवं वद मे गुह ! || २६ ॥</p>
+<p style='text-indent:20px;text-align:justify;'>હે ગુહ ! માટે જે દેવ સ્વયં કાળ માયાદિક ભયે રહિત હોઈને બીજા શરણાગતના ભયને હરનારા હોય અને જે સનાતન-નિત્ય હોય અને જેનું ધામ નિત્ય-કાળશક્તિએ અવિચાલ્ય હોય અને જે અક્ષય ફળને આપનારા હોય તથા ભક્તોનેવિષે મહાવત્સલ હોય અને જેના પ્રસાદથી સર્વ જનોના સમસ્ત મનોરથો અનાયાસથી સત્વર આ જન્મમાં જ સિદ્ધ થાય એવા મહાસમર્થ દેવ મને કહો Il રપ - ર ૬ ||</p>
+<p style='text-indent:20px;text-align:justify;'>तदाराधनरीर्तिं च सुकरां शिष्टसंमताम् || </p>
+<p style='text-indent:20px;text-align:justify;'>बूहि सवाँ विशेषेण जिज्ञासामीदमञ्जसा || २७ ॥ </p>
+<p style='text-indent:20px;text-align:justify;'>તથા સુખેથી કરી શકાય એવી અને નારદ સનકાદિક-શિષ્ટ જનોએ સ્વીકારેલી એવી તે દેવની સમગ્ર આરાધનરીતિને વિશેષપણે મને કહો, આ બે પ્રશ્નને હું તત્ત્વથી જાણવા ઇચ્છ છું || ૨૭ || </p>
+<p style='text-indent:20px;text-align:justify;'>इत्थं महर्षिणा तेन संपृष्टो भगवान् गुहः || </p>
+<p style='text-indent:20px;text-align:justify;'>सुप्रसन्न उवाचेदं मानयंस्तम्मुदारधीः || २८ || </p>
+<p style='text-indent:20px;text-align:justify;'>આ પ્રકારે મહર્ષિ સાવર્ણિએ પૂછેલા મહા બુદ્ધિવાળા સમર્થ કાર્તિકસ્વામી બહુ પ્રસન્ન થઈને તે મુનિને માન આપતા થકા આ પ્રમાણે બોલ્યા. || ૨૮ ||</p>
                 </div>
                 <div class="panel-footer">
                     <p class="GujaratiFont">HI zL :JFlDGFZFI6</p>
@@ -105,35 +244,8 @@ EUJFG :JFlDGFZFI6 sZ V[l5|, !*(!v ! H]G !(#_f cczL ;CHFG\N :JFDL DCFZFHcc4 cczL 
     </div>
         
     </div>
-    <script type="text/javascript" src="../cordova.js"></script>
-    <script type="text/javascript" src="../js/jquary.min.1.12.2"></script>
-    <script type="text/javascript">
-        
-        var app = {
-            // Application Constructor
-            initialize: function() {
-                this.bindEvents();
-            },
-            // Bind Event Listeners
-            //
-            // Bind any events that are required on startup. Common events are:
-            // 'load', 'deviceready', 'offline', and 'online'.
-            bindEvents: function() {
-                document.addEventListener('deviceready', this.onDeviceReady, false);
-            },
-            // deviceready Event Handler
-            //
-            // The scope of 'this' is the event. In order to call the 'receivedEvent'
-            // function, we must explicitly call 'app.receivedEvent(...);'
-            onDeviceReady: function() {
-                
-            },
-            // Update DOM on a Received Event
-        };
-        app.initialize();
-        $(window).load(function(){
-            $('#parentDiv').height($(window).height());
-        });
-    </script>        
+    
+    
+<img src="../img/back-to-top.png" class="back-to-top" alt="backtotop" />	
 </body>
 </html>

@@ -1,0 +1,116 @@
+﻿<html>
+<head>
+    <title>Shikshapatri</title>
+    <script type="text/javascript" src="../js/jquary.min.1.12.2.js"></script>
+    <script type="text/javascript" src="../js/QuizResult.js"></script>
+    <link rel="Stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+    
+    <style>
+    .navbar-collapse.collapse
+        {
+            display: block !important;
+        }
+        
+        .navbar-nav > li, .navbar-nav
+        {
+            float: left !important;
+        }
+        
+        .navbar-nav.navbar-right:last-child
+        {
+            margin-left: -15px !important;
+        }
+        
+        .navbar-right
+        {
+            float: right !important;
+        }
+    </style>
+</head>
+<body bgcolor="#f6f1ee">
+<script type="text/javascript" src="../cordova.js"></script>
+    <nav class="navbar navbar-inverse navbar-fixed-top" id="navHeader">
+    <div class="container">
+        <ul class="nav navbar-nav navbar-left" style="padding-right:20px;">
+            <li class="active" style="padding-top:0px;padding-bottom:0px; padding-left:20px; vertical-align:middle"><span id="header" style="font-size:16;"><b>સત્સંગ ક્વિઝ</b></span></li>
+        </ul>
+        
+    </div>
+    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container" style="font-size:10px;" >
+    <center>
+        <ul style="vertical-align:middle;list-style:none;color:White">
+            <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+        </ul>
+        </center>
+    </div>
+    
+</nav>
+
+<div class="container-fluid" style="padding-top:50px;">
+    <div class="alert alert-info" style="text-align:center; vertical-align:middle">
+              <strong style="font-size:large"><br /><span id="spanLevel"></span><br />
+              <span id="levelResult"></span>
+              </strong>
+            </div>
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="alert alert-success">
+              <strong style="font-size:large"><span class="glyphicon glyphicon-ok-circle"></span><br /><span id="correctAns"></span></strong>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="alert alert-danger">
+              <strong style="font-size:large"><span class="glyphicon glyphicon-remove-circle"></span><br /><span id="wrongAns"></span></strong>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="button" id="btnAgain" class="btn btn-lg btn-danger btn-block" value="ફરીથી પ્રયત્ન કરો" onclick="window.location.href='Quiz.html'" />
+        </div>
+    </div>
+    <div style="height:15px"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <input type="button" id="btnMenu" class="btn btn-lg btn-danger btn-block" value="મુખ્ય મેનુ" onclick="window.location.href='QuizHome.html'" />
+        </div>
+    </div>
+</div>
+
+<div style="height:35px"></div>
+    
+</body>
+</html>
+<script type="text/javascript">
+
+    var app = {
+        // Application Constructor
+        initialize: function () {
+            this.bindEvents();
+        },
+        // Bind Event Listeners
+        //
+        // Bind any events that are required on startup. Common events are:
+        // 'load', 'deviceready', 'offline', and 'online'.
+        bindEvents: function () {
+            document.addEventListener('deviceready', this.onDeviceReady, false);
+            document.addEventListener('backbutton', this.backToMainMenu, false);
+        },
+        // deviceready Event Handler
+        //
+        // The scope of 'this' is the event. In order to call the 'receivedEvent'
+        // function, we must explicitly call 'app.receivedEvent(...);'
+        onDeviceReady: function () {
+            
+            return;
+        },
+        backToMainMenu: function () {
+            window.localStorage.setItem("LevelNum", "");
+            window.location.href = "QuizHome.html";
+        }
+        // Update DOM on a Received Event
+    };
+        app.initialize();
+</script>

@@ -1,0 +1,138 @@
+<html>
+<head>
+<meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
+    <title>Satsang Quiz</title>
+    <script type="text/javascript" src="../cordova.js"></script>
+    <script type="text/javascript" src="../js/jquary.min.1.12.2.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
+    <link rel="Stylesheet" href="../css/bootstrap.min.css" type="text/css" />
+    <script type="text/javascript" src="../js/SyncQuestionList.js"></script>
+    <script type="text/javascript" src="../js/QuizHome.js"></script>
+    <style>
+       
+        .navbar-collapse.collapse
+        {
+            display: block !important;
+        }
+        
+        .navbar-nav > li, .navbar-nav
+        {
+            float: left !important;
+        }
+        
+        .navbar-nav.navbar-right:last-child
+        {
+            margin-left: -15px !important;
+        }
+        
+        .navbar-right
+        {
+            float: right !important;
+        }
+    </style>
+</head>
+<body>
+	<script type="text/javascript">
+        
+        var app = {
+            // Application Constructor
+            initialize: function() {
+                this.bindEvents();
+            },
+            // Bind Event Listeners
+            //
+            // Bind any events that are required on startup. Common events are:
+            // 'load', 'deviceready', 'offline', and 'online'.
+            bindEvents: function() {
+                document.addEventListener('deviceready', this.onDeviceReady, false);
+                document.addEventListener('backbutton', this.backToMainMenu, false);
+            },
+            // deviceready Event Handler
+            //
+            // The scope of 'this' is the event. In order to call the 'receivedEvent'
+            // function, we must explicitly call 'app.receivedEvent(...);'
+            onDeviceReady: function() {
+                $('body').height(($(window).height() * 0.9));
+                nullifyUpdateActionVars();
+                window.localStorage.setItem("LevelNum", "");
+                SyncQuizQuestions();
+                InitDatabase();
+                return;
+            },
+            backToMainMenu: function() {
+                window.location.href="../index.html";
+            }
+        };
+        app.initialize();
+        
+    </script>
+    <nav class="navbar navbar-inverse navbar-fixed-top" >
+    <div class="container" >
+        
+        <ul class="nav navbar-nav navbar-left"  style="padding-right:20px;" >
+            <li class="active" style="padding-top:0px;padding-bottom:0px;" onclick="window.location.href='../index.html'">
+                <a style="background-color:#53392d" href="#"><span class="glyphicon glyphicon-home" ></span></a>
+            </li>
+            <li class="active" style="padding-top:0px;padding-bottom:0px;">
+                <span id="mantra"><b>સત્સંગ ક્વિઝ</b></span>
+            </li>
+          </ul>
+    </div>
+    
+</nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container" style="font-size:10px;" >
+    <center>
+        <ul style="vertical-align:middle;list-style:none;color:White">
+            <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+        </ul>
+        </center>
+    </div>   
+</nav>
+    <div class="container" style="padding-top:45px;padding-bottom:25px">
+        <ol class="rounded-list" id="Levels" >
+        </ol>
+    </div>
+    <div style="margin-bottom: 3em; font-family: centurySchoolbook; font-size: 20;">
+    </div>
+    <div class="modal fade" id="pleaseWaitDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h1>Updating Question List...</h1>
+          </div>
+          <div class="modal-body">
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="100" style="width: 5%">
+                <span class="sr-only" id="percentageText">5%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+	<div id="myButton">
+		<label class="btn-circle" data-toggle="modal" data-target="#rulesModal"><span class="glyphicon glyphicon-option-vertical" /></label>
+	</div>
+	<div class="modal fade" id="rulesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h3>સત્સંગ ક્વિઝના નિયમો</h3>
+          </div>
+          <div class="modal-body">
+            <ol>
+				<li><h4>દરેક લેવલમાં દશ પ્રશ્નો છે.</h4></li>
+				<li>દરેક લેવલ પાર કરવા માટે ઓછામાં ઓછા ૭ પ્રશ્નોના સાચા જવાબ આપવા પડશે.<li>
+				<li>કોઈ પણ લેવલ રમવા માટે પહેલાના બધાં લેવલ પાર કરેલ હોવા જોઈએ.</li>
+			</ol>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

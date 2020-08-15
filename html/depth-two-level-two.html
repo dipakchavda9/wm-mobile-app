@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 
 <head>
@@ -7,12 +7,7 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
 
-    <link rel="stylesheet" type="text/css" href="../css/index.css" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
-    <link rel="stylesheet" type="text/css" href="../css/list.css" />
     <link rel="stylesheet" type="text/css" href="../css/resize-fonts-modal.css" />
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" ">
 
@@ -24,6 +19,25 @@
         hr.bottom {
             margin-top: 2px;
             margin-bottom: 0px;
+        }
+        .navbar-collapse.collapse
+        {
+            display: block !important;
+        }
+        
+        .navbar-nav > li, .navbar-nav
+        {
+            float: left !important;
+        }
+        
+        .navbar-nav.navbar-right:last-child
+        {
+            margin-left: -15px !important;
+        }
+        
+        .navbar-right
+        {
+            float: right !important;
         }
     </style>
 
@@ -51,6 +65,7 @@
             // 'load', 'deviceready', 'offline', and 'online'.
             bindEvents: function() {
                 document.addEventListener('deviceready', this.onDeviceReady, false);
+				document.addEventListener('backbutton', this.backToMainMenu, false);
             },
             // deviceready Event Handler
             //
@@ -58,42 +73,73 @@
             // function, we must explicitly call 'app.receivedEvent(...);'
             onDeviceReady: function() {
                 $('body').height(($(window).height() * 0.9));
-                $('.container').height(($(window).height() * 0.85));
+                var offset = 10;
+				var duration = 500;
+				jQuery(window).scroll(function () {
+					if (jQuery(this).scrollTop() > offset) {
+						jQuery('.back-to-top').fadeIn(duration);
+					} else {
+						jQuery('.back-to-top').fadeOut(duration);
+					}
+				});
+
+				jQuery('.back-to-top').click(function (event) {
+					event.preventDefault();
+					jQuery('html, body').animate({ scrollTop: 0 }, duration);
+					return false;
+				})
                 loadChapter();
+                enableScroll();
+                window.plugins.insomnia.keepAwake()
                 return;
             },
+            backToMainMenu: function () {
+                window.plugins.insomnia.allowSleepAgain()
+                window.location.href = "depth-two-level-one.html";
+            }
         };
         app.initialize();
+        
     </script>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
-        <div class="container-fluid">
-            <div class="navbar-header" id="ChapterTitle">
-                
+        <div class="container">
+            <ul class="nav navbar-nav navbar-left" style="padding-right:20px;">
+            <li class="active" style="padding-top:0px;padding-bottom:0px;" onclick="window.location.href='../index.html'">
+                <a style="background-color:#53392d" href="#"><span class="glyphicon glyphicon-home" ></span></a>
+            </li>
+            <li class="active" style="padding-top:0px;padding-bottom:0px;"><span id="ChapterTitle"></span></span></li>
+        </ul>
+             <ul class="nav navbar-nav navbar-right" style="padding-right:20px;">
+            <li class="active" style="padding-top:0px;padding-bottom:0px;"><a href="#" style="background-color:#53392d" data-toggle="modal" data-target="#resizeFontsModal"><span class="glyphicon glyphicon-font" ></span></a></li>
+        </ul> 
+        </div>
+    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" >
+    <div class="container" style="font-size:10px;" >
+    <center>
+        <ul style="vertical-align:middle;list-style:none;color:White">
+            <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+        </ul>
+        </center>
+    </div>
+</nav>
+    <div class="container" style="padding-top:45px;padding-bottom:25px">
+        <div class="panel">
+            <div class="panel panel-danger" id="chapterDiv">
+                <div class="panel-body">
+                    <div id="Chapter" class="resizableFonts" style="text-align:center">
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <b>
+                    <span id="ChapterEnding" class="resizableFonts" ></span>
+                </b>
+                </div>
             </div>
         </div>
-        <div class="font-resize"  title="Resize Fonts" data-toggle="modal" data-target="#resizeFontsModal" id="resizeFontsDiv"><span id="smallFont">A</span><span id="bigFont">A</span></div>
-    </nav>
-
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            Copyright @ Wadhwan Mandir
-        </div>
-      </div>
-    </nav>
-
-    <div class="container" id="chapterDiv">
-        <div class="row resizableFonts" id="Chapter">
-        </div>
-        <div class="row">
-            <b>
-                <span id="ChapterEnding" class="resizableFonts" ></span>
-            </b>
-        </div>
+       
     </div>
-
+    
     <div id="resizeFontsModal" class="modal fade" role="dialog">
       <div class="modal-dialog">
 
@@ -101,7 +147,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span class="blue">&times;</span></button>
-            <h4 class="modal-title blue"><b>Resize Fonts</b></h4>
+            <h4 class="modal-title"><b>Resize Fonts</b></h4>
           </div>
           <div class="modal-body">
             <div id="fontSizeSliderDiv">
@@ -109,12 +155,12 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="blue">Ok</span></button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
           </div>
         </div>
 
       </div>
     </div>
-
+<img src="../img/back-to-top.png" class="back-to-top" alt="backtotop" />
 </body>
 </html>

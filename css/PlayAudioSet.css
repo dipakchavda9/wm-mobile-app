@@ -1,11 +1,11 @@
 #wrapper {
-    margin: 15% 5% 5% 5%;
+    margin: 0% 5% 5% 5%;
 }
 
 #wrapper h3 {
     display: block;
     text-align: left;
-    color: #6f006f;
+    color: #53392d;
     font-weight: bolder;
     margin-bottom: 7px;
     width: 80%;
@@ -28,8 +28,8 @@
 .download-icon a {
     display: inline-block;
     float: left;
-    color: #6f006f;
-    font-size: 225%;
+    color: #53392d;
+    font-size: 150%;
     margin-left: 4%;
     margin-top: 4px;
 }

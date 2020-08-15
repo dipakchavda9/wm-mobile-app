@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 
@@ -9,14 +9,26 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-    <link rel="stylesheet" type="text/css" href="../css/index.css" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
-    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" />
-    <link rel="stylesheet" type="text/css" href="../css/accordion.css" />
-
+    <style>
+    .navbar-collapse.collapse{ display:block !important;
+        }
+        
+        .navbar-nav > li, .navbar-nav 
+        {
+            float: left !important;
+        }
+        
+        .navbar-nav.navbar-right:last-child
+        {
+            margin-left:-15px !important;
+        }
+        
+        .navbar-right
+        {
+            float:right !important;
+        }
+    </style>
     <title>Aacharya</title>
 
 </head>
@@ -39,6 +51,7 @@
             // 'load', 'deviceready', 'offline', and 'online'.
             bindEvents: function() {
                 document.addEventListener('deviceready', this.onDeviceReady, false);
+                document.addEventListener('backbutton', this.backToMainMenu, false);
             },
             // deviceready Event Handler
             //
@@ -54,123 +67,217 @@
 
                 return;
             },
+            backToMainMenu: function () {
+                window.location.href = "../index.html";
+            }
             // Update DOM on a Received Event
         };
         app.initialize();
+        
     </script>
     
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
-        <div class="container-fluid">
-            <div class="navbar-header">
-                Aacharya
-            </div>
+    <div class="container" >
+            <ul class="nav navbar-nav navbar-left"  style="padding-right:20px;" >
+                <li class="active" style="padding-top:0px;padding-bottom:0px;" onclick="window.location.href='../index.html'">
+                    <a style="background-color:#53392d" href="#"><span class="glyphicon glyphicon-home" ></span></a>
+                </li>
+                <li class="active" style="padding-top:0px;padding-bottom:0px;">
+                    <span id="Span1"><b>આચાર્ય પરંપરા</b></span>
+                </li>
+            </ul>
+        </div>
+</nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" >
+    <div class="container" style="font-size:10px;" >
+        <center>
+            <ul style="vertical-align:middle;list-style:none;color:White">
+                <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+            </ul>
+            </center>
         </div>
     </nav>
-
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            Copyright @ Wadhwan Mandir
+    <div class="container" style="padding-top:45px;padding-bottom:25px" >
+    <div class="panel-group" id="accordion1">
+    <div class="panel panel-info">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#collapse1">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse1" style="text-decoration:none">પ. પૂ. ધ. ધુ. ૧૦૦૮ આદિ આચાર્ય શ્રી અયોધ્યાપ્રસાદજી મહારાજશ્રી</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">
+            <div>                
+                 <center><img src="../img/1.-Ayodhyaprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aadi Aacharya Shree Ayodhyaprasadji Maharaj Shree" class="img img-rounded img-responsive"/></center>   
+                 <br />
+                    <dl>
+                        <dt><u>જન્મતિથિ</u></dt>
+                        <dd>સંવત ૧૮૬૫, જેઠ સુદ ૧૧</dd>
+                        <dt><u>ગાદી અભિષેક તિથિ</u></dt>
+                        <dd>સંવત ૧૮૮૨, કારતક સુદ ૧૧</dd>
+                        <dt><u>અક્ષરવાસ તિથિ</u></dt>
+                        <dd>સંવત ૧૯૨૪, ફાગણ સુદ ૭</dd>
+                    </dl>
+                </div>
         </div>
       </div>
-    </nav>
-
-    <div class="container">
-        <div class="row">
-            <div id="accordion" style="display:none">
-              <h3>P. P. D. D. 1008 Aadi Aacharya Shree Ayodhyaprasadji Maharaj Shree</h3>
-                <div>
-                    <img src="../img/1.-Ayodhyaprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aadi Aacharya Shree Ayodhyaprasadji Maharaj Shree" />
-                    <dl>
-                        <dt><u>Janma Tithi</u></dt>
-                        <dd>Samvat 1865, Jeth Sud 11</dd>
-                        <dt><u>Gadi Abhishek Tithi</u></dt>
-                        <dd>Samvat 1882, Kartik Sud 11</dd>
-                        <dt><u>Aksharvaas Tithi</u></dt>
-                        <dd>Samvat 1924, Faagan Sud 7</dd>
-                    </dl>
-                </div>
-              <h3>P. P. D. D. 1008 Aacharya Shree Keshavprasadji Maharaj Shree</h3>
-                <div>
-                    <img src="../img/2.-Keshavprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Shree Keshavprasadji Maharaj Shree" />
-                    <dl>
-                        <dt><u>Janma Tithi</u></dt>
-                        <dd>Samvat 1891, Chaitra Vad 4</dd>
-                        <dt><u>Gadi Abhishek Tithi</u></dt>
-                        <dd>Samvat 1924, Faagan Sud 7</dd>
-                        <dt><u>Aksharvaas Tithi</u></dt>
-                        <dd>Samvat 1946, Chaitra Vad 4</dd>
-                    </dl>
-                </div>
-              <h3>P. P. D. D. 1008 Aacharya Shree Purushottamprasadji Maharaj Shree</h3>
-                <div>
-                    <img src="../img/3.-Purushottamprashadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Shree Purushottamprasadji Maharaj Shree" />
-                    <dl>
-                        <dt><u>Janma Tithi</u></dt>
-                        <dd>Samvat 1926, Maha Vad 2</dd>
-                        <dt><u>Gadi Abhishek Tithi</u></dt>
-                        <dd>Samvat 1946, Chaitra Vad 4</dd>
-                        <dt><u>Aksharvaas Tithi</u></dt>
-                        <dd>Samvat 1958, Kartik Vad 30</dd>
-                    </dl>
-                </div>
-              <h3>P. P. D. D. 1008 Aacharya Samarth Shree Kunjvihariprasadji Maharaj Shree</h3>
-                <div>
-                    <img src="../img/4.-Kunjvihariprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Samarth Shree Kunjvihariprasadji Maharaj Shree" />
-                    <dl>
-                        <dt><u>Janma Tithi</u></dt>
-                        <dd>Samvat 1933, Faagan Vad 10</dd>
-                        <dt><u>Gadi Abhishek Tithi</u></dt>
-                        <dd>Samvat 1958, Maagasar Sud 4</dd>
-                        <dt><u>Aksharvaas Tithi</u></dt>
-                        <dd>Samvat 2008, Maha Sud 3</dd>
-                    </dl>
-                </div>
-              <h3>P. P. D. D. 1008 Aacharya Shree Rajendraprasadji Maharaj Shree</h3>
-                <div>
-                    <img src="../img/5.-Rajendraprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Shree Rajendraprasadji Maharaj Shree" />
-                    <dl>
-                        <dt><u>Janma Tithi</u></dt>
-                        <dd>Samvat 1975, Aaso Sud 2</dd>
-                        <dt><u>Gadi Abhishek Tithi</u></dt>
-                        <dd>Samvat 1999, Vaishakh Sud 6</dd>
-                        <dt><u>Aksharvaas Tithi</u></dt>
-                        <dd>Samvat 2071, Kartik Vad 11</dd>
-                    </dl>
-                </div>
-              <h3>P. P. D. D. 1008 Aacharya Shree Virendraprasadji Maharaj Shree</h3>
-                <div>
-                    <img src="../img/6.-Virendraprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Shree Virendraprasadji Maharaj Shree" />
-                    <dl>
-                        <dt><u>Janma Tithi</u></dt>
-                        <dd>Samvat 1998, Aaso Vad 2</dd>
-                        <dt><u>Gadi Abhishek Tithi</u></dt>
-                        <dd>Samvat 2037, Maha Sud 5</dd>
-                        <dt><u>Aksharvaas Tithi</u></dt>
-                        <dd>Samvat 2052, Chaitra Sud 3</dd>
-                    </dl>
-                </div>
-              <h3>P. P. D. D. 1008 Vidhyamaan Aacharya Shree Madhvendraprasadji Maharaj Shree</h3>
-                <div>
-                    <img src="../img/7.-Madhvendraprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Vidhyamaan Aacharya Shree Madhvendraprasadji Maharaj Shree" />
-                    <dl>
-                        <dt><u>Janma Tithi</u></dt>
-                        <dd>Samvat 2035, Shraavan Sud 2</dd>
-                        <dt><u>Gadi Abhishek Tithi</u></dt>
-                        <dd>Samvat 2052, Chaitra Vad 2</dd>
-                    </dl>
-                </div>
-              <h3>P. P. 108 Bhaavi Aacharya Shree Hridayendraprasadji Maharaj Shree</h3>
-                <div>
-                    <dl>
-                        <dt><u>Janma Tithi</u></dt>
-                        <dd>Samvat 2065, Shraavan Vad 8</dd>
-                    </dl>
-                </div>
-            </div>
-        </div>
     </div>
-
+    <div class="panel panel-info">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#collapse2">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse2" style="text-decoration:none">પ. પૂ. ધ. ધુ. ૧૦૦૮ આચાર્ય શ્રી કેશવપ્રસાદજી મહારાજશ્રી</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div>
+                 <center>   <img src="../img/2.-Keshavprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Shree Keshavprasadji Maharaj Shree" class="img-responsive" /></center>
+                 <br />
+                    <dl>
+                        <dt><u>જન્મતિથિ</u></dt>
+                        <dd>સંવત ૧૮૯૧, ચૈત્ર વદ ૪</dd>
+                        <dt><u>ગાદી અભિષેક તિથિ</u></dt>
+                        <dd>સંવત ૧૯૨૪, ફાગણ સુદ ૭</dd>
+                        <dt><u>અક્ષરવાસ તિથિ</u></dt>
+                        <dd>સંવત ૧૯૪૬, ચૈત્ર વદ ૪</dd>
+                    </dl>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#collapse3">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse3" style="text-decoration:none">પ. પૂ. ધ. ધુ. ૧૦૦૮ આચાર્ય શ્રી પુરુષોત્તમપ્રસાદજી મહારાજશ્રી</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div>
+               <center> <img src="../img/3.-Purushottamprashadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Shree Purushottamprasadji Maharaj Shree" class="img-responsive" /></center>    
+               <br />
+                    <dl>
+                        <dt><u>જન્મતિથિ</u></dt>
+                        <dd>સંવત ૧૯૨૬, મહા વદ ૨</dd>
+                        <dt><u>ગાદી અભિષેક તિથિ</u></dt>
+                        <dd>સંવત ૧૯૪૬, ચૈત્ર વદ ૪</dd>
+                        <dt><u>અક્ષરવાસ તિથિ</u></dt>
+                        <dd>સંવત ૧૯૫૮, કારતક વદ ૩૦</dd>
+                    </dl>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#collapse4">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse4" style="text-decoration:none">પ. પૂ. ધ. ધુ. ૧૦૦૮ આચાર્ય સમર્થ શ્રી કુંજવિહારી પ્રસાદજી મહારાજશ્રી</a>
+        </h4>
+      </div>
+      <div id="collapse4" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div>
+               <center> <img src="../img/4.-Kunjvihariprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Samarth Shree Kunjvihariprasadji Maharaj Shree" class="img-responsive" /></center>
+                <br />                    
+                    <dl>
+                        <dt><u>જન્મતિથિ</u></dt>
+                        <dd>સંવત ૧૯૩૩, ફાગણ વદ ૧૦</dd>
+                        <dt><u>ગાદી અભિષેક તિથિ</u></dt>
+                        <dd>સંવત ૧૯૫૮, માગશર સુદ ૪</dd>
+                        <dt><u>અક્ષરવાસ તિથિ</u></dt>
+                        <dd>સંવત ૨૦૦૮, મહા સુદ ૩</dd>
+                    </dl>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#collapse5">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse5" style="text-decoration:none">પ. પૂ. ધ. ધુ. ૧૦૦૮ આચાર્ય શ્રી રાજેન્દ્રપ્રસાદજી મહારાજશ્રી</a>
+        </h4>
+      </div>
+      <div id="collapse5" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div>
+               <center><img src="../img/5.-Rajendraprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Shree Rajendraprasadji Maharaj Shree" class="img-responsive" /></center>
+                    <br />
+                    <dl>
+                        <dt><u>જન્મતિથિ</u></dt>
+                        <dd>સંવત ૧૯૭૫, આસો સુદ ૨</dd>
+                        <dt><u>ગાદી અભિષેક તિથિ</u></dt>
+                        <dd>સંવત ૧૯૯૯, વૈશાખ સુદ ૬</dd>
+                        <dt><u>અક્ષરવાસ તિથિ</u></dt>
+                        <dd>સંવત ૨૦૭૧, કારતક વદ ૧૨</dd>
+                    </dl>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#collapse6">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse6" style="text-decoration:none">પ. પૂ. ધ. ધુ. ૧૦૦૮ આચાર્ય શ્રી વિરેન્દ્રપ્રસાદજી મહારાજશ્રી</a>
+        </h4>
+      </div>
+      <div id="collapse6" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div>
+               <center><img src="../img/6.-Virendraprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Aacharya Shree Virendraprasadji Maharaj Shree" class="img-responsive" /></center>
+               <br />
+                    <dl>
+                        <dt><u>જન્મતિથિ</u></dt>
+                        <dd>સંવત ૧૯૯૮, આસો વદ ૨</dd>
+                        <dt><u>ગાદી અભિષેક તિથિ</u></dt>
+                        <dd>સંવત ૨૦૩૭, મહા સુદ ૫</dd>
+                        <dt><u>અક્ષરવાસ તિથિ</u></dt>
+                        <dd>સંવત ૨૦૫૨, ચૈત્ર સુદ ૩</dd>
+                    </dl>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#collapse7">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse7" style="text-decoration:none">પ. પૂ. ધ. ધુ. ૧૦૦૮ વિદ્યમાન આચાર્ય શ્રી માધવેન્દ્રપ્રસાદજી મહારાજશ્રી</a>
+        </h4>
+      </div>
+      <div id="collapse7" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div>
+               <center><img src="../img/7.-Madhvendraprasadji-Maharaj.jpg" alt="P. P. D. D. 1008 Vidhyamaan Aacharya Shree Madhvendraprasadji Maharaj Shree" class="img-responsive" /></center>
+                    <br />
+                    <dl>
+                        <dt><u>જન્મતિથિ</u></dt>
+                        <dd>સંવત ૨૦૩૫, શ્રાવણ સુદ ૨</dd>
+                        <dt><u>ગાદી અભિષેક તિથિ</u></dt>
+                        <dd>સંવત ૨૦૫૨, ચૈત્ર વદ ૨</dd>
+                    </dl>
+                </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-info">
+      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion1" href="#collapse8">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion1" href="#collapse8" style="text-decoration:none;">પ. પૂ. ૧૦૮ ભાવિ આચાર્ય શ્રી હૃદયેન્દ્રપ્રસાદજી મહારાજશ્રી</a>
+        </h4>
+      </div>
+      <div id="collapse8" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div>
+               <dl>
+                        <dt><u>જન્મતિથિ</u></dt>
+                        <dd>સંવત ૨૦૬૩, આસો વદ ૮</dd>
+                    </dl>
+                </div>
+        </div>
+      </div>
+    </div>
+  </div>
+       
+    </div>
+    
 </body>
 </html>

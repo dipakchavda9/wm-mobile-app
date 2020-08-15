@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html>
 
@@ -9,66 +9,84 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline'; style-src 'self' 'unsafe-inline'; media-src *" />
 
-    <link rel="stylesheet" type="text/css" href="../css/index.css" />
-    <link rel="stylesheet" type="text/css" href="../css/mantra.css" />
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Navigation.css" />
-    <link rel="stylesheet" type="text/css" href="../css/Container.css" />
-    <link rel="stylesheet" type="text/css" href="../css/ionicons.min.css">
+    <script type="text/javascript" src="../js/Mantralekhan.js"></script>
     <title>Mantra Lekhan</title>
+    <style>
+    .navbar-collapse.collapse{ display:block !important;
+        }
+        
+        .navbar-nav > li, .navbar-nav 
+        {
+            float: left !important;
+        }
+        
+        .navbar-nav.navbar-right:last-child
+        {
+            margin-left:-15px !important;
+        }
+        
+        .navbar-right
+        {
+            float:right !important;
+        }
+        </style>
 </head>
 
 <body>
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
-        <i class="ion-android-home homeButton" onclick="location.href='../index.html'"></i>
-        <div class="container-fluid">
-            <div class="navbar-header">
-                Mantra Lekhan
+        <div class="container" >
+            <ul class="nav navbar-nav navbar-left"  style="padding-right:20px;" >
+                <li class="active" style="padding-top:0px;padding-bottom:0px;" onclick="window.location.href='../index.html'">
+                    <a style="background-color:#53392d" href="#"><span class="glyphicon glyphicon-home" ></span></a>
+                </li>
+                <li class="active" style="padding-top:0px;padding-bottom:0px;">
+                    <span id="ChapterTitle"><b>મંત્રલેખન</b></span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <nav class="navbar navbar-inverse navbar-fixed-bottom" >
+    <div class="container" style="font-size:10px;" >
+        <center>
+            <ul style="vertical-align:middle;list-style:none;color:White">
+                <li class="active" style="text-align:center;vertical-align:middle;padding-top:10px;"><span><b>copyright @ wadhwanmandir</b></span></li>
+            </ul>
+            </center>
+        </div>
+    </nav>
+
+    <div class="container" style="padding-top:45px;padding-bottom:25px">
+        <div class="alert alert-danger">
+            <label style="font-size:x-large">આજના કુલ મંત્રલેખન</label>&nbsp;&nbsp; <span style="font-size:large" class="badge" id="mantraLekhanCount"></span>
+        </div>
+        <div class="alert alert-danger">
+            <label style="font-size:x-large">મંત્રલેખન</label>&nbsp;&nbsp; <span style="font-size:large" class="badge" id="counterSpan"></span>
+        </div>
+        
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 form-group-lg">
+                    <input type="text" id="mantraLekhanTextbox" style="font-size:30px; box-shadow:4px 4px 8px -1px #53392d;text-transform:uppercase;color:Red; border-color:#53392d;border-width:2px;font-weight:700;font-family:Calibri" onkeyup="checkMantra(this)" class="form-control" placeholder="SWAMINARAYAN" /> 
+            </div>
+            
+            
+        </div>
+        <div class="row" style="margin-top:15px">
+            <div class="col-sm-12 col-md-12 col-lg-12 form-group">
+                <input type="button" style="font-size:large;font-family:Calibri; background-color:#53392d; border-color:#53392d" class="btn btn-danger btn-block" onclick="resetMantraLekhanCounter()" value="Reset Counter" />
             </div>
         </div>
-    </nav>
 
-    <nav class="navbar navbar-inverse navbar-fixed-bottom">
-      <div class="container-fluid">
-        <div class="navbar-header">
-            Copyright @ Wadhwan Mandir
-        </div>
-      </div>
-    </nav>
-
-    <div class="container">
-        <div id="mantraLekhanDisplayDiv" class="row">
-            <div class="horizontal-line"></div>
-            <span class="h2-heading">Today's Mantra Lekhan</span>
-            <div class="horizontal-line"></div>
-            <span id="mantraLekhanCount" class="h2-heading">-</span>
-        </div>
-        <div id="counterDiv" class="row">
-            <div class="horizontal-line"></div>
-            <span class="h2-heading">Counter</span>
-            <div class="horizontal-line"></div>
-            <span id="counterSpan" class="h2-heading">-</span>
-        </div>
         <div class="row">
-            <button type="button" onclick="resetMantraLekhanCounter();" class="resetCounter">
-                <span>Reset Counter</span>
-            </button>
+            <div class="col-sm-12 col-md-12 col-lg-12 form-group">
+                <input type="button" style="font-size:large;font-family:Calibri; background-color:#53392d; border-color:#53392d" class="btn btn-danger btn-block" onclick="window.location='mantraLekhanHistory.html';" value="Mantra Lekhan History" />
+            </div>
         </div>
-        <div id="mantraLekhanTextDiv" class="row">
-            <input type="text" onkeyup="checkMantra(this);" />
-            <span class="h2-heading">Swaminarayan</span>
-        </div>
-        <div class="row">
-            <button type="button" class="historyButton" onclick="window.location='mantraLekhanHistory.html';">
-                <span>Mantra Lekhan History</span>
-            </button>
-        </div>
+        
     </div>
 
     <script type="text/javascript" src="../cordova.js"></script>
     <script type="text/javascript" src="../js/jquery-v1_11_1.min.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.min.3.3.6.js"></script>
     <script type="text/javascript" src="../js/mantra.js"></script>
     <script type="text/javascript">
         
@@ -83,6 +101,7 @@
             // 'load', 'deviceready', 'offline', and 'online'.
             bindEvents: function() {
                 document.addEventListener('deviceready', this.onDeviceReady, false);
+                document.addEventListener('backbutton', this.backToMainMenu, false);
             },
             // deviceready Event Handler
             //
@@ -91,11 +110,15 @@
             onDeviceReady: function() {
                 
             },
+            backToMainMenu: function () {
+                window.location.href = "../index.html";
+            }
             // Update DOM on a Received Event
         };
         app.initialize();
         $(window).load(function(){
             displayMantraLekhanCount();
+            $("#mantraLekhanTextbox").focus();
         });
     </script>
     

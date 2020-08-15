@@ -5,13 +5,13 @@ function ListAlbums(albums) {
     var totalAlbums = albums._embedded.photoset.length;
     
     var i = totalAlbums - 1;
-    var listHtml = '<div class="list"><ul>';
+    var listHtml = '<ol class="rounded-list">';
     
     while(i >= 0) {
-        listHtml += '<li onclick="RedirectToDisplayAlbum(' + albums._embedded.photoset[i].id + ');"><span>' + albums._embedded.photoset[i].name + '</span></li>';
+        listHtml += '<li onclick="RedirectToDisplayAlbum(' + albums._embedded.photoset[i].id + ');"><label>' + albums._embedded.photoset[i].name + '</label></li>';
         i--;
     }
-    listHtml += '</ul></div>';
+    listHtml += '</ol>';
     
     $('#AlbumList').html(listHtml);
 

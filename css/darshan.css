@@ -7,11 +7,3 @@
     display: block;
     margin: 0 auto;
 }
-
-.message {
-    color: #6f006f;
-    margin: 0 auto;
-    display: none;
-    text-align: center;
-    margin-top: 40%;
-}

@@ -1,6 +1,41 @@
-$(window).load(function(){
+﻿$(window).load(function(){
     displayMantraJaapCount();
 });
+
+/* $("#mantraLekhanTextbox").keydown(function (event) {
+    var MyWord = "SWAMINARAYAN";
+    var KeyID;
+    KeyID = event.which;
+    if (KeyID < 65) {
+        return false;
+    }
+    else if (KeyID >= 65 && KeyID <= 90) {
+        var CharPosition = $("#mantraLekhanTextbox").val().length;
+        var CmpCharCode = MyWord.charCodeAt(CharPosition);
+        var CmpChar = MyWord.charAt(CharPosition);
+
+        if (KeyID == CmpCharCode) {
+            if (CharPosition == 11 && KeyID == 78) {
+                incrementMantraLekhanCount();
+                return false;
+            }
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        return false;
+    }
+    if (event.which == 13) {
+        event.preventDefault();
+    }
+    xTriggered++;
+    var msg = "Handler for .keydown() called " + xTriggered + " time(s).";
+    $.print(msg, "html");
+    $.print(event);
+}); */
 
 var storage = window.localStorage;
 
@@ -94,10 +129,10 @@ function populateHistoryTableBody() {
     if(!mantraJaapLogs) {
         $('#historyTableDiv').html('<h2>No History Found</h2>');
     } else {
-        var tableHtml = '<table><thead><tr><th>Date</th><th>Manra Jaap</th></tr></thead><tbody>';
+        var tableHtml = "<table class='table table-hovered table-bordered'><thead><tr class='danger'><th>તારીખ</th><th>મંત્રજાપ</th></tr></thead><tbody>";
         var mantraJaapLogsArray = JSON.parse(mantraJaapLogs);
         for(var date in mantraJaapLogsArray) {
-            tableHtml += '<tr><td>' + date + '</td><td>' + mantraJaapLogsArray[date] + '</td></tr>';
+            tableHtml += '<tr class="warning"><th>' + date + '</th><th>' + mantraJaapLogsArray[date] + '</th></tr>';
         }
         tableHtml += '</tbody></table>';
         $('#historyTableDiv').html(tableHtml);
@@ -159,6 +194,7 @@ function incrementMantraLekhanCount() {
     storage.setItem('MantraLekhanCount', newMantraLekhanCount);
     updateMantraLekhanLog();
     displayMantraLekhanCount();
+    $("#mantraLekhanTextbox").val('');
 }
 
 function updateMantraLekhanLog() {
@@ -192,15 +228,24 @@ function updateMantraLekhanLog() {
 }
 
 function checkMantra(mantraLekhanTextbox) {
-
+	var mantra="SWAMINARAYAN";
     var currentStr = mantraLekhanTextbox.value.toUpperCase();
-
-    if(currentStr.length >= 12) {
-        if(currentStr == 'SWAMINARAYAN') {
-            incrementMantraLekhanCount();
-        }
-        mantraLekhanTextbox.value = '';
-    }
+	var currLength=currentStr.length;
+	var currentMantr=mantra.substr(0,currLength)
+	if(currentStr==currentMantr) {
+		if(currentStr.length >= 12) {
+			if(currentStr == 'SWAMINARAYAN') {
+				incrementMantraLekhanCount();
+			}
+			mantraLekhanTextbox.value = '';
+		}
+	} else {
+		if(currentStr.length >= 12) {
+			mantraLekhanTextbox.value = '';
+		}
+		mantraLekhanTextbox.value=mantraLekhanTextbox.value.substr(0,currLength-1);
+	}
+    
 
     return;
 }
@@ -210,10 +255,10 @@ function populateMantraLekhanHistoryTableDiv() {
     if(!mantraLekhanLogs) {
         $('#mantraLekhanHistoryTableDiv').html('<h2>No History Found</h2>');
     } else {
-        var tableHtml = '<table><thead><tr><th>Date</th><th>Manra Lekhan</th></tr></thead><tbody>';
+        var tableHtml = '<table class="table table-bordered"><thead><tr class="danger"><th>તારીખ</th><th>મંત્રલેખન</th></tr></thead><tbody>';
         var mantraLekhanLogsArray = JSON.parse(mantraLekhanLogs);
         for(var date in mantraLekhanLogsArray) {
-            tableHtml += '<tr><td>' + date + '</td><td>' + mantraLekhanLogsArray[date] + '</td></tr>';
+            tableHtml += '<tr class="warning"><th>' + date + '</th><th>' + mantraLekhanLogsArray[date] + '</th></tr>';
         }
         tableHtml += '</tbody></table>';
         $('#mantraLekhanHistoryTableDiv').html(tableHtml);

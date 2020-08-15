@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.wadhwanmandir.officialmobileapp" version="1.1.1" versionCode="10101" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.wadhwanmandir.officialmobileapp" version="1.6.1" versionCode="10601" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Wadhwan Mandir</name>
     <description>
         This is official mobile application of Swaminarayan Mandir - Wadhwan.
@@ -9,43 +9,48 @@
     </author>
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
-    <preference name="android-minSdkVersion" value="14" />
-    <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
-    <plugin name="cordova-plugin-device" source="npm" spec="~1.1.1" />
-    <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
-    <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
-    <plugin name="cordova-plugin-splashscreen" source="npm" spec="~3.2.1" />
-    <plugin name="cordova-plugin-whitelist" source="npm" spec="~1.2.1" />
-    <plugin name="cordova-sqlite-storage" spec="1.2.1" />
+    <preference name="android-minSdkVersion" value="21" />
+    <preference name="android-targetSdkVersion" value="28" />
+    <preference name="phonegap-version" value="cli-8.1.1" />
+    <gap:plugin name="cordova-plugin-console" source="npm" />
+    <gap:plugin name="cordova-plugin-device" source="npm" />
+    <gap:plugin name="cordova-plugin-dialogs" source="npm" />
+    <gap:plugin name="cordova-plugin-network-information" source="npm" />
+    <gap:plugin name="cordova-plugin-splashscreen" source="npm" />
+    <gap:plugin name="cordova-plugin-whitelist" source="npm" />
     <gap:plugin name="cordova-plugin-datepicker" source="npm" />
-    <gap:icon src="res/Android/res/drawable/icon.png" gap:role="default" />
-    <gap:splash src="res/Android/res/drawable/screen.png" gap:role="default" />
+    <gap:icon src="res/Android/res/drawable/icon.png" role="default" />
+    <gap:splash src="res/Android/res/drawable/screen.png" role="default" />
     <gap:platform name="android">
         <gap:preference name="AndroidLaunchMode" value="singleTop"/>
-        <gap:preference name="android-minSdkVersion" value="14" />
-        <gap:preference name="android-versionCode" value="10101" />
-        <gap:icon density="ldpi" src="res/Android/res/drawable-ldpi/icon.png" />
-        <gap:icon density="mdpi" src="res/Android/res/drawable-mdpi/icon.png" />
-        <gap:icon density="hdpi" src="res/Android/res/drawable-hdpi/icon.png" />
-        <gap:splash density="land-ldpi" src="res/Android/res/drawable-land-ldpi/screen.png" />
-        <gap:splash density="land-mdpi" src="res/Android/res/drawable-land-mdpi/screen.png" />
-        <gap:splash density="land-hdpi" src="res/Android/res/drawable-land-hdpi/screen.png" />
-        <gap:splash density="port-ldpi" src="res/Android/res/drawable-ldpi/screen.png" />
-        <gap:splash density="port-mdpi" src="res/Android/res/drawable-mdpi/screen.png" />
-        <gap:splash density="port-hdpi" src="res/Android/res/drawable-hdpi/screen.png" />
+        <gap:preference name="android-minSdkVersion" value="21" />
+        <gap:preference name="android-targetSdkVersion" value="28" />
+        <gap:preference name="android-versionCode" value="10601" />
     </gap:platform>
+    <platform name="android">
+        <icon density="ldpi" qualifier="ldpi" src="res/Android/res/drawable-ldpi/icon.png" />
+        <icon density="mdpi" qualifier="mdpi" src="res/Android/res/drawable-mdpi/icon.png" />
+        <icon density="hdpi" qualifier="hdpi" src="res/Android/res/drawable-hdpi/icon.png" />
+        <splash density="land-ldpi" qualifier="land-ldpi" src="res/Android/res/drawable-land-ldpi/screen.png" />
+        <splash density="land-mdpi" qualifier="land-mdpi" src="res/Android/res/drawable-land-mdpi/screen.png" />
+        <splash density="land-hdpi" qualifier="land-hdpi" src="res/Android/res/drawable-land-hdpi/screen.png" />
+        <splash density="port-ldpi" qualifier="port-ldpi" src="res/Android/res/drawable-ldpi/screen.png" />
+        <splash density="port-mdpi" qualifier="port-mdpi" src="res/Android/res/drawable-mdpi/screen.png" />
+        <splash density="port-hdpi" qualifier="port-hdpi" src="res/Android/res/drawable-hdpi/screen.png" />
+    </platform>
     <access origin="*" />
     <access origin="mailto:*" launch-external="yes" />
+    <allow-intent href="market:*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" launch-external="yes" />
     <allow-intent href="geo:*" />
-    <gap:platform name="android">
-        <allow-intent href="market:*" />
-    </gap:platform>
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
     <plugin name="phonegap-plugin-push" spec="~1.10.5">
         <variable name="SENDER_ID" value="476875120878" />
     </plugin>
+    <allow-navigation href="*" />
 </widget>
