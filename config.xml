@@ -10,7 +10,7 @@
     <content src="index.html" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="21" />
-    <preference name="android-targetSdkVersion" value="27" />
+    <preference name="android-targetSdkVersion" value="29" />
     <preference name="phonegap-version" value="cli-9.0.0" />
     <gap:plugin name="cordova-plugin-console" source="npm" />
     <gap:plugin name="cordova-plugin-device" source="npm" />
@@ -24,7 +24,7 @@
     <gap:platform name="android">
         <gap:preference name="AndroidLaunchMode" value="singleTop"/>
         <gap:preference name="android-minSdkVersion" value="21" />
-        <gap:preference name="android-targetSdkVersion" value="27" />
+        <gap:preference name="android-targetSdkVersion" value="29" />
         <gap:preference name="android-versionCode" value="10603" />
     </gap:platform>
     <platform name="android">
