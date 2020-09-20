@@ -22,15 +22,15 @@
     <gap:icon src="res/Android/res/drawable/icon.png" role="default" />
     <gap:splash src="res/Android/res/drawable/screen.png" role="default" />
     <gap:platform name="android">
+        <gap:edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <gap:application android:usesCleartextTraffic="true" />
+        </gap:edit-config>
         <gap:preference name="AndroidLaunchMode" value="singleTop"/>
         <gap:preference name="android-minSdkVersion" value="21" />
         <gap:preference name="android-targetSdkVersion" value="29" />
         <gap:preference name="android-versionCode" value="10603" />
     </gap:platform>
     <platform name="android">
-        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
-            <application android:usesCleartextTraffic="true" />
-        </edit-config>
         <icon density="ldpi" qualifier="ldpi" src="res/Android/res/drawable-ldpi/icon.png" />
         <icon density="mdpi" qualifier="mdpi" src="res/Android/res/drawable-mdpi/icon.png" />
         <icon density="hdpi" qualifier="hdpi" src="res/Android/res/drawable-hdpi/icon.png" />
