@@ -31,6 +31,9 @@
         <gap:preference name="android-versionCode" value="10603" />
     </gap:platform>
     <platform name="android">
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge" target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
         <icon density="ldpi" qualifier="ldpi" src="res/Android/res/drawable-ldpi/icon.png" />
         <icon density="mdpi" qualifier="mdpi" src="res/Android/res/drawable-mdpi/icon.png" />
         <icon density="hdpi" qualifier="hdpi" src="res/Android/res/drawable-hdpi/icon.png" />
