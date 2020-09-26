@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 
 <html>
 
@@ -33,6 +33,9 @@
         .img-responsive {
             margin: 0 auto;
         }
+        .row div img {
+            width: 90%;
+        }
         </style>
     <title>Mantra Jaap Counter</title>
 </head>
@@ -62,9 +65,14 @@
 </nav>
 
     <div class="container" style="padding-top:45px;padding-bottom:25px">
-        <div class="row">
+        <div class="row" style="margin-bottom: -10px;">
             <div class="col-sm-12 col-md-12 col-lg-12 form-group">
                 <img src="../img/Dhyan-Murti.jpeg" alt="Ghanshyam Maharaj" class="img-responsive" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 form-group">
+                <input type="button" style="font-size:40px; font-weight:bold" class="btn btn-danger btn-block" id="mantraJaapButton" onclick="incrementMantraJaapCount();" value="સ્વામિનારાયણ" />
             </div>
         </div>
         <div class="alert alert-danger">
@@ -72,12 +80,6 @@
         </div>
         <div class="alert alert-danger">
             <label style="font-size:x-large">મંત્રજાપ</label>&nbsp;&nbsp; <span style="font-size:large" class="badge" id="counterSpan"></span>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12 col-md-12 col-lg-12 form-group">
-                <input type="button" style="font-size:40px; font-weight:bold" class="btn btn-danger btn-block" id="mantraJaapButton" onclick="incrementMantraJaapCount();" value="સ્વામિનારાયણ" />
-            </div>
         </div>
         <br />
         <div class="row">
